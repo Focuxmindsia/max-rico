@@ -38,7 +38,7 @@ export default function Header() {
             </div>
             <div className="hidden sm:block">
               <span className="font-black text-xl leading-none">Sr. LomaxRico</span>
-              <span className="block text-[10px] text-muted-foreground tracking-widest uppercase">Club de Sabores Latinos</span>
+              <span className="block text-[10px] text-muted-foreground tracking-widest uppercase">Porque maxRico somo todos...</span>
             </div>
           </Link>
 
