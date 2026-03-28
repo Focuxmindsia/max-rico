@@ -34,10 +34,10 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 shrink-0">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-black text-lg">SR</span>
+              <span className="text-primary-foreground font-black text-lg">MR</span>
             </div>
             <div className="hidden sm:block">
-              <span className="font-black text-xl leading-none">Sr. LomaxRico</span>
+              <span className="font-black text-xl leading-none">MaxRico</span>
               <span className="block text-[10px] text-muted-foreground tracking-widest uppercase">Porque maxRico somo todos...</span>
             </div>
           </Link>
