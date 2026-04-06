@@ -43,13 +43,34 @@ export default function ProductDetail() {
         </Link>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-          {/* Image */}
-          <div className="relative rounded-2xl overflow-hidden bg-secondary">
-            <img src={product.image} alt={product.name} className="w-full aspect-square object-cover" />
-            {product.badge && (
-              <Badge variant={badgeMap[product.badge].variant} className="absolute top-4 left-4 text-sm">
-                {badgeMap[product.badge].label}
-              </Badge>
+          {/* Images */}
+          <div className="space-y-3">
+            <div className="relative rounded-2xl overflow-hidden bg-secondary">
+              <img
+                src={product.gallery ? product.gallery[selectedImage] : product.image}
+                alt={product.name}
+                className="w-full aspect-square object-cover"
+              />
+              {product.badge && (
+                <Badge variant={badgeMap[product.badge].variant} className="absolute top-4 left-4 text-sm">
+                  {badgeMap[product.badge].label}
+                </Badge>
+              )}
+            </div>
+            {product.gallery && product.gallery.length > 1 && (
+              <div className="flex gap-2">
+                {product.gallery.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImage(idx)}
+                    className={`rounded-lg overflow-hidden border-2 transition-all w-20 h-20 ${
+                      selectedImage === idx ? "border-primary" : "border-border opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
             )}
           </div>
 
