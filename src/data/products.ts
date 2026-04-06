@@ -73,7 +73,7 @@ export const products: Product[] = [
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 17.90,
     memberPrice: 13.90,
-    image: productEmpanadasGrandes10,
+    image: productEmpanadas,
     badge: "top",
     rating: 4.9,
     packSize: "10 unidades",
