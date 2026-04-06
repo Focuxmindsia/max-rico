@@ -25,6 +25,7 @@ export interface Product {
   price: number;
   memberPrice: number;
   image: string;
+  gallery?: string[];
   badge?: "oferta" | "nuevo" | "top";
   rating?: number;
   packSize: string;
