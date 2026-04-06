@@ -1,4 +1,5 @@
 import productEmpanadas from "@/assets/product-empanadas.jpg";
+import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
 import productPandebonos from "@/assets/product-pandebonos.jpg";
