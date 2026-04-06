@@ -3,7 +3,7 @@ import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpe
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
 import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras.png";
 import productTequenos from "@/assets/product-tequenos.jpg";
-import productPandebonos from "@/assets/product-pandebonos.jpg";
+import productPandebonos from "@/assets/product-pandebonos.webp";
 import productBunuelos from "@/assets/product-bunuelos.jpg";
 import productArepaQueso from "@/assets/product-arepa-queso.webp";
 import productArepaRellenar from "@/assets/product-arepa-rellenar.webp";
