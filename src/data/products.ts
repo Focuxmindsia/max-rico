@@ -1,4 +1,5 @@
 import productEmpanadas from "@/assets/product-empanadas.jpg";
+import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
 import productPandebonos from "@/assets/product-pandebonos.jpg";
@@ -72,7 +73,7 @@ export const products: Product[] = [
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 17.90,
     memberPrice: 13.90,
-    image: productEmpanadas,
+    image: productEmpanadasGrandes10,
     badge: "top",
     rating: 4.9,
     packSize: "10 unidades",
