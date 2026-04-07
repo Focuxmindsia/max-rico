@@ -1,4 +1,5 @@
 import productEmpanadas from "@/assets/product-empanadas.jpg";
+import combo2Empanadas from "@/assets/combo-2-empanadas.jpeg";
 import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
 import productEmpanadasGrandesPollo from "@/assets/Pollo_Mechado_x_10_unidades.png";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
@@ -350,9 +351,10 @@ export const products: Product[] = [
     preparation: "¡Ya vienen fritas y listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 22.90,
+    originalPrice: 23.90,
     memberPrice: 20.90,
-    image: productEmpanadas,
-    badge: "top",
+    image: combo2Empanadas,
+    badge: "oferta",
     rating: 4.9,
     packSize: "10 unidades",
   },
