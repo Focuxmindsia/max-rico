@@ -310,18 +310,18 @@ export const products: Product[] = [
   // === BUÑUELOS ===
   {
     id: "6",
-    name: "Buñuelos Colombianos - Pack 10",
-    slug: "bunuelos-pack-10",
+    name: "Buñuelos Colombianos - Pack 6",
+    slug: "bunuelos-pack-6",
     category: "Buñuelos",
     description: "🧊 CONGELADO · Bolitas de queso fritas, crujientes por fuera y suaves por dentro. Tradición colombiana en cada bocado.",
     ingredients: "Almidón de maíz, queso fresco, huevo, azúcar, sal, polvo de hornear.",
     preparation: "Freír: aceite a 170°C por 6 min (dorar por todos los lados). Horno: 190°C por 15 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 12.90,
+    price: 7.60,
     memberPrice: 14.99,
     image: productBunuelos,
     rating: 4.5,
-    packSize: "10 unidades",
+    packSize: "6 unidades",
     soldOut: true,
   },
   // === COMBOS EMPANADAS FRITAS (LISTAS PARA CONSUMIR) ===
