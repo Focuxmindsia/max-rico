@@ -26,6 +26,7 @@ export interface Product {
   preparation: string;
   conservation: string;
   price: number;
+  originalPrice?: number;
   memberPrice: number;
   image: string;
   gallery?: string[];
