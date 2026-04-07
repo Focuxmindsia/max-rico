@@ -76,7 +76,8 @@ export default function CatalogoPublico() {
               MaxRico.es — El Catálogo
             </h1>
             <p className="text-primary-foreground/70 text-lg max-w-lg mx-auto md:mx-0">
-              Productos colombianos auténticos. Selecciona lo que te guste y haz tu pedido por WhatsApp.
+              Empanadas colombianas auténticos 100% de Maíz molido. <br />
+              No contienen harina / Sin Gluten. haz tu pedido por WhatsApp.
             </p>
           </div>
           <div className="w-full md:w-80 lg:w-96 flex-shrink-0">
