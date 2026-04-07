@@ -1,6 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
+import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
+import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
 import { products, categories } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 
@@ -22,6 +24,16 @@ function getWhatsAppUrl(productName: string) {
 export default function CatalogoPublico() {
   const [selectedCategory, setSelectedCategory] = useState("Todos los Productos");
   const [search, setSearch] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   const filtered = useMemo(() => {
     let result = products;
@@ -80,12 +92,28 @@ export default function CatalogoPublico() {
               No contienen harina / Sin Gluten. haz tu pedido al por Mayor para NEGOCIOS por WhatsApp.
             </p>
           </div>
-          <div className="w-full md:w-80 lg:w-96 flex-shrink-0">
-            <img
-              src={heroEmpanadas}
-              alt="Empanadas congeladas MaxRico"
-              className="w-full h-48 md:h-56 object-cover rounded-xl shadow-lg"
-            />
+          <div className="w-full md:w-80 lg:w-96 flex-shrink-0 relative overflow-hidden rounded-xl shadow-lg h-48 md:h-56">
+            {heroImages.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`Empanadas MaxRico ${idx + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                  idx === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              {heroImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    idx === currentSlide ? "bg-white" : "bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
