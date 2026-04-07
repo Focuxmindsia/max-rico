@@ -147,6 +147,17 @@ export default function CatalogoPublico() {
               </button>
             ))}
             <button
+              onClick={() => {
+                setSelectedCategory("Todos los Productos");
+                setTimeout(() => {
+                  document.getElementById("combo-cajas-fritas")?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className="px-4 py-2 rounded-full text-sm font-bold transition-colors bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]"
+            >
+              🔥 Combo de cajas fritas
+            </button>
+            <button
               onClick={() => setSelectedCategory("Al por Mayor")}
               className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
                 selectedCategory === "Al por Mayor"
