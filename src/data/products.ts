@@ -1,4 +1,5 @@
 import productEmpanadas from "@/assets/product-empanadas.jpg";
+import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
 import productEmpanadasGrandesPollo from "@/assets/Pollo_Mechado_x_10_unidades.png";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
