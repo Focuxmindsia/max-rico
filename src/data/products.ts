@@ -31,6 +31,7 @@ export interface Product {
   packSize: string;
   weight?: string;
   format?: string;
+  soldOut?: boolean;
 }
 
 export const categories = [
