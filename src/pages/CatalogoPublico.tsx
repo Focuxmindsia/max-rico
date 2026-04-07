@@ -24,6 +24,16 @@ function getWhatsAppUrl(productName: string) {
 export default function CatalogoPublico() {
   const [selectedCategory, setSelectedCategory] = useState("Todos los Productos");
   const [search, setSearch] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   const filtered = useMemo(() => {
     let result = products;
