@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Search, MessageCircle, Star } from "lucide-react";
+import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import { products, categories } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 
@@ -68,14 +69,23 @@ export default function CatalogoPublico() {
       </header>
 
       {/* Hero */}
-      <section className="bg-primary py-10">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-black text-primary-foreground mb-2">
-            MaxRico.es — El Catálogo
-          </h1>
-          <p className="text-primary-foreground/70 text-lg max-w-lg mx-auto">
-            Productos colombianos auténticos. Selecciona lo que te guste y haz tu pedido por WhatsApp.
-          </p>
+      <section className="bg-primary py-6 md:py-10">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-black text-primary-foreground mb-2">
+              MaxRico.es — El Catálogo
+            </h1>
+            <p className="text-primary-foreground/70 text-lg max-w-lg mx-auto md:mx-0">
+              Productos colombianos auténticos. Selecciona lo que te guste y haz tu pedido por WhatsApp.
+            </p>
+          </div>
+          <div className="w-full md:w-80 lg:w-96 flex-shrink-0">
+            <img
+              src={heroEmpanadas}
+              alt="Empanadas congeladas MaxRico"
+              className="w-full h-48 md:h-56 object-cover rounded-xl shadow-lg"
+            />
+          </div>
         </div>
       </section>
 
