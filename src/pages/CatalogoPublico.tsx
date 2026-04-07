@@ -133,30 +133,27 @@ export default function CatalogoPublico() {
             />
           </div>
           <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedCategory === cat
-                    ? "bg-foreground text-background"
-                    : "bg-secondary text-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-            <button
-              onClick={() => {
-                setSelectedCategory("Todos los Productos");
-                setTimeout(() => {
-                  document.getElementById("combo-cajas-fritas")?.scrollIntoView({ behavior: "smooth" });
-                }, 100);
-              }}
-              className="px-4 py-2 rounded-full text-sm font-bold transition-colors bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]"
-            >
-              🔥 Combo de cajas fritas
-            </button>
+            {categories.map((cat) => {
+              const isCombo = cat === "Combos";
+              const label = isCombo ? "🔥 Combos de cajas fritas" : cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    isCombo
+                      ? selectedCategory === cat
+                        ? "bg-[hsl(45,100%,45%)] text-foreground font-bold"
+                        : "bg-[hsl(45,100%,51%)] text-foreground font-bold hover:bg-[hsl(45,100%,45%)]"
+                      : selectedCategory === cat
+                        ? "bg-foreground text-background"
+                        : "bg-secondary text-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
             <button
               onClick={() => setSelectedCategory("Al por Mayor")}
               className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
