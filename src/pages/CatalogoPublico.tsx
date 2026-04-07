@@ -73,7 +73,7 @@ export default function CatalogoPublico() {
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-6 md:gap-10">
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-3xl md:text-5xl font-black text-primary-foreground mb-2">
-              Catálogo
+              El Catálogo
             </h1>
             <p className="text-primary-foreground/70 text-lg max-w-lg mx-auto md:mx-0">
               Empanadas colombianas auténtico sabor 100% de Maíz molido. <br />
