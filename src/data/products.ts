@@ -112,21 +112,21 @@ export const products: Product[] = [
   // === EMPANADAS COCTELERAS ===
   {
     id: "8",
-    name: "Empanadas Pequeñas Cocteleras x17 und",
-    slug: "empanadas-cocteleras-pack-17",
+    name: "Empanadas Pequeñas Cocteleras x14 und",
+    slug: "empanadas-cocteleras-pack-14",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
     ingredients: "Harina de maíz, carne de res, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
     preparation: "Freír: aceite a 180°C por 3-4 min. Air fryer: 180°C por 8 min. Horno: 200°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 14.90,
+    price: 8.50,
     memberPrice: 11.90,
     image: productEmpanadasCocteleras,
     badge: "nuevo",
     rating: 4.7,
-    packSize: "17 unidades",
+    packSize: "14 unidades",
     weight: "510 g",
-    format: "8 cm (17 unidades)",
+    format: "8 cm (14 unidades)",
   },
   // === AREPAS ===
   {
