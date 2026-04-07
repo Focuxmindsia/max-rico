@@ -247,7 +247,7 @@ export default function CatalogoPublico() {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                    className={`w-full h-48 object-cover transition-transform duration-300 ${isSoldOut ? "grayscale" : "group-hover:scale-105"}`}
                     loading="lazy"
                   />
                   {isSoldOut && (
