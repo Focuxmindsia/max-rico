@@ -154,7 +154,7 @@ export default function CatalogoPublico() {
                   : "bg-destructive/90 text-destructive-foreground hover:bg-destructive"
               }`}
             >
-              🔥 Al por Mayor
+              🔥 Para Negocios ó Eventos
             </button>
           </div>
         </div>
