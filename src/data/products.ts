@@ -7,6 +7,8 @@ import productPandebonos from "@/assets/product-pandebonos.webp";
 import productBunuelos from "@/assets/product-bunuelos.jpg";
 import productArepaQueso from "@/assets/product-arepa-queso.webp";
 import productArepaRellenar from "@/assets/product-arepa-rellenar.webp";
+import productArepaChocolo from "@/assets/arepa-chocolo-cachapa.webp";
+import productArepaArtesanal from "@/assets/arepa-rellenar-dcarnilsa.webp";
 import productChorizoSantarosano from "@/assets/product-chorizo-santarosano.webp";
 import productChorizoXL from "@/assets/product-chorizo-xl.webp";
 import productSalchichaRanchera from "@/assets/product-salchicha-ranchera.webp";
@@ -31,6 +33,7 @@ export interface Product {
   packSize: string;
   weight?: string;
   format?: string;
+  soldOut?: boolean;
 }
 
 export const categories = [
@@ -119,6 +122,40 @@ export const products: Product[] = [
     rating: 4.7,
     packSize: "6 unidades",
     weight: "700 g",
+    format: "6 unidades",
+  },
+  {
+    id: "15",
+    name: "Arepa de Chócolo con Queso Colombiana x4 und",
+    slug: "arepa-chocolo-queso-pack-4",
+    category: "Arepas",
+    description: "🧊 CONGELADA · Arepa de chócolo con queso colombiana de Dcarnilsa, elaborada con maíz tierno y rellena de queso fundente. Paquete de 4 unidades (500 g), lista para calentar y disfrutar.",
+    ingredients: "Maíz tierno (chócolo), queso, mantequilla, sal, azúcar.",
+    preparation: "Plancha/sartén: 4-5 min por lado a fuego medio. Horno: 200°C por 12 min.",
+    conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
+    price: 7.00,
+    memberPrice: 5.90,
+    image: productArepaChocolo,
+    badge: "nuevo",
+    rating: 4.8,
+    packSize: "4 unidades",
+    weight: "500 g",
+    format: "4 unidades",
+  },
+  {
+    id: "16",
+    name: "Arepa Artesanal para Rellenar x6 und",
+    slug: "arepa-artesanal-rellenar-pack-6",
+    category: "Arepas",
+    description: "🧊 CONGELADA · Arepa artesanal para rellenar de Dcarnilsa, con textura firme y sabor neutro. Paquete de 6 unidades, ideal para recetas rellenas y uso profesional.",
+    ingredients: "Harina de maíz precocida, agua, sal.",
+    preparation: "Plancha/sartén: 4 min por lado a fuego medio. Horno: 200°C por 12 min. Air fryer: 180°C por 10 min.",
+    conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
+    price: 2.26,
+    memberPrice: 1.90,
+    image: productArepaArtesanal,
+    packSize: "6 unidades",
+    weight: "800 g",
     format: "6 unidades",
   },
   // === CHORIZOS ===
@@ -244,6 +281,7 @@ export const products: Product[] = [
     badge: "top",
     rating: 4.7,
     packSize: "10 unidades",
+    soldOut: true,
   },
   // === BUÑUELOS ===
   {
@@ -261,6 +299,7 @@ export const products: Product[] = [
     badge: "oferta",
     rating: 4.5,
     packSize: "10 unidades",
+    soldOut: true,
   },
   // === COMBOS EMPANADAS FRITAS (LISTAS PARA CONSUMIR) ===
   {

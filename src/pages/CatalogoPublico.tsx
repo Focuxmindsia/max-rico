@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, MessageCircle, Star } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import { products, categories } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
@@ -126,19 +126,27 @@ export default function CatalogoPublico() {
 
           const renderProductCard = (product: typeof filtered[0]) => {
             const badgeInfo = product.badge ? badgeMap[product.badge] : null;
+            const isSoldOut = product.soldOut === true;
             return (
               <div
                 key={product.id}
-                className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
+                className={`group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${isSoldOut ? "opacity-60" : ""}`}
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className={`w-full h-48 object-cover transition-transform duration-300 ${isSoldOut ? "grayscale" : "group-hover:scale-105"}`}
                     loading="lazy"
                   />
-                  {badgeInfo && (
+                  {isSoldOut && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-foreground/50">
+                      <span className="bg-destructive text-destructive-foreground font-black text-lg px-6 py-2 rounded-full -rotate-12 shadow-lg">
+                        AGOTADO
+                      </span>
+                    </div>
+                  )}
+                  {badgeInfo && !isSoldOut && (
                     <Badge variant={badgeInfo.variant} className="absolute top-3 left-3">
                       {badgeInfo.label}
                     </Badge>
@@ -163,15 +171,21 @@ export default function CatalogoPublico() {
                   <div className="mt-auto">
                     <p className="text-lg font-black mb-3">{product.price.toFixed(2)}€</p>
 
-                    <a
-                      href={getWhatsAppUrl(product.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2.5 rounded-lg text-sm font-bold transition-colors"
-                    >
-                      <MessageCircle className="h-4 w-4" />
-                      Pedir por WhatsApp
-                    </a>
+                    {isSoldOut ? (
+                      <div className="flex items-center justify-center w-full bg-muted text-muted-foreground py-2.5 rounded-lg text-sm font-bold cursor-not-allowed">
+                        Agotado
+                      </div>
+                    ) : (
+                      <a
+                        href={getWhatsAppUrl(product.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2.5 rounded-lg text-sm font-bold transition-colors"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        Pedir por WhatsApp
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -189,8 +203,15 @@ export default function CatalogoPublico() {
           return (
             <>
               {regularProducts.length > 0 && (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                  {regularProducts.map(renderProductCard)}
+                <div>
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-black text-foreground">
+                      🧊 Productos Congelados
+                    </h2>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                    {regularProducts.map(renderProductCard)}
+                  </div>
                 </div>
               )}
 
@@ -198,10 +219,14 @@ export default function CatalogoPublico() {
                 <div className="mt-12">
                   <div className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-black text-foreground">
-                      🔥 Productos Fritos Listos para Consumir
+                      🔥 Productos Fritos Listos para Consumir 🔥
                     </h2>
-                    <p className="text-muted-foreground mt-2 text-sm md:text-base">
-                      Solo en Zaragoza capital · Incluye domicilio
+                    <p className="text-muted-foreground mt-2 text-sm md:text-base flex items-center justify-center gap-2">
+                      <ChevronRight className="h-5 w-5 text-primary animate-bounce-right" />
+                      <span className="font-bold text-foreground underline decoration-primary decoration-2 underline-offset-4">
+                        Solo en Zaragoza capital · Incluye domicilio
+                      </span>
+                      <ChevronLeft className="h-5 w-5 text-primary animate-bounce-left" />
                     </p>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
