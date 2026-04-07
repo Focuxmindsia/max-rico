@@ -247,6 +247,7 @@ export const products: Product[] = [
     badge: "top",
     rating: 4.7,
     packSize: "10 unidades",
+    soldOut: true,
   },
   // === BUÑUELOS ===
   {
