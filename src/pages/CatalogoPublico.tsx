@@ -154,7 +154,7 @@ export default function CatalogoPublico() {
                   : "bg-destructive/90 text-destructive-foreground hover:bg-destructive"
               }`}
             >
-              🔥 Al por Mayor
+              🔥 Para Negocios ó Eventos
             </button>
           </div>
         </div>
@@ -376,10 +376,10 @@ export default function CatalogoPublico() {
           setSelectedCategory("Al por Mayor");
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
-        className="fixed bottom-6 right-4 z-50 bg-destructive text-foreground font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-sm"
+        className="fixed bottom-6 right-4 z-50 bg-destructive text-foreground font-black px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-xs"
       >
-        <Store className="h-5 w-5" />
-        Al por Mayor
+        <Store className="h-4 w-4" />
+        Para Negocios ó Eventos
       </button>
     </div>
   );
