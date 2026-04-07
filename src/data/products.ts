@@ -293,18 +293,18 @@ export const products: Product[] = [
   // === TEQUEÑOS ===
   {
     id: "4",
-    name: "Tequeños de Queso - Pack 10",
-    slug: "tequenos-pack-10",
+    name: "Tequeños de Queso - Pack 14",
+    slug: "tequenos-pack-14",
     category: "Tequeños",
     description: "🧊 CONGELADO · Crujientes palitos de masa rellenos de queso fundente. El snack venezolano más adictivo.",
     ingredients: "Harina de trigo, queso semiduro, mantequilla, huevo, sal, azúcar.",
     preparation: "Horno: 190°C por 12 min. Air fryer: 180°C por 10 min. Freír: aceite a 180°C por 4 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 12.90,
+    price: 8.50,
     memberPrice: 12.99,
     image: productTequenos,
     rating: 4.7,
-    packSize: "10 unidades",
+    packSize: "14 unidades",
     soldOut: true,
   },
   // === BUÑUELOS ===
