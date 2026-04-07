@@ -369,7 +369,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 30.00,
     memberPrice: 27.00,
-    image: productEmpanadas,
+    image: productOfertaLimitada,
     badge: "oferta",
     rating: 4.9,
     packSize: "27 unidades",
