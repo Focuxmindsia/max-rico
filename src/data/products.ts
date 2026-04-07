@@ -34,7 +34,7 @@ export interface Product {
 }
 
 export const categories = [
-  "Todas",
+  "Todos los Productos",
   "Empanadas",
   "Tequeños",
   "Pan de bono",
