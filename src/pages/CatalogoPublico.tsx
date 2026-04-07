@@ -248,6 +248,7 @@ export default function CatalogoPublico() {
                     src={product.image}
                     alt={product.name}
                     className={`w-full h-48 object-cover transition-transform duration-300 ${isSoldOut ? "grayscale" : "group-hover:scale-105"}`}
+                    style={product.imagePosition ? { objectPosition: product.imagePosition } : undefined}
                     loading="lazy"
                   />
                   {isSoldOut && (

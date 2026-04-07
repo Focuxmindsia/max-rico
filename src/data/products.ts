@@ -39,6 +39,7 @@ export interface Product {
   weight?: string;
   format?: string;
   soldOut?: boolean;
+  imagePosition?: string;
 }
 
 export const categories = [
@@ -405,5 +406,6 @@ export const products: Product[] = [
     badge: "nuevo",
     rating: 5.0,
     packSize: "30+ unidades",
+    imagePosition: "center 30%",
   },
 ];
