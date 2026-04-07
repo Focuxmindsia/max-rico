@@ -37,7 +37,7 @@ export const categories = [
   "Todos los Productos",
   "Empanadas",
   "Tequeños",
-  "Pan de bono",
+  "PandeBono",
   "Buñuelos",
   "Arepas",
   "Chorizos",
