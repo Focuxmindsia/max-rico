@@ -224,7 +224,7 @@ export default function CatalogoPublico() {
                     <p className="text-muted-foreground mt-2 text-sm md:text-base flex items-center justify-center gap-2">
                       <ChevronRight className="h-5 w-5 text-primary animate-bounce-right" />
                       <span className="font-bold text-foreground underline decoration-primary decoration-2 underline-offset-4">
-                        Solo en Zaragoza capital Se Venden Caja Fritas · Incluye domicilio
+                        Solo en Zaragoza capital Se Venden los Combos de Cajas Fritas · Incluye domicilio
                       </span>
                       <ChevronLeft className="h-5 w-5 text-primary animate-bounce-left" />
                     </p>
