@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
@@ -146,11 +146,79 @@ export default function CatalogoPublico() {
                 {cat}
               </button>
             ))}
+            <button
+              onClick={() => setSelectedCategory("Al por Mayor")}
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                selectedCategory === "Al por Mayor"
+                  ? "bg-destructive text-destructive-foreground"
+                  : "bg-destructive/90 text-destructive-foreground hover:bg-destructive"
+              }`}
+            >
+              🔥 Al por Mayor
+            </button>
           </div>
         </div>
 
-        {/* Products grid */}
-        {(() => {
+        {/* Wholesale section */}
+        {selectedCategory === "Al por Mayor" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Card: Eventos */}
+            <div className="bg-card rounded-xl border-2 border-primary overflow-hidden shadow-lg flex flex-col">
+              <div className="bg-primary p-6 text-center">
+                <PartyPopper className="h-12 w-12 text-primary-foreground mx-auto mb-3" />
+                <h3 className="text-xl font-black text-primary-foreground">Para Eventos</h3>
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  ¿Necesitas empanadas para un <strong>evento puntual</strong>, tu <strong>cumpleaños</strong>, fiestas o celebraciones? Te ofrecemos empanadas al por mayor con el auténtico sabor colombiano.
+                </p>
+                <ul className="text-sm space-y-2 mb-6 text-foreground">
+                  <li>🎂 Cumpleaños y fiestas</li>
+                  <li>🎉 Eventos y celebraciones</li>
+                  <li>🤝 Reuniones empresariales</li>
+                </ul>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, necesito empanadas al por mayor para celebrar un evento o un cumpleaños. ¿Me podrían dar más información?")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded-lg text-sm font-bold transition-colors"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Pedir para mi Evento
+                </a>
+              </div>
+            </div>
+
+            {/* Card: Negocios */}
+            <div className="bg-card rounded-xl border-2 border-destructive overflow-hidden shadow-lg flex flex-col">
+              <div className="bg-destructive p-6 text-center">
+                <Store className="h-12 w-12 text-destructive-foreground mx-auto mb-3" />
+                <h3 className="text-xl font-black text-destructive-foreground">Para Negocios</h3>
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  ¿Tienes un <strong>negocio</strong> y quieres ofrecer nuestras empanadas a tus clientes? Abastece tu local con producto de calidad, sin gluten y 100% de maíz molido.
+                </p>
+                <ul className="text-sm space-y-2 mb-6 text-foreground">
+                  <li>🏪 Restaurantes y cafeterías</li>
+                  <li>🛒 Tiendas y supermercados</li>
+                  <li>📦 Pedidos recurrentes</li>
+                </ul>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, necesito empanadas para abastecer mi negocio. ¿Me podrían dar más información sobre precios al por mayor?")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-3 rounded-lg text-sm font-bold transition-colors"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Pedir para mi Negocio
+                </a>
+              </div>
+            </div>
+          </div>
+        ) : (
+        /* Products grid */
+        (() => {
           const regularProducts = filtered.filter((p) => p.category !== "Combos");
           const comboProducts = filtered.filter((p) => p.category === "Combos");
 
@@ -271,7 +339,8 @@ export default function CatalogoPublico() {
               )}
             </>
           );
-        })()}
+        })())}
+
       </div>
 
       {/* Footer simple */}
@@ -300,6 +369,18 @@ export default function CatalogoPublico() {
           </div>
         </div>
       </footer>
+
+      {/* Floating wholesale button */}
+      <button
+        onClick={() => {
+          setSelectedCategory("Al por Mayor");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className="fixed bottom-6 right-4 z-50 bg-destructive text-foreground font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-sm"
+      >
+        <Store className="h-5 w-5" />
+        Al por Mayor
+      </button>
     </div>
   );
 }
