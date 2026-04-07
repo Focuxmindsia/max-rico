@@ -108,7 +108,7 @@ export const products: Product[] = [
   // === AREPAS ===
   {
     id: "7",
-    name: "Arepa Rellena de Queso Mozzarella x6 und",
+    name: "Arepa Rellena de Queso Mozzarella x5 und",
     slug: "arepas-queso-pack-6",
     category: "Arepas",
     description: "🧊 CONGELADAS · Arepas de maíz rellenas de queso mozzarella fundido. La base de la cocina colombiana y venezolana. 6 unidades por paquete.",
