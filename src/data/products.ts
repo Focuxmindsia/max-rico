@@ -17,6 +17,7 @@ import productChorizoXL from "@/assets/product-chorizo-xl.webp";
 import productSalchichaRanchera from "@/assets/product-salchicha-ranchera.webp";
 import productSalchichonCervecero from "@/assets/product-salchichon-cervecero.webp";
 import productSalamiLatino from "@/assets/product-salami-latino.webp";
+import comboXXLMixto from "@/assets/combo-xxl-mixto.jpeg";
 
 export interface Product {
   id: string;
@@ -400,7 +401,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 39.90,
     memberPrice: 35.90,
-    image: productEmpanadas,
+    image: comboXXLMixto,
     badge: "nuevo",
     rating: 5.0,
     packSize: "30+ unidades",
