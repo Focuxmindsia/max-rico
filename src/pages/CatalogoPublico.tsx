@@ -257,7 +257,7 @@ export default function CatalogoPublico() {
     </div>
   );
 }
-  const [selectedCategory, setSelectedCategory] = useState("Todos los Productos");
+
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
