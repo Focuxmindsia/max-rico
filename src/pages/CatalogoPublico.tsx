@@ -258,8 +258,6 @@ export default function CatalogoPublico() {
   );
 }
 
-  const [search, setSearch] = useState("");
-
   const filtered = useMemo(() => {
     let result = products;
     if (selectedCategory !== "Todos los Productos") {
