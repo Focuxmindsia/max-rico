@@ -87,6 +87,25 @@ export const products: Product[] = [
     weight: "750 g",
     format: "13,5 cm (10 unidades)",
   },
+  // === EMPANADAS GRANDES POLLO ===
+  {
+    id: "25",
+    name: "Empanadas Grandes de Pollo x10 und",
+    slug: "empanadas-grandes-pollo-pack-10",
+    category: "Empanadas",
+    description: "🧊 CONGELADAS · Pack de 10 empanadas colombianas grandes de pollo mechado. Masa crujiente de maíz 100% y relleno jugoso de pollo desmechado.",
+    ingredients: "Harina de maíz, pollo mechado, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
+    preparation: "Horno: 200°C por 15 min. Air fryer: 180°C por 12 min. Freír: aceite a 180°C por 5 min.",
+    conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
+    price: 17.90,
+    memberPrice: 14.90,
+    image: productEmpanadasGrandesPollo,
+    badge: "oferta",
+    rating: 4.8,
+    packSize: "10 unidades",
+    weight: "750 g",
+    format: "13,5 cm (10 unidades)",
+  },
   // === EMPANADAS COCTELERAS ===
   {
     id: "8",
