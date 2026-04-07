@@ -108,10 +108,10 @@ export const products: Product[] = [
   // === AREPAS ===
   {
     id: "7",
-    name: "Arepa Rellena de Queso Mozzarella x6 und",
+    name: "Arepa Rellena de Queso Mozzarella x5 und",
     slug: "arepas-queso-pack-6",
     category: "Arepas",
-    description: "🧊 CONGELADAS · Arepas de maíz rellenas de queso mozzarella fundido. La base de la cocina colombiana y venezolana. 6 unidades por paquete.",
+    description: "🧊 CONGELADAS · Arepas de maíz rellenas de queso mozzarella fundido. La base de la cocina colombiana y venezolana. 5 unidades por paquete.",
     ingredients: "Harina de maíz precocida, queso mozzarella, mantequilla, sal, agua.",
     preparation: "Plancha/sartén: 4 min por lado a fuego medio. Horno: 200°C por 12 min. Air fryer: 180°C por 10 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
@@ -120,9 +120,9 @@ export const products: Product[] = [
     image: productArepaQueso,
     badge: "oferta",
     rating: 4.7,
-    packSize: "6 unidades",
+    packSize: "5 unidades",
     weight: "700 g",
-    format: "6 unidades",
+    format: "5 unidades",
   },
   {
     id: "15",
