@@ -332,7 +332,7 @@ export default function CatalogoPublico() {
               )}
 
               {comboProducts.length > 0 && (
-                <div className="mt-12">
+                <div id="combo-cajas-fritas" className="mt-12">
                   <div className="text-center mb-8">
                     <h2 className="text-2xl md:text-3xl font-black text-foreground">
                       🔥 Productos Fritos Listos para Consumir 🔥
