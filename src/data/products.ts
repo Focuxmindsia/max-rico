@@ -265,6 +265,7 @@ export const products: Product[] = [
     badge: "oferta",
     rating: 4.5,
     packSize: "10 unidades",
+    soldOut: true,
   },
   // === COMBOS EMPANADAS FRITAS (LISTAS PARA CONSUMIR) ===
   {
