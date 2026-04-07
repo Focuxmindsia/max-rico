@@ -369,6 +369,18 @@ export default function CatalogoPublico() {
           </div>
         </div>
       </footer>
+
+      {/* Floating wholesale button */}
+      <button
+        onClick={() => {
+          setSelectedCategory("Al por Mayor");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className="fixed bottom-6 right-4 z-50 bg-destructive text-foreground font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-sm"
+      >
+        <Store className="h-5 w-5" />
+        Al por Mayor
+      </button>
     </div>
   );
 }
