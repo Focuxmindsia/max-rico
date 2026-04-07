@@ -170,7 +170,12 @@ export default function CatalogoPublico() {
                   )}
 
                   <div className="mt-auto">
-                    <p className="text-lg font-black mb-3">{product.price.toFixed(2)}€</p>
+                    <div className="flex items-center gap-2 mb-3">
+                      <p className="text-lg font-black">{product.price.toFixed(2)}€</p>
+                      {product.originalPrice && (
+                        <p className="text-sm text-muted-foreground line-through">{product.originalPrice.toFixed(2)}€</p>
+                      )}
+                    </div>
 
                     {isSoldOut ? (
                       <div className="flex items-center justify-center w-full bg-muted text-muted-foreground py-2.5 rounded-lg text-sm font-bold cursor-not-allowed">
