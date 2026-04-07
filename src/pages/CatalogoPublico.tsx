@@ -20,12 +20,12 @@ function getWhatsAppUrl(productName: string) {
 }
 
 export default function CatalogoPublico() {
-  const [selectedCategory, setSelectedCategory] = useState("Todas");
+  const [selectedCategory, setSelectedCategory] = useState("Todos los Productos");
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
     let result = products;
-    if (selectedCategory !== "Todas") {
+    if (selectedCategory !== "Todos los Productos") {
       result = result.filter((p) => p.category === selectedCategory);
     }
     if (search.trim()) {
