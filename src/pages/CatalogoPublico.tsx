@@ -239,7 +239,9 @@ export default function CatalogoPublico() {
             return (
               <div
                 key={product.id}
-                className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
+                className={`group rounded-xl border overflow-hidden transition-all duration-300 flex flex-col ${
+                  isSoldOut ? "bg-muted border-muted-foreground/20 opacity-70" : "bg-card border-border hover:shadow-lg"
+                }`}
               >
                 <div className="relative overflow-hidden">
                   <img
