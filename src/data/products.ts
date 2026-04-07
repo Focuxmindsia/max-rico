@@ -7,6 +7,8 @@ import productPandebonos from "@/assets/product-pandebonos.webp";
 import productBunuelos from "@/assets/product-bunuelos.jpg";
 import productArepaQueso from "@/assets/product-arepa-queso.webp";
 import productArepaRellenar from "@/assets/product-arepa-rellenar.webp";
+import productArepaChocolo from "@/assets/arepa-chocolo-cachapa.webp";
+import productArepaArtesanal from "@/assets/arepa-rellenar-dcarnilsa.webp";
 import productChorizoSantarosano from "@/assets/product-chorizo-santarosano.webp";
 import productChorizoXL from "@/assets/product-chorizo-xl.webp";
 import productSalchichaRanchera from "@/assets/product-salchicha-ranchera.webp";
