@@ -29,7 +29,7 @@ export default function CatalogoPublico() {
   const [search, setSearch] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3, heroEmpanadas4, heroEmpanadas5];
+  const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3, heroEmpanadas4, heroEmpanadas5, heroEmpanadas6];
 
   useEffect(() => {
     const timer = setInterval(() => {
