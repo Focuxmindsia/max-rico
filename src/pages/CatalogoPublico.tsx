@@ -90,7 +90,7 @@ export default function CatalogoPublico() {
             </h1>
             <p className="text-primary-foreground/70 text-lg max-w-lg mx-auto md:mx-0">
               Empanadas colombianas auténtico sabor 100% de Maíz molido. <br />
-              No contienen harina / Sin Gluten. haz tu pedido Particulares | Eventos | Negocios
+              No contienen harina / Sin Gluten. haz tu pedido Particulares | Eventos | Negocios.
             </p>
           </div>
           <div className="w-full md:w-80 lg:w-96 flex-shrink-0 relative overflow-hidden rounded-xl shadow-lg h-48 md:h-56">
