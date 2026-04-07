@@ -3,7 +3,6 @@ import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram } fro
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
-
 import heroEmpanadas5 from "@/assets/hero-empanadas-5.jpg";
 import { products, categories } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
