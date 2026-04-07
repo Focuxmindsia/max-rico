@@ -120,9 +120,9 @@ export const products: Product[] = [
     image: productArepaQueso,
     badge: "oferta",
     rating: 4.7,
-    packSize: "6 unidades",
+    packSize: "5 unidades",
     weight: "700 g",
-    format: "6 unidades",
+    format: "5 unidades",
   },
   {
     id: "15",
