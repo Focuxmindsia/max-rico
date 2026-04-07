@@ -392,7 +392,7 @@ export const products: Product[] = [
   },
   {
     id: "24",
-    name: "Combo XXL — Mixto + Salami Latino + 3 Arepas",
+    name: "Combo XXL mixto: 10 Empanadas Grandes + Salami Latino + 3 Arepas",
     slug: "combo-xxl-mixto-salami-arepas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · El combo definitivo: 10 empanadas grandes + 17 pequeñas fritas + salami + 3 arepas de queso. Incluye domicilio en Zaragoza capital.",
