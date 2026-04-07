@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
