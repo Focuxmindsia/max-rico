@@ -339,7 +339,8 @@ export default function CatalogoPublico() {
               )}
             </>
           );
-        })()}
+        })())}
+
       </div>
 
       {/* Footer simple */}
