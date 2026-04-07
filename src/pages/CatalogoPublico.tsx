@@ -173,9 +173,11 @@ export default function CatalogoPublico() {
                   ¿Necesitas empanadas para un <strong>evento puntual</strong>, tu <strong>cumpleaños</strong>, fiestas o celebraciones? Te ofrecemos empanadas al por mayor con el auténtico sabor colombiano.
                 </p>
                 <ul className="text-sm space-y-2 mb-6 text-foreground">
+                  <li>🍽️ Empresas de catering</li>
                   <li>🎂 Cumpleaños y fiestas</li>
                   <li>🎉 Eventos y celebraciones</li>
                   <li>🤝 Reuniones empresariales</li>
+                  <li>⛪ Iglesias o ministerios</li>
                 </ul>
                 <a
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, necesito empanadas al por mayor para celebrar un evento o un cumpleaños. ¿Me podrían dar más información?")}`}
