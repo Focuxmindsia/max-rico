@@ -202,7 +202,7 @@ export default function CatalogoPublico() {
                   ¿Tienes un <strong>negocio</strong> y quieres ofrecer nuestras empanadas a tus clientes? Abastece tu local con producto de calidad, sin gluten y 100% de maíz molido.
                 </p>
                 <ul className="text-sm space-y-2 mb-6 text-foreground">
-                  <li>🏪 Restaurantes y cafeterías</li>
+                  <li>🏪 Restaurantes,  cafeterías y Bar</li>
                   <li>🛒 Tiendas y supermercados</li>
                   <li>📦 Pedidos recurrentes</li>
                 </ul>
