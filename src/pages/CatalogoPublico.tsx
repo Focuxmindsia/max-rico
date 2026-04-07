@@ -146,6 +146,16 @@ export default function CatalogoPublico() {
                 {cat}
               </button>
             ))}
+            <button
+              onClick={() => setSelectedCategory("Al por Mayor")}
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                selectedCategory === "Al por Mayor"
+                  ? "bg-destructive text-destructive-foreground"
+                  : "bg-destructive/90 text-destructive-foreground hover:bg-destructive"
+              }`}
+            >
+              🔥 Al por Mayor
+            </button>
           </div>
         </div>
 
