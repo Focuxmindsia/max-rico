@@ -243,15 +243,26 @@ export default function CatalogoPublico() {
       <footer className="bg-foreground text-background/60 py-8 mt-12">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm">© {new Date().getFullYear()} MaxRico — Sabor Latino. Todos los derechos reservados.</p>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-3 text-[#25D366] hover:underline text-sm font-semibold"
-          >
-            <MessageCircle className="h-4 w-4" />
-            +34 695 798 632
-          </a>
+          <div className="flex items-center justify-center gap-6 mt-4">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-[#25D366] hover:underline text-sm font-semibold"
+            >
+              <MessageCircle className="h-5 w-5" />
+              WhatsApp: +34 695 798 632
+            </a>
+            <a
+              href="https://www.instagram.com/maxrico_distribuidora/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-[#E1306C] hover:underline text-sm font-semibold"
+            >
+              <Instagram className="h-5 w-5" />
+              Instagram
+            </a>
+          </div>
         </div>
       </footer>
     </div>
