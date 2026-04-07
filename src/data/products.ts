@@ -39,6 +39,7 @@ export interface Product {
   weight?: string;
   format?: string;
   soldOut?: boolean;
+  imagePosition?: string;
 }
 
 export const categories = [
