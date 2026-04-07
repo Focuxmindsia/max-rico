@@ -17,6 +17,7 @@ import productChorizoXL from "@/assets/product-chorizo-xl.webp";
 import productSalchichaRanchera from "@/assets/product-salchicha-ranchera.webp";
 import productSalchichonCervecero from "@/assets/product-salchichon-cervecero.webp";
 import productSalamiLatino from "@/assets/product-salami-latino.webp";
+import comboXXLMixto from "@/assets/combo-xxl-mixto.jpeg";
 
 export interface Product {
   id: string;
