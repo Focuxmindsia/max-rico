@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import { products, categories } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
