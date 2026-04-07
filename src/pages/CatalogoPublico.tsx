@@ -239,13 +239,15 @@ export default function CatalogoPublico() {
             return (
               <div
                 key={product.id}
-                className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
+                className={`group rounded-xl border overflow-hidden transition-all duration-300 flex flex-col ${
+                  isSoldOut ? "bg-muted border-muted-foreground/20 opacity-70" : "bg-card border-border hover:shadow-lg"
+                }`}
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                    className={`w-full h-48 object-cover transition-transform duration-300 ${isSoldOut ? "grayscale" : "group-hover:scale-105"}`}
                     loading="lazy"
                   />
                   {isSoldOut && (
