@@ -268,6 +268,11 @@ export default function CatalogoPublico() {
                       🚚 DOMICILIO GRATIS
                     </div>
                   )}
+                  {product.category !== "Combos" && !isSoldOut && (
+                    <div className="absolute bottom-2 right-2 bg-sky-100 text-sky-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                      🧊 Ultracongelado
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-4 flex flex-col flex-1">
