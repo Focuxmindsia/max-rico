@@ -264,7 +264,7 @@ export default function CatalogoPublico() {
                     </Badge>
                   )}
                   {product.category === "Combos" && !isSoldOut && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-green-600 text-white text-center py-1.5 font-bold text-sm tracking-wide">
+                    <div className="absolute bottom-0 left-0 right-0 bg-blue-600 text-white text-center py-1.5 font-bold text-sm tracking-wide">
                       🚚 DOMICILIO GRATIS
                     </div>
                   )}
