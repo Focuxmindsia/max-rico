@@ -406,5 +406,6 @@ export const products: Product[] = [
     badge: "nuevo",
     rating: 5.0,
     packSize: "30+ unidades",
+    imagePosition: "center 30%",
   },
 ];
