@@ -1,4 +1,5 @@
 import productEmpanadas from "@/assets/product-empanadas.jpg";
+import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
 import productEmpanadasGrandesPollo from "@/assets/Pollo_Mechado_x_10_unidades.png";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
@@ -368,7 +369,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 30.00,
     memberPrice: 27.00,
-    image: productEmpanadas,
+    image: productOfertaLimitada,
     badge: "oferta",
     rating: 4.9,
     packSize: "27 unidades",
