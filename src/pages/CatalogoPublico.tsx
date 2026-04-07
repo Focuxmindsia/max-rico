@@ -76,7 +76,7 @@ export default function CatalogoPublico() {
               El Catálogo
             </h1>
             <p className="text-primary-foreground/70 text-lg max-w-lg mx-auto md:mx-0">
-              Empanadas colombianas auténticos 100% de Maíz molido. <br />
+              Empanadas colombianas auténtico sabor 100% de Maíz molido. <br />
               No contienen harina / Sin Gluten. haz tu pedido por WhatsApp.
             </p>
           </div>
