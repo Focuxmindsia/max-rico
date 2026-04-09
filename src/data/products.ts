@@ -41,6 +41,7 @@ export interface Product {
   format?: string;
   soldOut?: boolean;
   imagePosition?: string;
+  imageScale?: number;
 }
 
 export const categories = [
@@ -127,6 +128,7 @@ export const products: Product[] = [
     memberPrice: 11.90,
     image: productEmpanadasCocteleras,
     badge: "nuevo",
+    imageScale: 0.75,
     rating: 4.7,
     packSize: "14 unidades",
     weight: "510 g",
@@ -145,6 +147,7 @@ export const products: Product[] = [
     memberPrice: 11.90,
     image: productEmpanadasCocteleras,
     badge: "nuevo",
+    imageScale: 0.75,
     rating: 4.7,
     packSize: "14 unidades",
     weight: "510 g",
