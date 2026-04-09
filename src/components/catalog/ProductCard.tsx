@@ -23,10 +23,6 @@ export default function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          style={{
-            ...(product.imagePosition ? { objectPosition: product.imagePosition } : {}),
-            ...(product.imageScale ? { transform: `scale(${product.imageScale})` } : {}),
-          }}
           loading="lazy"
         />
         {badgeInfo && (
