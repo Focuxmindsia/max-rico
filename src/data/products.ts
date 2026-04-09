@@ -352,7 +352,7 @@ export const products: Product[] = [
   // === COMBOS EMPANADAS FRITAS (LISTAS PARA CONSUMIR) ===
   {
     id: "20",
-    name: "Combo 1 — 17 Empanadas Pequeñas Fritas",
+    name: "Combo 1 / Hay 17 Empanadas Pequeñas Fritas",
     slug: "combo-1-empanadas-pequenas-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · 17 empanadas pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
@@ -400,7 +400,7 @@ export const products: Product[] = [
   },
   {
     id: "23",
-    name: "Combo 4 — 51 Empanadas Pequeñas Fritas",
+    name: "Combo 4 / Hay 51 Empanadas Pequeñas Fritas ",
     slug: "combo-4-empanadas-pequenas-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · ¡Mega combo! 51 empanadas pequeñas fritas para fiestas y eventos. Incluye domicilio en Zaragoza capital.",
