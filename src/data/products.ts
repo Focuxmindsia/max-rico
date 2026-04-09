@@ -252,7 +252,7 @@ export const products: Product[] = [
     ingredients: "Carne de cerdo, carne de res, especias, sal, conservantes permitidos.",
     preparation: "Freír en rodajas: 3-4 min por lado. Plancha: 5 min. Ideal como acompañamiento o snack.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 8.50,
+    price: 14.90,
     memberPrice: 7.00,
     image: productSalchichonCervecero,
     rating: 4.6,
