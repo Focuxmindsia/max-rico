@@ -5,7 +5,8 @@ import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
-import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras-v2.jpg";
+import productEmpanadasCocteleras17 from "@/assets/combo-17-fritas.png";
+import productEmpanadasCocteleras51 from "@/assets/combo-51-fritas.png";
 import productEmpanadasCoctelerasTernera from "@/assets/empanadas-cocteleras-ternera.jpg";
 import productEmpanadasCoctelerasPollo from "@/assets/empanadas-cocteleras-pollo.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
@@ -360,7 +361,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 19.90,
     memberPrice: 17.90,
-    image: productEmpanadasCocteleras,
+    image: productEmpanadasCocteleras17,
     rating: 4.8,
     packSize: "17 unidades",
   },
@@ -408,7 +409,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 44.90,
     memberPrice: 39.90,
-    image: productEmpanadasCocteleras,
+    image: productEmpanadasCocteleras51,
     rating: 4.8,
     packSize: "51 unidades",
   },
