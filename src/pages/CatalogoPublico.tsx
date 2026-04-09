@@ -279,7 +279,7 @@ export default function CatalogoPublico() {
                   <p className="text-xs text-muted-foreground mb-1">
                     {product.category} · {product.packSize}
                   </p>
-                  <h3 className="font-bold text-sm leading-tight mb-2 line-clamp-2">
+                  <h3 className="font-bold text-sm leading-tight mb-2 line-clamp-2 whitespace-pre-line">
                     {product.name}
                   </h3>
 
