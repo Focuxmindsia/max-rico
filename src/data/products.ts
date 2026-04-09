@@ -116,7 +116,7 @@ export const products: Product[] = [
   // === EMPANADAS COCTELERAS ===
   {
     id: "8",
-    name: "Empanadas de Carne Pequeñas Cocteleras x14 und",
+    name: "Empanadas de POLLO Pequeñas Cocteleras x14 und",
     slug: "empanadas-cocteleras-pack-14",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
@@ -134,7 +134,7 @@ export const products: Product[] = [
   },
   {
     id: "26",
-    name: "Empanadas de Carne Pequeñas Cocteleras x14 und",
+    name: "Empanadas de POLLO Pequeñas Cocteleras x14 und",
     slug: "empanadas-cocteleras-pack-14-congeladas",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
