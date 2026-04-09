@@ -2,7 +2,7 @@ import productEmpanadas from "@/assets/product-empanadas-v2.jpg";
 import productEmpanadaCarneTernera from "@/assets/empanada-carne-ternera-x10.jpeg";
 import combo2Empanadas from "@/assets/combo-2-empanadas.jpeg";
 import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
-import productEmpanadasGrandesPollo from "@/assets/Pollo_Mechado_x_10_unidades.png";
+import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
 import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras-v2.jpg";
