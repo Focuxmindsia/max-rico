@@ -5,7 +5,7 @@ import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
-import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras-v3.jpg";
+import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras-v2.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
 import productPandebonos from "@/assets/product-pandebonos.webp";
 import productBunuelos from "@/assets/product-bunuelos.jpg";
@@ -103,7 +103,7 @@ export const products: Product[] = [
     ingredients: "Harina de maíz, pollo mechado, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
     preparation: "Horno: 200°C por 15 min. Air fryer: 180°C por 12 min. Freír: aceite a 180°C por 5 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 16.95,
+    price: 17.00,
     originalPrice: 17.90,
     memberPrice: 14.90,
     image: productEmpanadasGrandesPollo,
