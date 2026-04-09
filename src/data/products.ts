@@ -59,7 +59,7 @@ export const products: Product[] = [
   // === EMPANADAS GRANDES CONGELADAS ===
   {
     id: "1",
-    name: "Empanadas Grandes x6 und",
+    name: "Empanadas Grandes Ternera x6 und",
     slug: "empanadas-grandes-pack-6",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Empanadas colombianas grandes de 13,5 cm. Masa crujiente de maíz por fuera, jugosas por dentro. Ideales para toda la familia.",
@@ -76,7 +76,7 @@ export const products: Product[] = [
   },
   {
     id: "2",
-    name: "Empanadas Grandes x10 und",
+    name: "Empanadas Grandes de Carne Ternera\nx10 und",
     slug: "empanadas-grandes-pack-10",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Pack de 10 empanadas colombianas grandes de 13,5 cm. Perfectas para reuniones y celebraciones familiares.",
@@ -123,7 +123,7 @@ export const products: Product[] = [
     ingredients: "Harina de maíz, carne de res, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
     preparation: "Freír: aceite a 180°C por 3-4 min. Air fryer: 180°C por 8 min. Horno: 200°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 8.50,
+    price: 14.90,
     memberPrice: 11.90,
     image: productEmpanadasCocteleras,
     badge: "nuevo",
@@ -141,7 +141,7 @@ export const products: Product[] = [
     ingredients: "Harina de maíz, carne de res, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
     preparation: "Freír: aceite a 180°C por 3-4 min. Air fryer: 180°C por 8 min. Horno: 200°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 8.50,
+    price: 14.90,
     memberPrice: 11.90,
     image: productEmpanadasCocteleras,
     badge: "nuevo",
