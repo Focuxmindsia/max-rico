@@ -4,7 +4,7 @@ import productOfertaLimitada from "@/assets/Oferta_Limitada.png";
 import productEmpanadasGrandesPollo from "@/assets/Pollo_Mechado_x_10_unidades.png";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
-import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras.png";
+import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras-v2.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
 import productPandebonos from "@/assets/product-pandebonos.webp";
 import productBunuelos from "@/assets/product-bunuelos.jpg";
