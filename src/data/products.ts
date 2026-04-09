@@ -6,6 +6,8 @@ import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
 import productEmpanadasCocteleras from "@/assets/product-empanadas-cocteleras-v2.jpg";
+import productEmpanadasCoctelerasTernera from "@/assets/empanadas-cocteleras-ternera.jpg";
+import productEmpanadasCoctelerasPollo from "@/assets/empanadas-cocteleras-pollo.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
 import productPandebonos from "@/assets/product-pandebonos.webp";
 import productBunuelos from "@/assets/product-bunuelos.jpg";
@@ -103,7 +105,7 @@ export const products: Product[] = [
     ingredients: "Harina de maíz, pollo mechado, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
     preparation: "Horno: 200°C por 15 min. Air fryer: 180°C por 12 min. Freír: aceite a 180°C por 5 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 17.00,
+    price: 16.95,
     originalPrice: 17.90,
     memberPrice: 14.90,
     image: productEmpanadasGrandesPollo,
@@ -116,8 +118,8 @@ export const products: Product[] = [
   // === EMPANADAS COCTELERAS ===
   {
     id: "8",
-    name: "Empanadas de POLLO Pequeñas Cocteleras x14 und",
-    slug: "empanadas-cocteleras-pack-14",
+    name: "Empanadas de POLLO Pequeñas Cocteleras x17 und",
+    slug: "empanadas-cocteleras-pack-17-pollo",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
     ingredients: "Harina de maíz, pollo, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
@@ -125,30 +127,30 @@ export const products: Product[] = [
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 14.90,
     memberPrice: 11.90,
-    image: productEmpanadasCocteleras,
+    image: productEmpanadasCoctelerasPollo,
     badge: "nuevo",
     rating: 4.7,
-    packSize: "14 unidades",
+    packSize: "17 unidades",
     weight: "510 g",
-    format: "8 cm (14 unidades)",
+    format: "8 cm (17 unidades)",
   },
   {
     id: "26",
-    name: "Empanadas de POLLO Pequeñas Cocteleras x14 und",
-    slug: "empanadas-cocteleras-pack-14-congeladas",
+    name: "Empanadas de Ternera Carne Pequeñas Cocteleras x17 und",
+    slug: "empanadas-cocteleras-pack-17-ternera",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
-    ingredients: "Harina de maíz, pollo, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
+    ingredients: "Harina de maíz, carne de res, papa, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
     preparation: "Freír: aceite a 180°C por 3-4 min. Air fryer: 180°C por 8 min. Horno: 200°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 14.90,
     memberPrice: 11.90,
-    image: productEmpanadasCocteleras,
+    image: productEmpanadasCoctelerasTernera,
     badge: "nuevo",
     rating: 4.7,
-    packSize: "14 unidades",
+    packSize: "17 unidades",
     weight: "510 g",
-    format: "8 cm (14 unidades)",
+    format: "8 cm (17 unidades)",
   },
   // === AREPAS ===
   {
