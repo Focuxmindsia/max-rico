@@ -322,7 +322,7 @@ export const products: Product[] = [
     ingredients: "Harina de trigo, queso semiduro, mantequilla, huevo, sal, azúcar.",
     preparation: "Horno: 190°C por 12 min. Air fryer: 180°C por 10 min. Freír: aceite a 180°C por 4 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
-    price: 8.50,
+    price: 14.90,
     memberPrice: 12.99,
     image: productTequenos,
     rating: 4.7,
