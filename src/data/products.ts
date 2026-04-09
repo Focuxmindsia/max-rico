@@ -76,7 +76,7 @@ export const products: Product[] = [
   },
   {
     id: "2",
-    name: "Empanadas Grandes de Carne Ternera\nx10 und",
+    name: "Empanadas Grandes de Carne Ternera      \nx10 und",
     slug: "empanadas-grandes-pack-10",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Pack de 10 empanadas colombianas grandes de 13,5 cm. Perfectas para reuniones y celebraciones familiares.",
