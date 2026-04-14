@@ -24,7 +24,7 @@ function getWhatsAppUrl(productName: string) {
 }
 
 export default function CatalogoPublico() {
-  const [selectedCategory, setSelectedCategory] = useState("Todos los Productos");
+  const [selectedCategory, setSelectedCategory] = useState("Todos los Productos Congelados");
   const [search, setSearch] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -39,7 +39,7 @@ export default function CatalogoPublico() {
 
   const filtered = useMemo(() => {
     let result = products;
-    if (selectedCategory !== "Todos los Productos") {
+    if (selectedCategory !== "Todos los Productos Congelados") {
       result = result.filter((p) => p.category === selectedCategory);
     }
     if (search.trim()) {
