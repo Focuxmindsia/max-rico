@@ -150,6 +150,13 @@ export default function ProductDetail() {
           </div>
         )}
       </div>
+
+      <ImageLightbox
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+        src={product.gallery ? product.gallery[selectedImage] : product.image}
+        alt={product.name}
+      />
     </Layout>
   );
 }
