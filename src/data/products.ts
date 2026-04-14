@@ -87,7 +87,7 @@ export const products: Product[] = [
     preparation: "Horno: 200°C por 15 min. Air fryer: 180°C por 12 min. Freír: aceite a 180°C por 5 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 17.90,
-    memberPrice: 13.90,
+    memberPrice: 16.99,
     image: productEmpanadaCarneTernera,
     gallery: [productEmpanadaCarneTernera, productEmpanadasGrandes10, productEmpanadasGrandes10Pack],
     badge: "top",
