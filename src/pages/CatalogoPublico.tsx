@@ -394,17 +394,29 @@ export default function CatalogoPublico() {
         </div>
       </footer>
 
-      {/* Floating wholesale button */}
-      <button
-        onClick={() => {
-          setSelectedCategory("Al por Mayor");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        className="fixed bottom-6 right-4 z-50 bg-destructive text-foreground font-black px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-xs"
-      >
-        <Store className="h-4 w-4" />
-        Para Negocios ó Eventos
-      </button>
+      {/* Floating buttons */}
+      <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-3 items-end">
+        <button
+          onClick={() => {
+            setSelectedCategory("Combos");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="bg-[hsl(45,100%,50%)] text-foreground font-black px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-xs"
+        >
+          <Flame className="h-4 w-4" />
+          Caja de empanadas fritas
+        </button>
+        <button
+          onClick={() => {
+            setSelectedCategory("Al por Mayor");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="bg-destructive text-foreground font-black px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center gap-2 text-xs"
+        >
+          <Store className="h-4 w-4" />
+          Para Negocios ó Eventos
+        </button>
+      </div>
     </div>
   );
 }
