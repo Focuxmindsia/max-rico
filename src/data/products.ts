@@ -397,7 +397,7 @@ export const products: Product[] = [
     badge: "oferta",
     rating: 4.9,
     packSize: "27 unidades",
-    imagePosition: "center 30%",
+    imagePosition: "center 60%",
   },
   {
     id: "23",
