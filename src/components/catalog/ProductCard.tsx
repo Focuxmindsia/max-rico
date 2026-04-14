@@ -43,7 +43,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="p-4">
         <Link to={`/producto/${product.id}`}>
           <p className="text-xs text-muted-foreground mb-1">{product.category} · {product.packSize}</p>
-          <h3 className="font-bold text-sm leading-tight mb-2 group-hover:text-primary/80 transition-colors line-clamp-2">
+          <h3 className="font-bold text-sm leading-tight mb-2 group-hover:text-primary/80 transition-colors">
             {product.name}
           </h3>
         </Link>
