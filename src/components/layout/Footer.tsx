@@ -46,9 +46,9 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-black text-sm">SR</span>
+                <span className="text-primary-foreground font-black text-sm">MR</span>
               </div>
-              <span className="font-black text-lg">Sr. LomaxRico</span>
+              <span className="font-black text-lg">MaxRico</span>
             </div>
             <p className="text-sm text-background/60 leading-relaxed">
               Sabores latinos, calidad top, precios de socio. Tu club de congelados premium.
@@ -76,7 +76,7 @@ export default function Footer() {
 
         <div className="border-t border-background/10 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-background/40">
-            © {new Date().getFullYear()} Sr. LomaxRico. Todos los derechos reservados.
+            © {new Date().getFullYear()} MaxRico. Todos los derechos reservados.
           </p>
           <p className="text-xs text-background/40">
             Hecho con ❤️ y tecnología e IA
