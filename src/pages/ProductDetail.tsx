@@ -14,6 +14,7 @@ export default function ProductDetail() {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const product = products.find((p) => p.id === id);
   if (!product) {
@@ -46,7 +47,7 @@ export default function ProductDetail() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Images */}
           <div className="space-y-3">
-            <div className="relative rounded-2xl overflow-hidden bg-secondary">
+            <div className="relative rounded-2xl overflow-hidden bg-secondary cursor-pointer" onClick={() => setLightboxOpen(true)}>
               <img
                 src={product.gallery ? product.gallery[selectedImage] : product.image}
                 alt={product.name}
