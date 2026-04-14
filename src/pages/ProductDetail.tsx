@@ -7,12 +7,14 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake } from "lucide-react";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
+import ImageLightbox from "@/components/catalog/ImageLightbox";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const product = products.find((p) => p.id === id);
   if (!product) {
@@ -45,7 +47,7 @@ export default function ProductDetail() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Images */}
           <div className="space-y-3">
-            <div className="relative rounded-2xl overflow-hidden bg-secondary">
+            <div className="relative rounded-2xl overflow-hidden bg-secondary cursor-pointer" onClick={() => setLightboxOpen(true)}>
               <img
                 src={product.gallery ? product.gallery[selectedImage] : product.image}
                 alt={product.name}
@@ -148,6 +150,13 @@ export default function ProductDetail() {
           </div>
         )}
       </div>
+
+      <ImageLightbox
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+        src={product.gallery ? product.gallery[selectedImage] : product.image}
+        alt={product.name}
+      />
     </Layout>
   );
 }

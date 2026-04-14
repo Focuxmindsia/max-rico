@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Star } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import ImageLightbox from "@/components/catalog/ImageLightbox";
 
 const badgeMap = {
   oferta: { variant: "offer" as const, label: "Oferta" },
@@ -13,12 +15,13 @@ const badgeMap = {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const badgeInfo = product.badge ? badgeMap[product.badge] : null;
   const savings = product.price - product.memberPrice;
 
   return (
     <div className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300">
-      <Link to={`/producto/${product.id}`} className="block relative overflow-hidden">
+      <div className="relative overflow-hidden cursor-pointer" onClick={() => setLightboxOpen(true)}>
         <img
           src={product.image}
           alt={product.name}
@@ -35,7 +38,7 @@ export default function ProductCard({ product }: { product: Product }) {
             Socios ahorran {savings.toFixed(2)}€
           </div>
         )}
-      </Link>
+      </div>
 
       <div className="p-4">
         <Link to={`/producto/${product.id}`}>
@@ -71,6 +74,13 @@ export default function ProductCard({ product }: { product: Product }) {
           </Button>
         </div>
       </div>
+
+      <ImageLightbox
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+        src={product.image}
+        alt={product.name}
+      />
     </div>
   );
 }
