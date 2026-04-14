@@ -119,7 +119,7 @@ export default function Header() {
             ))}
             <Link to="/socios" onClick={() => setMobileOpen(false)}>
               <Button variant="cta" className="w-full mt-2">
-                Hazte socio — 49€/año
+                Hazte socio — 59€/año
               </Button>
             </Link>
           </div>
