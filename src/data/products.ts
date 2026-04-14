@@ -108,7 +108,7 @@ export const products: Product[] = [
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 16.99,
     originalPrice: 17.90,
-    memberPrice: 16.59,
+    memberPrice: 16.49,
     image: productEmpanadasGrandesPollo,
     badge: "oferta",
     rating: 4.8,
