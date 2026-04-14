@@ -28,7 +28,7 @@ export default function AboutUs() {
               <span className="text-primary">precios de club</span>
             </h1>
             <p className="text-background/60 text-lg">
-              En Sr. LomaxRico creemos que todo el mundo merece acceder a los mejores sabores latinos sin arruinarse. Por eso creamos un modelo de club: tú pagas una membresía anual y nosotros te damos los mejores precios, siempre.
+              En MaxRico creemos que todo el mundo merece acceder a los mejores sabores latinos sin arruinarse. Por eso creamos un modelo de club: tú pagas una membresía anual y nosotros te damos los mejores precios, siempre.
             </p>
           </div>
         </div>

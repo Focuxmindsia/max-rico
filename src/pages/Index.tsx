@@ -8,7 +8,7 @@ import Layout from "@/components/layout/Layout";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 const howItWorks = [
-  { icon: Users, title: "Hazte socio", desc: "Únete al club por solo 49€/año" },
+  { icon: Users, title: "Hazte socio", desc: "Únete al club por solo 59€/año" },
   { icon: Truck, title: "Envío gratis", desc: "En pedidos elegibles para socios" },
   { icon: Sparkles, title: "Descuentos exclusivos", desc: "Precios especiales en todo el catálogo" },
   { icon: Zap, title: "Acceso anticipado", desc: "Sé el primero en ver las promos" },
@@ -51,7 +51,7 @@ export default function Index() {
               </Link>
               <Link to="/socios">
                 <Button variant="hero" size="lg" className="border border-background/20">
-                  Hazte socio — 49€/año
+                  Hazte socio — 59€/año
                 </Button>
               </Link>
             </div>
@@ -101,7 +101,7 @@ export default function Index() {
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-black">¿Cómo funciona el club?</h2>
           <p className="text-muted-foreground mt-2 max-w-lg mx-auto">
-            Ser socio de Sr. LomaxRico tiene sus ventajas. Todo por solo 49€ al año.
+            Ser socio de MaxRico tiene sus ventajas. Todo por solo 59€ al año.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -159,13 +159,13 @@ export default function Index() {
                   <Bot className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <div>
-                  <p className="font-bold text-sm">Asistente Sr. LomaxRico</p>
+                  <p className="font-bold text-sm">Asistente MaxRico</p>
                   <p className="text-[10px] text-background/40">Online</p>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="bg-background/10 rounded-lg p-3 text-sm">
-                  ¡Hola! 👋 Soy el asistente de Sr. LomaxRico. ¿En qué puedo ayudarte?
+                  ¡Hola! 👋 Soy el asistente de MaxRico. ¿En qué puedo ayudarte?
                 </div>
                 <div className="bg-primary/20 rounded-lg p-3 text-sm ml-8">
                   ¿Cuál es la mejor forma de preparar las empanadas?
@@ -212,7 +212,7 @@ export default function Index() {
             </Link>
             <Link to="/socios">
               <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                Hazte socio — 49€/año
+                Hazte socio — 59€/año
               </Button>
             </Link>
           </div>

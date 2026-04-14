@@ -33,10 +33,10 @@ export default function Socios() {
             <span className="text-primary">y ahorra siempre</span>
           </h1>
           <p className="text-background/60 text-lg max-w-lg mx-auto mb-8">
-            Por solo 49€ al año, disfruta de envío gratis, descuentos exclusivos, promos anticipadas y mucho más.
+            Por solo 59€ al año, disfruta de envío gratis, descuentos exclusivos, promos anticipadas y mucho más.
           </p>
           <Button variant="cta" size="lg" className="text-lg px-10">
-            Unirme por 49€ / año
+            Unirme por 59€ / año
           </Button>
           <p className="text-xs text-background/40 mt-3">Cancela cuando quieras. Sin permanencia.</p>
         </div>
@@ -86,7 +86,7 @@ export default function Socios() {
           Más de 1.000 socios ya disfrutan de los mejores sabores latinos a precios de club.
         </p>
         <Button variant="cta" size="lg" className="text-lg px-10">
-          Hacerme socio — 49€/año
+          Hacerme socio — 59€/año
         </Button>
       </section>
     </Layout>
