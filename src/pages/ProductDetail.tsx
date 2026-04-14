@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake } from "lucide-react";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
+import ImageLightbox from "@/components/catalog/ImageLightbox";
 
 export default function ProductDetail() {
   const { id } = useParams();
