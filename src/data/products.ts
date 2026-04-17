@@ -22,6 +22,8 @@ import productSalchichaRanchera from "@/assets/product-salchicha-ranchera.webp";
 import productSalchichonCervecero from "@/assets/product-salchichon-cervecero.webp";
 import productSalamiLatino from "@/assets/product-salami-latino.webp";
 import comboXXLMixto from "@/assets/combo-xxl-mixto.jpeg";
+import productPastelGloria from "@/assets/pastel-gloria.webp";
+import productChicharronHojaldre from "@/assets/chicharron-hojaldre.webp";
 
 export interface Product {
   id: string;
@@ -55,6 +57,7 @@ export const categories = [
   "Arepas",
   "Chorizos",
   "Embutidos",
+  "Hojaldres",
   "Combos",
 ];
 
@@ -430,5 +433,38 @@ export const products: Product[] = [
     rating: 5.0,
     packSize: "30+ unidades",
     imagePosition: "center 75%",
+  },
+  // === HOJALDRES ===
+  {
+    id: "27",
+    name: "Pastel Gloria D'Carnilsa",
+    slug: "pastel-gloria",
+    category: "Hojaldres",
+    description: "🧊 CONGELADO · Pastel Gloria D'Carnilsa, hojaldre tradicional colombiano relleno, suave y dorado. Ideal para el desayuno o la merienda.",
+    ingredients: "Harina de trigo, mantequilla, huevo, azúcar, relleno tradicional, sal.",
+    preparation: "Horno: 180°C por 15-18 min. Air fryer: 170°C por 12 min.",
+    conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
+    price: 14.90,
+    memberPrice: 13.50,
+    image: productPastelGloria,
+    badge: "nuevo",
+    rating: 4.8,
+    packSize: "6 unidades",
+  },
+  {
+    id: "28",
+    name: "Chicharrón de Dulce de Guayaba D'Carnilsa",
+    slug: "chicharron-dulce-guayaba",
+    category: "Hojaldres",
+    description: "🧊 CONGELADO · Chicharrón de hojaldre D'Carnilsa relleno de dulce de guayaba. Crujiente por fuera y dulce por dentro, un clásico colombiano.",
+    ingredients: "Harina de trigo, mantequilla, huevo, dulce de guayaba, azúcar, sal.",
+    preparation: "Horno: 180°C por 15 min. Air fryer: 170°C por 12 min.",
+    conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
+    price: 10.50,
+    memberPrice: 9.50,
+    image: productChicharronHojaldre,
+    badge: "nuevo",
+    rating: 4.7,
+    packSize: "1 paquete",
   },
 ];
