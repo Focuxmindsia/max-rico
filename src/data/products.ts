@@ -188,7 +188,6 @@ export const products: Product[] = [
     memberPrice: 7.10,
     image: productArepaChocolo,
     badge: "nuevo",
-    soldOut: true,
     rating: 4.8,
     packSize: "4 unidades",
     weight: "500 g",
