@@ -12,6 +12,27 @@ function getSupabase() {
   return _supabase;
 }
 
+async function sendEmail(templateName: string, recipientEmail: string, idempotencyKey: string, templateData?: Record<string, unknown>) {
+  try {
+    const url = `${Deno.env.get("SUPABASE_URL")}/functions/v1/send-transactional-email`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
+      },
+      body: JSON.stringify({ templateName, recipientEmail, idempotencyKey, templateData }),
+    });
+    if (!res.ok) console.error("send-transactional-email failed", templateName, await res.text());
+  } catch (e) {
+    console.error("send-transactional-email error", templateName, e);
+  }
+}
+
+function formatEur(cents: number, currency = "eur") {
+  return new Intl.NumberFormat("es-ES", { style: "currency", currency: currency.toUpperCase() }).format((cents ?? 0) / 100);
+}
+
 async function handleCheckoutCompleted(session: any, env: StripeEnv) {
   // If it's a subscription checkout, the subscription.* events handle it
   if (session.mode === "subscription") return;
@@ -24,11 +45,20 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
     items = [];
   }
 
+  const customerEmail = session.customer_email || session.customer_details?.email || "unknown@maxrico.es";
+  const customerName = m.customerName || session.customer_details?.name || null;
+  const totalEur = formatEur(session.amount_total ?? 0, session.currency ?? "eur");
+  const itemsForEmail = items.map((it: any) => ({
+    name: it.name || it.title || "Producto",
+    qty: it.quantity || it.qty || 1,
+    price: it.price ? formatEur(Math.round(Number(it.price) * 100), session.currency ?? "eur") : "",
+  }));
+
   await getSupabase().from("orders").upsert(
     {
       stripe_session_id: session.id,
-      customer_email: session.customer_email || session.customer_details?.email || "unknown@maxrico.es",
-      customer_name: m.customerName || session.customer_details?.name || null,
+      customer_email: customerEmail,
+      customer_name: customerName,
       customer_phone: m.customerPhone || null,
       customer_address: m.customerAddress || null,
       city: m.city || null,
@@ -43,6 +73,25 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
     },
     { onConflict: "stripe_session_id" },
   );
+
+  // Send order receipt to customer + admin alert (only on paid)
+  if (session.payment_status === "paid" && customerEmail !== "unknown@maxrico.es") {
+    const commonData = {
+      customerName,
+      customerEmail,
+      customerPhone: m.customerPhone || null,
+      orderId: session.id.slice(-8).toUpperCase(),
+      totalEur,
+      deliveryMethod: m.deliveryMethod === "domicilio" ? "domicilio" : "recogida",
+      city: m.city || null,
+      address: m.customerAddress || null,
+      scheduledFor: m.scheduledFor || null,
+      notes: m.notes || null,
+      items: itemsForEmail,
+    };
+    await sendEmail("order-receipt", customerEmail, `order-receipt-${session.id}`, commonData);
+    await sendEmail("order-admin-alert", "maxrico@maxrico.es", `order-admin-${session.id}`, commonData);
+  }
 }
 
 async function upsertSubscription(subscription: any, env: StripeEnv) {
