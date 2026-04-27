@@ -136,6 +136,7 @@ async function upsertSubscription(subscription: any, env: StripeEnv) {
       console.error("welcome email lookup failed", e);
     }
   }
+}
 
 async function markSubscriptionCanceled(subscription: any, env: StripeEnv) {
   await getSupabase()
