@@ -22,6 +22,7 @@ interface Body {
   notes?: string;
   returnUrl: string;
   environment: StripeEnv;
+  userId?: string; // for subscriptions (membresía)
 }
 
 Deno.serve(async (req) => {
@@ -61,23 +62,29 @@ Deno.serve(async (req) => {
 
     const isSubscription = prices.data.some((p: any) => p.type === "recurring");
 
+    const baseMetadata: Record<string, string> = {
+      deliveryMethod: body.deliveryMethod,
+      city: body.city ?? "",
+      customerName: body.customerName ?? "",
+      customerPhone: body.customerPhone ?? "",
+      customerAddress: body.customerAddress ?? "",
+      scheduledFor: body.scheduledFor ?? "",
+      notes: (body.notes ?? "").slice(0, 400),
+      items: JSON.stringify(body.items).slice(0, 450),
+      environment: body.environment,
+    };
+    if (body.userId) baseMetadata.userId = body.userId;
+
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: isSubscription ? "subscription" : "payment",
       ui_mode: "embedded",
       return_url: body.returnUrl,
       ...(body.customerEmail && { customer_email: body.customerEmail }),
-      metadata: {
-        deliveryMethod: body.deliveryMethod,
-        city: body.city ?? "",
-        customerName: body.customerName ?? "",
-        customerPhone: body.customerPhone ?? "",
-        customerAddress: body.customerAddress ?? "",
-        scheduledFor: body.scheduledFor ?? "",
-        notes: (body.notes ?? "").slice(0, 400),
-        items: JSON.stringify(body.items).slice(0, 450),
-        environment: body.environment,
-      },
+      metadata: baseMetadata,
+      ...(isSubscription && body.userId && {
+        subscription_data: { metadata: { userId: body.userId } },
+      }),
     });
 
     return new Response(JSON.stringify({ clientSecret: session.client_secret }), {
