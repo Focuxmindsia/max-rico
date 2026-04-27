@@ -170,6 +170,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
         deliveryMethod: delivery,
         scheduledFor: isFrito && scheduledFor ? new Date(scheduledFor).toISOString() : null,
         notes,
+        userId: user?.id,
         returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
         environment: getStripeEnvironment(),
       },
