@@ -437,6 +437,13 @@ export default function CatalogoPublico() {
           Para Negocios ó Eventos
         </button>
       </div>
+
+      <CheckoutWizard
+        product={checkoutProduct}
+        priceId={checkoutProduct ? getPriceId(checkoutProduct.id) : null}
+        open={checkoutOpen}
+        onOpenChange={setCheckoutOpen}
+      />
     </div>
   );
 }
