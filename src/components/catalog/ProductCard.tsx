@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Star } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useSubscription } from "@/hooks/useSubscription";
 import ImageLightbox from "@/components/catalog/ImageLightbox";
 
 const badgeMap = {
@@ -15,6 +16,7 @@ const badgeMap = {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
+  const { isSocio } = useSubscription();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const badgeInfo = product.badge ? badgeMap[product.badge] : null;
   const savings = product.price - product.memberPrice;
@@ -57,10 +59,21 @@ export default function ProductCard({ product }: { product: Product }) {
 
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-lg font-black">{product.price.toFixed(2)}€</p>
-            <p className="text-xs text-primary font-semibold">
-              Socio: {product.memberPrice.toFixed(2)}€
-            </p>
+            {isSocio ? (
+              <>
+                <p className="text-lg font-black text-primary">{product.memberPrice.toFixed(2)}€</p>
+                <p className="text-xs text-muted-foreground line-through">
+                  Antes: {product.price.toFixed(2)}€
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-lg font-black">{product.price.toFixed(2)}€</p>
+                <p className="text-xs text-primary font-semibold">
+                  Socio: {product.memberPrice.toFixed(2)}€
+                </p>
+              </>
+            )}
           </div>
           <Button
             variant="cta"
