@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { products, categories } from "@/data/products";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
+import { useSeo } from "@/hooks/useSeo";
 
 type SortOption = "relevance" | "price-asc" | "price-desc" | "rating";
 
@@ -10,6 +11,31 @@ export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState("Todas");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortOption>("relevance");
+
+  useSeo({
+    title: "Catálogo MaxRico | maxrico.es/catalogo — Empanadas, Arepas y Tequeños",
+    description:
+      "Catálogo MaxRico (maxrico.es/catalogo): empanadas colombianas, arepas, tequeños, pandebono y chorizos congelados. Pide por WhatsApp o hazte socio por 59€/año.",
+    canonical: "https://maxrico.es/catalogo",
+    keywords:
+      "maxrico.es/catalogo, MaxRico catálogo, catalogo MaxRico, empanadas colombianas, arepas, tequeños, pandebono, congelados latinos España",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Catálogo MaxRico",
+      url: "https://maxrico.es/catalogo",
+      inLanguage: "es-ES",
+      isPartOf: { "@type": "WebSite", name: "MaxRico", url: "https://maxrico.es/" },
+      about: "Productos congelados latinos: empanadas, arepas, tequeños, pandebono, chorizos",
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Inicio", item: "https://maxrico.es/" },
+          { "@type": "ListItem", position: 2, name: "Catálogo", item: "https://maxrico.es/catalogo" },
+        ],
+      },
+    },
+  });
 
   const filtered = useMemo(() => {
     let result = products;
@@ -40,9 +66,11 @@ export default function Catalog() {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl md:text-4xl font-black mb-2">Catálogo</h1>
+        <h1 className="text-3xl md:text-4xl font-black mb-2">
+          Catálogo <span translate="no" className="notranslate">MaxRico</span>
+        </h1>
         <p className="text-muted-foreground mb-8">
-          Encuentra tus productos latinos congelados favoritos
+          Encuentra tus productos latinos congelados favoritos en maxrico.es/catalogo
         </p>
 
         {/* Filters */}
