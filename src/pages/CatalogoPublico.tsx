@@ -1,12 +1,14 @@
 import { useState, useMemo, useEffect } from "react";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, CreditCard } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
 import heroEmpanadas5 from "@/assets/hero-empanadas-5.jpg";
 import heroEmpamadas from "@/assets/empamadas.png";
-import { products, categories } from "@/data/products";
+import { products, categories, type Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
+import { CheckoutWizard } from "@/components/CheckoutWizard";
+import { getPriceId } from "@/data/priceIds";
 
 const WHATSAPP_NUMBER = "34695798632";
 
@@ -27,6 +29,13 @@ export default function CatalogoPublico() {
   const [selectedCategory, setSelectedCategory] = useState("Todos los Productos Congelados");
   const [search, setSearch] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const openCheckout = (p: Product) => {
+    setCheckoutProduct(p);
+    setCheckoutOpen(true);
+  };
 
   const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3, heroEmpanadas5, heroEmpamadas];
 
