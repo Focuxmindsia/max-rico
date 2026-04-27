@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, Truck, Sparkles, Zap, ShieldCheck, Crown } from "lucide-react";
+import { Check, Truck, Sparkles, Zap, ShieldCheck, Crown, Loader2 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import { useAuth } from "@/contexts/AuthContext";
+import { useSubscription } from "@/hooks/useSubscription";
+import { MembershipCheckout } from "@/components/MembershipCheckout";
 
 const benefits = [
   { icon: Truck, title: "Envío gratis", desc: "En pedidos elegibles. Sin mínimo de compra para socios." },
@@ -20,6 +24,26 @@ const comparison = [
 ];
 
 export default function Socios() {
+  const { user, loading: authLoading } = useAuth();
+  const { isSocio, loading: subLoading } = useSubscription();
+  const navigate = useNavigate();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const handleJoin = () => {
+    if (!user) {
+      navigate("/auth?next=/socios");
+      return;
+    }
+    setCheckoutOpen(true);
+  };
+
+  const ctaLabel = (() => {
+    if (authLoading || subLoading) return "Cargando...";
+    if (isSocio) return "Ya eres socio ⭐";
+    if (!user) return "Crear cuenta y unirme · 59€/año";
+    return "Unirme por 59€ / año";
+  })();
+
   return (
     <Layout>
       {/* Hero */}
@@ -35,10 +59,19 @@ export default function Socios() {
           <p className="text-background/60 text-lg max-w-lg mx-auto mb-8">
             Por solo 59€ al año, disfruta de envío gratis, descuentos exclusivos, promos anticipadas y mucho más.
           </p>
-          <Button variant="cta" size="lg" className="text-lg px-10">
-            Unirme por 59€ / año
+          <Button
+            variant="cta"
+            size="lg"
+            className="text-lg px-10"
+            disabled={authLoading || subLoading || isSocio}
+            onClick={handleJoin}
+          >
+            {(authLoading || subLoading) && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+            {ctaLabel}
           </Button>
-          <p className="text-xs text-background/40 mt-3">Cancela cuando quieras. Sin permanencia.</p>
+          <p className="text-xs text-background/40 mt-3">
+            {isSocio ? "Gracias por tu apoyo 💛" : "Cancela cuando quieras. Sin permanencia."}
+          </p>
         </div>
       </section>
 
@@ -85,10 +118,23 @@ export default function Socios() {
         <p className="text-muted-foreground mb-6 max-w-md mx-auto">
           Más de 1.000 socios ya disfrutan de los mejores sabores latinos a precios de club.
         </p>
-        <Button variant="cta" size="lg" className="text-lg px-10">
-          Hacerme socio — 59€/año
+        <Button
+          variant="cta"
+          size="lg"
+          className="text-lg px-10"
+          disabled={authLoading || subLoading || isSocio}
+          onClick={handleJoin}
+        >
+          {ctaLabel}
         </Button>
+        {!user && !authLoading && (
+          <p className="text-xs text-muted-foreground mt-3">
+            ¿Ya tienes cuenta? <Link to="/auth?next=/socios" className="underline">Inicia sesión</Link>
+          </p>
+        )}
       </section>
+
+      <MembershipCheckout open={checkoutOpen} onOpenChange={setCheckoutOpen} />
     </Layout>
   );
 }
