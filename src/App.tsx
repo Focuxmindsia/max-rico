@@ -10,7 +10,9 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Socios from "./pages/Socios";
 import AboutUs from "./pages/AboutUs";
+import CheckoutReturn from "./pages/CheckoutReturn";
 import NotFound from "./pages/NotFound";
+import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <PaymentTestModeBanner />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/catalogo" element={<CatalogoPublico />} />
@@ -28,6 +31,7 @@ const App = () => (
             <Route path="/carrito" element={<Cart />} />
             <Route path="/socios" element={<Socios />} />
             <Route path="/sobre-nosotros" element={<AboutUs />} />
+            <Route path="/checkout/return" element={<CheckoutReturn />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

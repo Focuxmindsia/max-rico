@@ -1,12 +1,14 @@
 import { useState, useMemo, useEffect } from "react";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, CreditCard } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
 import heroEmpanadas5 from "@/assets/hero-empanadas-5.jpg";
 import heroEmpamadas from "@/assets/empamadas.png";
-import { products, categories } from "@/data/products";
+import { products, categories, type Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
+import { CheckoutWizard } from "@/components/CheckoutWizard";
+import { getPriceId } from "@/data/priceIds";
 
 const WHATSAPP_NUMBER = "34695798632";
 
@@ -27,6 +29,13 @@ export default function CatalogoPublico() {
   const [selectedCategory, setSelectedCategory] = useState("Todos los Productos Congelados");
   const [search, setSearch] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const openCheckout = (p: Product) => {
+    setCheckoutProduct(p);
+    setCheckoutOpen(true);
+  };
 
   const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3, heroEmpanadas5, heroEmpamadas];
 
@@ -303,15 +312,26 @@ export default function CatalogoPublico() {
                         Agotado
                       </div>
                     ) : (
-                      <a
-                        href={getWhatsAppUrl(product.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2.5 rounded-lg text-sm font-bold transition-colors"
-                      >
-                        <MessageCircle className="h-4 w-4" />
-                        Pedir por WhatsApp
-                      </a>
+                      <div className="space-y-2">
+                        {getPriceId(product.id) && (
+                          <button
+                            onClick={() => openCheckout(product)}
+                            className="flex items-center justify-center gap-2 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2.5 rounded-lg text-sm font-black transition-colors shadow-sm"
+                          >
+                            <CreditCard className="h-4 w-4" />
+                            Comprar con tarjeta
+                          </button>
+                        )}
+                        <a
+                          href={getWhatsAppUrl(product.name)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2 rounded-lg text-xs font-bold transition-colors"
+                        >
+                          <MessageCircle className="h-3.5 w-3.5" />
+                          Pedir por WhatsApp
+                        </a>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -417,6 +437,13 @@ export default function CatalogoPublico() {
           Para Negocios ó Eventos
         </button>
       </div>
+
+      <CheckoutWizard
+        product={checkoutProduct}
+        priceId={checkoutProduct ? getPriceId(checkoutProduct.id) : null}
+        open={checkoutOpen}
+        onOpenChange={setCheckoutOpen}
+      />
     </div>
   );
 }
