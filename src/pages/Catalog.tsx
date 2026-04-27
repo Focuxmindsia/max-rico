@@ -66,9 +66,11 @@ export default function Catalog() {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl md:text-4xl font-black mb-2">Catálogo</h1>
+        <h1 className="text-3xl md:text-4xl font-black mb-2">
+          Catálogo <span translate="no" className="notranslate">MaxRico</span>
+        </h1>
         <p className="text-muted-foreground mb-8">
-          Encuentra tus productos latinos congelados favoritos
+          Encuentra tus productos latinos congelados favoritos en maxrico.es/catalogo
         </p>
 
         {/* Filters */}
