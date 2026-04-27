@@ -13,6 +13,7 @@ import Socios from "./pages/Socios";
 import AboutUs from "./pages/AboutUs";
 import CheckoutReturn from "./pages/CheckoutReturn";
 import Auth from "./pages/Auth";
+import Unsubscribe from "./pages/Unsubscribe";
 import NotFound from "./pages/NotFound";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 
@@ -36,6 +37,7 @@ const App = () => (
               <Route path="/sobre-nosotros" element={<AboutUs />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/checkout/return" element={<CheckoutReturn />} />
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
