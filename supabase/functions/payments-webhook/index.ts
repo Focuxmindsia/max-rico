@@ -122,7 +122,20 @@ async function upsertSubscription(subscription: any, env: StripeEnv) {
     },
     { onConflict: "stripe_subscription_id" },
   );
-}
+
+  // Send welcome email when subscription becomes active (idempotent per subscription)
+  if (subscription.status === "active" || subscription.status === "trialing") {
+    try {
+      const { data: userRes } = await getSupabase().auth.admin.getUserById(userId);
+      const email = userRes?.user?.email;
+      const name = (userRes?.user?.user_metadata?.full_name as string) || null;
+      if (email) {
+        await sendEmail("membership-welcome", email, `membership-welcome-${subscription.id}`, { customerName: name });
+      }
+    } catch (e) {
+      console.error("welcome email lookup failed", e);
+    }
+  }
 
 async function markSubscriptionCanceled(subscription: any, env: StripeEnv) {
   await getSupabase()
