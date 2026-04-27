@@ -36,7 +36,7 @@ export default function Index() {
           <div className="max-w-xl">
             <Badge variant="top" className="mb-4">🎉 Club de Sabores Latinos</Badge>
             <h1 className="text-4xl md:text-6xl font-black text-background leading-tight mb-4">
-              Sabores latinos,<br />
+              <span translate="no" className="notranslate">MaxRico</span> — Sabores latinos,<br />
               <span className="text-primary">calidad top,</span><br />
               precios de socio.
             </h1>
