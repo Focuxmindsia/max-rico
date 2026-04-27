@@ -8,14 +8,24 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { getStripe, getStripeEnvironment } from "@/lib/stripe";
 import { supabase } from "@/integrations/supabase/client";
-import { isProductFrito } from "@/data/priceIds";
+import { isProductFrito, getPriceId } from "@/data/priceIds";
 import { Product } from "@/data/products";
+import { useSubscription } from "@/hooks/useSubscription";
+import { useAuth } from "@/contexts/AuthContext";
 import { MapPin, Truck, Store, Clock, AlertTriangle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
+export interface CartCheckoutItem {
+  product: Product;
+  quantity: number;
+}
+
 interface CheckoutWizardProps {
-  product: Product | null;
-  priceId: string | null;
+  // Modo 1 producto (legacy, desde catálogo)
+  product?: Product | null;
+  priceId?: string | null;
+  // Modo carrito (múltiples productos)
+  cartItems?: CartCheckoutItem[];
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -24,7 +34,9 @@ type Step = "location" | "delivery" | "schedule" | "form" | "payment" | "waitlis
 
 const ZARAGOZA_POSTAL_PREFIX = "50"; // Zaragoza province postal codes
 
-export function CheckoutWizard({ product, priceId, open, onOpenChange }: CheckoutWizardProps) {
+export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange }: CheckoutWizardProps) {
+  const { isSocio } = useSubscription();
+  const { user } = useAuth();
   const [step, setStep] = useState<Step>("location");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
@@ -158,6 +170,7 @@ export function CheckoutWizard({ product, priceId, open, onOpenChange }: Checkou
         deliveryMethod: delivery,
         scheduledFor: isFrito && scheduledFor ? new Date(scheduledFor).toISOString() : null,
         notes,
+        userId: user?.id,
         returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
         environment: getStripeEnvironment(),
       },

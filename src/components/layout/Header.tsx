@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
-import { ShoppingCart, User, Search, Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ShoppingCart, User, Search, Menu, X, LogOut, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { useSubscription } from "@/hooks/useSubscription";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 
 const navLinks = [
@@ -14,7 +23,15 @@ const navLinks = [
 
 export default function Header() {
   const { totalItems } = useCart();
+  const { user, signOut } = useAuth();
+  const { isSocio } = useSubscription();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -74,9 +91,39 @@ export default function Header() {
                 Hazte socio
               </Button>
             </Link>
-            <Link to="/cuenta" className="p-2 rounded-md hover:bg-secondary transition-colors">
-              <User className="h-5 w-5" />
-            </Link>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="p-2 rounded-md hover:bg-secondary transition-colors relative">
+                  <User className="h-5 w-5" />
+                  {isSocio && (
+                    <Crown className="h-3 w-3 text-primary absolute -top-0.5 -right-0.5 fill-primary" />
+                  )}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-2 py-1.5 text-xs">
+                    <p className="font-semibold truncate">{user.email}</p>
+                    {isSocio && (
+                      <p className="text-primary font-bold flex items-center gap-1 mt-1">
+                        <Crown className="h-3 w-3" /> Socio activo
+                      </p>
+                    )}
+                  </div>
+                  <DropdownMenuSeparator />
+                  {!isSocio && (
+                    <DropdownMenuItem onClick={() => navigate("/socios")}>
+                      <Crown className="h-4 w-4 mr-2" /> Hacerme socio
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={handleSignOut}>
+                    <LogOut className="h-4 w-4 mr-2" /> Cerrar sesión
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/auth" className="p-2 rounded-md hover:bg-secondary transition-colors">
+                <User className="h-5 w-5" />
+              </Link>
+            )}
             <Link to="/carrito" className="relative p-2 rounded-md hover:bg-secondary transition-colors">
               <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (
