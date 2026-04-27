@@ -14,7 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      orders: {
+        Row: {
+          amount_total_cents: number
+          city: string | null
+          created_at: string
+          currency: string
+          customer_address: string | null
+          customer_email: string
+          customer_name: string | null
+          customer_phone: string | null
+          delivery_method: string
+          environment: string
+          id: string
+          items: Json
+          notes: string | null
+          scheduled_for: string | null
+          status: string
+          stripe_session_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount_total_cents?: number
+          city?: string | null
+          created_at?: string
+          currency?: string
+          customer_address?: string | null
+          customer_email: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          delivery_method: string
+          environment?: string
+          id?: string
+          items?: Json
+          notes?: string | null
+          scheduled_for?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount_total_cents?: number
+          city?: string | null
+          created_at?: string
+          currency?: string
+          customer_address?: string | null
+          customer_email?: string
+          customer_name?: string | null
+          customer_phone?: string | null
+          delivery_method?: string
+          environment?: string
+          id?: string
+          items?: Json
+          notes?: string | null
+          scheduled_for?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      waitlist_resto_espana: {
+        Row: {
+          city: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string | null
+          notes: string | null
+          phone: string | null
+          postal_code: string | null
+          products_interested: Json | null
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name?: string | null
+          notes?: string | null
+          phone?: string | null
+          postal_code?: string | null
+          products_interested?: Json | null
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string | null
+          notes?: string | null
+          phone?: string | null
+          postal_code?: string | null
+          products_interested?: Json | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
