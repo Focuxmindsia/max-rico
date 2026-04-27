@@ -312,15 +312,26 @@ export default function CatalogoPublico() {
                         Agotado
                       </div>
                     ) : (
-                      <a
-                        href={getWhatsAppUrl(product.name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2.5 rounded-lg text-sm font-bold transition-colors"
-                      >
-                        <MessageCircle className="h-4 w-4" />
-                        Pedir por WhatsApp
-                      </a>
+                      <div className="space-y-2">
+                        {getPriceId(product.id) && (
+                          <button
+                            onClick={() => openCheckout(product)}
+                            className="flex items-center justify-center gap-2 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2.5 rounded-lg text-sm font-black transition-colors shadow-sm"
+                          >
+                            <CreditCard className="h-4 w-4" />
+                            Comprar con tarjeta
+                          </button>
+                        )}
+                        <a
+                          href={getWhatsAppUrl(product.name)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2 rounded-lg text-xs font-bold transition-colors"
+                        >
+                          <MessageCircle className="h-3.5 w-3.5" />
+                          Pedir por WhatsApp
+                        </a>
+                      </div>
                     )}
                   </div>
                 </div>
