@@ -8,7 +8,7 @@ import heroEmpamadas from "@/assets/empamadas.png";
 import { products, categories, type Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
-import { getPriceId } from "@/data/priceIds";
+import { getPriceId, isProductFrito } from "@/data/priceIds";
 
 const WHATSAPP_NUMBER = "34695798632";
 
@@ -322,15 +322,17 @@ export default function CatalogoPublico() {
                             Comprar con tarjeta
                           </button>
                         )}
-                        <a
-                          href={getWhatsAppUrl(product.name)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2 rounded-lg text-xs font-bold transition-colors"
-                        >
-                          <MessageCircle className="h-3.5 w-3.5" />
-                          Pedir por WhatsApp
-                        </a>
+                        {isProductFrito(product.id) && (
+                          <a
+                            href={getWhatsAppUrl(product.name)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1da851] text-white py-2 rounded-lg text-xs font-bold transition-colors"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" />
+                            Consultar por WhatsApp
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>
