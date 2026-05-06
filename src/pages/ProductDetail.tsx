@@ -1,10 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { products } from "@/data/products";
+import { getProductExtras } from "@/data/productExtras";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake } from "lucide-react";
+import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake, Check } from "lucide-react";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import ImageLightbox from "@/components/catalog/ImageLightbox";
