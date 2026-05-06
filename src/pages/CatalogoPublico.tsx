@@ -27,6 +27,15 @@ function getWhatsAppUrl(productName: string) {
 }
 
 export default function CatalogoPublico() {
+  useSeo({
+    title: "Catálogo MaxRico | Empanadas colombianas, arepas y tequeños congelados en España",
+    description:
+      "Catálogo MaxRico: empanadas artesanales, gourmet, caseras y congeladas. Empanadas colombianas en España, arepas, tequeños, pandebono y chorizos. Pide online por WhatsApp.",
+    canonical: "https://maxrico.es/catalogo",
+    keywords:
+      "MaxRico, Max Rico, maxrico.es, masrico, masrico.es, MaxRico empanadas, empanadas más rico, empanadas, empanadas artesanales, empanadas gourmet, empanadas caseras, empanadas congeladas, empanadas congelas, empanadas colombianas, empanadas colombianas en España, empanadas España, comprar empanadas, pedir empanadas online, empanadas a domicilio, delivery de empanadas, mejores empanadas colombianas, empanadas en Zaragoza, comida colombiana en Zaragoza, arepas, tequeños, pandebono, chorizos",
+  });
+
   const [selectedCategory, setSelectedCategory] = useState("Todos los Productos Congelados");
   const [search, setSearch] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
