@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, CreditCard } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
@@ -262,7 +263,7 @@ export default function CatalogoPublico() {
                   isSoldOut ? "bg-muted border-muted-foreground/20 opacity-70" : "bg-card border-border hover:shadow-lg"
                 }`}
               >
-                <div className="relative overflow-hidden">
+                <Link to={`/producto/${product.id}`} className="relative overflow-hidden block" aria-label={`Ver detalles de ${product.name}`}>
                   <img
                     src={product.image}
                     alt={product.name}
