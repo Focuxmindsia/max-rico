@@ -1,7 +1,7 @@
 import productEmpanadas from "@/assets/product-empanadas-v2.jpg";
 import productEmpanadaCarneTernera from "@/assets/empanada-carne-ternera-x10.jpeg";
 import combo2Empanadas from "@/assets/combo-2-empanadas.jpeg";
-import productOfertaLimitada from "@/assets/9583b35b-1040-4158-a1c7-181ed6668c38.jpg";
+import productOfertaLimitada from "@/assets/combo-valluno-new.jpg";
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
@@ -444,7 +444,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Mantener champús refrigerado.",
     price: 12.99,
     memberPrice: 11.99,
-    image: "/combo-valluno.jpg",
+    image: productOfertaLimitada,
     badge: "oferta",
     rating: 5.0,
     packSize: "1 combo (champús + 2 empanadas + chorizo)",
