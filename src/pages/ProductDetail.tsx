@@ -178,7 +178,7 @@ export default function ProductDetail() {
       <ImageLightbox
         open={lightboxOpen}
         onOpenChange={setLightboxOpen}
-        src={product.gallery ? product.gallery[selectedImage] : product.image}
+        src={currentImage}
         alt={product.name}
       />
     </Layout>
