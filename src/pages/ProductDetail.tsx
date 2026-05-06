@@ -1,10 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { products } from "@/data/products";
+import { getProductExtras } from "@/data/productExtras";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake } from "lucide-react";
+import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake, Check } from "lucide-react";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import ImageLightbox from "@/components/catalog/ImageLightbox";
@@ -30,6 +31,16 @@ export default function ProductDetail() {
 
   const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
   const savings = product.price - product.memberPrice;
+  const extras = getProductExtras(product);
+
+  // Galería combinada: imagen principal + gallery del producto + extras (sin duplicados)
+  const fullGallery = useMemo(() => {
+    const base = product.gallery && product.gallery.length > 0 ? product.gallery : [product.image];
+    const all = [...base, ...extras.galleryExtras];
+    return Array.from(new Set(all));
+  }, [product, extras]);
+
+  const currentImage = fullGallery[selectedImage] ?? product.image;
 
   const badgeMap = {
     oferta: { variant: "offer" as const, label: "Oferta" },
@@ -49,9 +60,10 @@ export default function ProductDetail() {
           <div className="space-y-3">
             <div className="relative rounded-2xl overflow-hidden bg-secondary cursor-pointer" onClick={() => setLightboxOpen(true)}>
               <img
-                src={product.gallery ? product.gallery[selectedImage] : product.image}
+                src={currentImage}
                 alt={product.name}
                 className="w-full aspect-square object-cover"
+                style={selectedImage === 0 && product.imagePosition ? { objectPosition: product.imagePosition } : undefined}
               />
               {product.badge && (
                 <Badge variant={badgeMap[product.badge].variant} className="absolute top-4 left-4 text-sm">
@@ -59,9 +71,9 @@ export default function ProductDetail() {
                 </Badge>
               )}
             </div>
-            {product.gallery && product.gallery.length > 1 && (
-              <div className="flex gap-2">
-                {product.gallery.map((img, idx) => (
+            {fullGallery.length > 1 && (
+              <div className="flex gap-2 flex-wrap">
+                {fullGallery.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(idx)}
@@ -69,7 +81,7 @@ export default function ProductDetail() {
                       selectedImage === idx ? "border-primary" : "border-border opacity-60 hover:opacity-100"
                     }`}
                   >
-                    <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
                   </button>
                 ))}
               </div>
@@ -79,8 +91,20 @@ export default function ProductDetail() {
           {/* Info */}
           <div>
             <p className="text-sm text-muted-foreground mb-1">{product.category} · {product.packSize}</p>
-            <h1 className="text-2xl md:text-3xl font-black mb-4">{product.name}</h1>
-            <p className="text-muted-foreground mb-6">{product.description}</p>
+            <h1 className="text-2xl md:text-3xl font-black mb-4 whitespace-pre-line">{product.name}</h1>
+            <p className="text-muted-foreground mb-4 whitespace-pre-line">{extras.longDescription}</p>
+
+            {/* Highlights */}
+            {extras.highlights && extras.highlights.length > 0 && (
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
+                {extras.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm bg-secondary/60 rounded-lg p-2.5">
+                    <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <span className="font-medium">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {/* Price */}
             <div className="bg-secondary rounded-xl p-5 mb-6">
@@ -154,7 +178,7 @@ export default function ProductDetail() {
       <ImageLightbox
         open={lightboxOpen}
         onOpenChange={setLightboxOpen}
-        src={product.gallery ? product.gallery[selectedImage] : product.image}
+        src={currentImage}
         alt={product.name}
       />
     </Layout>
