@@ -415,6 +415,7 @@ export const products: Product[] = [
     image: productEmpanadasCocteleras51,
     rating: 4.8,
     packSize: "51 unidades",
+    imagePosition: "center top",
   },
   {
     id: "24",
