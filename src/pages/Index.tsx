@@ -6,6 +6,7 @@ import { products } from "@/data/products";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import heroBanner from "@/assets/hero-banner.jpg";
+import { useSeo } from "@/hooks/useSeo";
 
 const howItWorks = [
   { icon: Users, title: "Hazte socio", desc: "Únete al club por solo 59€/año" },
@@ -21,6 +22,22 @@ const testimonials = [
 ];
 
 export default function Index() {
+  useSeo({
+    title: "MaxRico | Empanadas artesanales y gourmet a domicilio en España",
+    description:
+      "Descubre MaxRico (maxrico.es), la mejor plataforma de empanadas artesanales y gourmet en España. Pide online empanadas colombianas, caseras, congeladas, arepas, tequeños y pandebono con delivery rápido. Hazte socio por 59€/año.",
+    canonical: "https://maxrico.es/",
+    keywords:
+      "MaxRico, Max Rico, maxrico, maxrico.es, masrico, masrico.es, MaxRico empanadas, empanadas MaxRico, empanadas más rico, empanadas, empanadas artesanales, empanadas caseras, empanadas premium, empanadas gourmet, empanadas congeladas, empanadas congelas, empanadas colombianas, empanadas colombianas en España, empanadas España, empanadas latinas, comprar empanadas, pedir empanadas online, empanadas a domicilio, delivery de empanadas, empanadas cerca de mí, mejores empanadas colombianas, comida colombiana, comida latina en España, empanadas en Zaragoza, delivery de empanadas Zaragoza, arepas, tequeños, pandebono",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "MaxRico",
+      alternateName: ["MaxRico.es", "Max Rico", "MasRico", "MaxRico Empanadas"],
+      url: "https://maxrico.es/",
+    },
+  });
+
   const featured = products.filter((p) => p.badge === "top" || p.badge === "oferta").slice(0, 4);
   const newProducts = products.filter((p) => p.badge === "nuevo");
 
