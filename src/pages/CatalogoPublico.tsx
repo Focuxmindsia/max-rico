@@ -404,7 +404,7 @@ export default function CatalogoPublico() {
               WhatsApp: +34 695 798 632
             </a>
             <a
-              href="https://www.instagram.com/maxrico_empanadas/"
+              href="https://www.instagram.com/maxrico_empanadas?igsh=OGR2cWdqbTdlOGE3"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[#E1306C] hover:underline text-sm font-semibold"
