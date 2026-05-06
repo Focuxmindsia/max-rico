@@ -92,9 +92,6 @@ export default function Footer() {
           <p className="text-xs text-background/40">
             © {new Date().getFullYear()} MaxRico. Todos los derechos reservados.
           </p>
-          <p className="text-xs text-background/40">
-            Hecho con ❤️ y tecnología e IA
-          </p>
         </div>
       </div>
     </footer>
