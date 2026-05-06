@@ -433,6 +433,22 @@ export const products: Product[] = [
     packSize: "30+ unidades",
     imagePosition: "center 75%",
   },
+  {
+    id: "29",
+    name: "Combo Valluno — Champús + 2 Empanadas Grandes de Ternera",
+    slug: "combo-valluno-champus-empanadas",
+    category: "Combos",
+    description: "🔥 OFERTA ESPECIAL · Auténtico Combo Valluno: Champús Valluno tradicional (bebida de maíz, lulo, piña y panela) + 2 empanadas grandes de ternera recién fritas. Sabor 100% colombiano del Valle del Cauca.",
+    ingredients: "Champús: maíz, lulo, piña, panela, canela, hojas de naranjo agrio. Empanadas: harina de maíz, carne de ternera, papa, cebolla, ajo, comino, sal.",
+    preparation: "¡Listo para disfrutar! Champús servir frío. Empanadas calentar 1 min en microondas o 5 min en horno a 180°C.",
+    conservation: "Consumir en el día. Mantener champús refrigerado.",
+    price: 12.99,
+    memberPrice: 11.99,
+    image: "/combo-valluno.jpg",
+    badge: "oferta",
+    rating: 5.0,
+    packSize: "1 combo (champús + 2 empanadas)",
+  },
   // === HOJALDRES ===
   {
     id: "27",
