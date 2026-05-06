@@ -29,13 +29,15 @@ export default function ProductDetail() {
     );
   }
 
-  const RECOMMENDATIONS: Record<string, string[]> = {
+  const EXTRA_RECOMMENDATIONS: Record<string, string[]> = {
     "7": ["10", "21"],
   };
-  const recommendedIds = RECOMMENDATIONS[product.id];
-  const related = recommendedIds
-    ? recommendedIds.map((rid) => products.find((p) => p.id === rid)).filter(Boolean) as typeof products
-    : products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
+  const extraIds = EXTRA_RECOMMENDATIONS[product.id] ?? [];
+  const extraRelated = extraIds.map((rid) => products.find((p) => p.id === rid)).filter(Boolean) as typeof products;
+  const sameCategory = products.filter((p) => p.category === product.category && p.id !== product.id);
+  const related = Array.from(
+    new Map([...sameCategory, ...extraRelated].map((p) => [p.id, p])).values()
+  ).slice(0, 4);
   const savings = product.price - product.memberPrice;
   const extras = getProductExtras(product);
 
