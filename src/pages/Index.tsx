@@ -6,6 +6,7 @@ import { products } from "@/data/products";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import heroBanner from "@/assets/hero-banner.jpg";
+import { useSeo } from "@/hooks/useSeo";
 
 const howItWorks = [
   { icon: Users, title: "Hazte socio", desc: "Únete al club por solo 59€/año" },
