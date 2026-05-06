@@ -21,7 +21,7 @@ import productChorizoXL from "@/assets/product-chorizo-xl.webp";
 import productSalchichaRanchera from "@/assets/product-salchicha-ranchera.webp";
 import productSalchichonCervecero from "@/assets/product-salchichon-cervecero.webp";
 import productSalamiLatino from "@/assets/product-salami-latino.webp";
-import comboXXLMixto from "@/assets/combo-xxl-mixto.jpeg";
+import comboXXLMixto from "/combo-xxl-mixto.png";
 import productPastelGloria from "@/assets/pastel-gloria.webp";
 import productChicharronHojaldre from "@/assets/chicharron-hojaldre.webp";
 

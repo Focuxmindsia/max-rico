@@ -3,7 +3,7 @@ import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasCocteleras17 from "@/assets/combo-17-fritas.png";
 import productEmpanadasCocteleras51 from "@/assets/combo-51-fritas.png";
 import productEmpanadas from "@/assets/product-empanadas-v2.jpg";
-import comboXXLMixto from "@/assets/combo-xxl-mixto.jpeg";
+import comboXXLMixto from "/combo-xxl-mixto.png";
 
 export interface BlogPost {
   slug: string;
