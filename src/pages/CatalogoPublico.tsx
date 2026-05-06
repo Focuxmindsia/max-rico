@@ -293,15 +293,17 @@ export default function CatalogoPublico() {
                       🧊 Ultracongelado
                     </div>
                   )}
-                </div>
+                </Link>
 
                 <div className="p-4 flex flex-col flex-1">
                   <p className="text-xs text-muted-foreground mb-1">
                     {product.category} · {product.packSize}
                   </p>
-                  <h3 className="font-bold text-sm leading-tight mb-2 line-clamp-2 whitespace-pre-line">
-                    {product.name}
-                  </h3>
+                  <Link to={`/producto/${product.id}`} className="block">
+                    <h3 className="font-bold text-sm leading-tight mb-2 line-clamp-2 whitespace-pre-line hover:text-primary/80 transition-colors">
+                      {product.name}
+                    </h3>
+                  </Link>
 
                   {product.rating && (
                     <div className="flex items-center gap-1 mb-2">
