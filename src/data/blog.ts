@@ -1,6 +1,6 @@
 import productEmpanadaCarneTernera from "@/assets/empanada-carne-ternera-x10.jpeg";
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
-import productEmpanadasCocteleras17 from "@/assets/combo-17-fritas.png";
+import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
 import productEmpanadas from "@/assets/product-empanadas-v2.jpg";
 import comboXXLMixto from "/combo-xxl-mixto.png";
