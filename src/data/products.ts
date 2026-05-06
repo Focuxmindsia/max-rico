@@ -5,7 +5,7 @@ import productOfertaLimitada from "@/assets/9583b35b-1040-4158-a1c7-181ed6668c38
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
-import productEmpanadasCocteleras17 from "@/assets/combo-17-fritas.png";
+import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
 import productEmpanadasCoctelerasTernera from "@/assets/empanadas-cocteleras-ternera.jpg";
 import productEmpanadasCoctelerasPollo from "@/assets/empanadas-cocteleras-pollo.jpg";
