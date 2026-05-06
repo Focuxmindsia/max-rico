@@ -29,7 +29,13 @@ export default function ProductDetail() {
     );
   }
 
-  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
+  const RECOMMENDATIONS: Record<string, string[]> = {
+    "7": ["10", "21"],
+  };
+  const recommendedIds = RECOMMENDATIONS[product.id];
+  const related = recommendedIds
+    ? recommendedIds.map((rid) => products.find((p) => p.id === rid)).filter(Boolean) as typeof products
+    : products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
   const savings = product.price - product.memberPrice;
   const extras = getProductExtras(product);
 
