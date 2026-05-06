@@ -9,6 +9,7 @@ import { products, categories, type Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
 import { getPriceId, isProductFrito } from "@/data/priceIds";
+import { useSeo } from "@/hooks/useSeo";
 
 const WHATSAPP_NUMBER = "34695798632";
 
