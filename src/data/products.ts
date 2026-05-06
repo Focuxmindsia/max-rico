@@ -6,7 +6,7 @@ import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.jpg";
 import productEmpanadasCocteleras17 from "@/assets/combo-17-fritas.png";
-import productEmpanadasCocteleras51 from "@/assets/combo-51-fritas.png";
+import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
 import productEmpanadasCoctelerasTernera from "@/assets/empanadas-cocteleras-ternera.jpg";
 import productEmpanadasCoctelerasPollo from "@/assets/empanadas-cocteleras-pollo.jpg";
 import productTequenos from "@/assets/product-tequenos.jpg";
