@@ -444,7 +444,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Mantener champús refrigerado.",
     price: 12.99,
     memberPrice: 11.99,
-    image: "/combo-valluno.jpg",
+    image: productOfertaLimitada,
     badge: "oferta",
     rating: 5.0,
     packSize: "1 combo (champús + 2 empanadas + chorizo)",
