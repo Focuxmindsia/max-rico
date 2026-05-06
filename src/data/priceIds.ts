@@ -24,13 +24,14 @@ export const PRICE_ID_BY_PRODUCT_ID: Record<string, string> = {
   "26": "prod_26_price",
   "27": "prod_27_price",
   "28": "prod_28_price",
+  "29": "prod_29_price",
 };
 
 export const SOCIO_PRICE_ID = "socio_anual_59";
 
 // Product IDs that are "Productos Fritos Listos para Consumir"
 // (need 2h advance scheduling for same-day, only Zaragoza, restaurant comida/cena hours)
-export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24"]);
+export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29"]);
 
 export function getPriceId(productId: string): string | null {
   return PRICE_ID_BY_PRODUCT_ID[productId] ?? null;
