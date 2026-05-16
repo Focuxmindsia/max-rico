@@ -1,7 +1,7 @@
 // Descripciones ampliadas y galería complementaria por producto.
 // Se aplica en /producto/:id para enriquecer la ficha sin tocar products.ts.
 
-import empanadaRelleno from "@/assets/gallery/empanada-relleno.jpg";
+import empanadaRelleno from "/empanada-relleno.jpg";
 import empanadaMasaMaiz from "@/assets/gallery/empanada-masa-maiz.jpg";
 import empanadaCongelada from "@/assets/gallery/empanada-congelada.jpg";
 import arepaDetalle from "@/assets/gallery/arepa-detalle.jpg";
