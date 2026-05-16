@@ -3,7 +3,7 @@
 
 import empanadaRelleno from "/empanada-relleno.jpg";
 import empanadaMasaMaiz from "@/assets/gallery/empanada-masa-maiz.jpg";
-import empanadaCongelada from "@/assets/gallery/empanada-congelada.jpg";
+import empanadaCongelada from "/empanada-congelada.png";
 import arepaDetalle from "@/assets/gallery/arepa-detalle.jpg";
 import arepaPlancha from "@/assets/gallery/arepa-plancha.jpg";
 import arepaCongelada from "@/assets/gallery/arepa-congelada.jpg";
