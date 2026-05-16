@@ -52,7 +52,7 @@ const FRITO_DETAIL = "🚚 Listo para consumir: te llega ya frito y caliente, co
 export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
   // === EMPANADAS GRANDES TERNERA ===
   "1": {
-    longDescription: `${QUALITY_CORN} Empanadas grandes de 13,5 cm rellenas de carne de ternera jugosa, papa y un sofrito tradicional de cebolla, ajo y comino. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Empanadas grandes de 13,5 cm rellenas de carne de ternera jugosa, patata cocida y un sofrito tradicional. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
     highlights: ["6 unidades · 450 g", "Tamaño 13,5 cm", "100% maíz · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
