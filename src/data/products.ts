@@ -390,7 +390,7 @@ export const products: Product[] = [
     slug: "combo-3-mixto-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · Combo mixto: 10 empanadas grandes + 17 pequeñas, todas fritas. Incluye domicilio en Zaragoza capital.",
-    ingredients: "Masa 100% maíz molido, rellenas de carne de Ternera /pollo, patata cocida, cebolla, ajo, comino, sal.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     preparation: "¡Ya vienen fritas y listas! Solo calentar si lo deseas.",
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 29.99,
