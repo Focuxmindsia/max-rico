@@ -52,14 +52,14 @@ const FRITO_DETAIL = "🚚 Listo para consumir: te llega ya frito y caliente, co
 export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
   // === EMPANADAS GRANDES TERNERA ===
   "1": {
-    longDescription: `${QUALITY_CORN} Empanadas grandes de 13,5 cm rellenas de carne de ternera jugosa, patata cocida y un sofrito tradicional. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Empanadas grandes de 13,5 cm rellenas de carne de Vacuno jugosa, patata cocida y un sofrito tradicional. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
     highlights: ["6 unidades · 450 g", "Tamaño 13,5 cm", "100% maíz · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
   "2": {
-    longDescription: `${QUALITY_CORN} Pack familiar de 10 empanadas grandes de 13,5 cm con relleno de carne de ternera, ideales para reuniones, celebraciones o tener siempre en casa. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Pack familiar de 10 empanadas grandes de 13,5 cm con relleno de carne de Vacuno, ideales para reuniones, celebraciones o tener siempre en casa. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
-    highlights: ["10 unidades · 750 g", "Tamaño 13,5 cm", "Relleno de ternera + papa", "🧊 Ultracongeladas a -18°C"],
+    highlights: ["10 unidades · 750 g", "Tamaño 13,5 cm", "Relleno de Vacuno + papa", "🧊 Ultracongeladas a -18°C"],
   },
   "25": {
     longDescription: `${QUALITY_CORN} Pack de 10 empanadas grandes rellenas de pollo desmechado jugoso con un suave sofrito colombiano. ${FROZEN_DETAIL}`,
@@ -73,9 +73,9 @@ export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
     highlights: ["17 unidades · 510 g", "Tamaño 8 cm (cóctel)", "Pollo · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
   "26": {
-    longDescription: `${QUALITY_CORN} Mini empanadas tipo cóctel de 8 cm rellenas de carne de ternera. Ideales para picoteo, eventos y para los más peques. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Mini empanadas tipo cóctel de 8 cm rellenas de carne de Vacuno. Ideales para picoteo, eventos y para los más peques. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
-    highlights: ["17 unidades · 510 g", "Tamaño 8 cm (cóctel)", "Ternera · sin gluten", "🧊 Ultracongeladas a -18°C"],
+    highlights: ["17 unidades · 510 g", "Tamaño 8 cm (cóctel)", "Vacuno · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
   // === AREPAS ===
   "7": {
@@ -165,7 +165,7 @@ export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
     highlights: ["10 grandes + salami + 3 arepas", "🔥 Listas para consumir", "🚚 Domicilio GRATIS (Zaragoza)", "Incluye salsas de ají"],
   },
   "29": {
-    longDescription: `${FRITO_DETAIL} Auténtico Combo Valluno del Valle del Cauca: 1 Champús tradicional (bebida fría de maíz, lulo, piña y panela con canela) + 2 empanadas grandes de ternera recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano.`,
+    longDescription: `${FRITO_DETAIL} Auténtico Combo Valluno del Valle del Cauca: 1 Champús tradicional (bebida fría de maíz, lulo, piña y panela con canela) + 2 empanadas grandes de Vacuno recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano.`,
     galleryExtras: G.comboValluno,
     highlights: ["1 champús + 2 empanadas + chorizo", "🔥 Listo para consumir", "🚚 Domicilio incluido (Zaragoza)", "Tradición del Valle del Cauca"],
   },
