@@ -59,7 +59,7 @@ export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
   "2": {
     longDescription: `${QUALITY_CORN} Pack familiar de 10 empanadas grandes de 13,5 cm con relleno de carne de Vacuno, ideales para reuniones, celebraciones o tener siempre en casa. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
-    highlights: ["10 unidades · 750 g", "Tamaño 13,5 cm", "Relleno de ternera + papa", "🧊 Ultracongeladas a -18°C"],
+    highlights: ["10 unidades · 750 g", "Tamaño 13,5 cm", "Relleno de Vacuno + papa", "🧊 Ultracongeladas a -18°C"],
   },
   "25": {
     longDescription: `${QUALITY_CORN} Pack de 10 empanadas grandes rellenas de pollo desmechado jugoso con un suave sofrito colombiano. ${FROZEN_DETAIL}`,
