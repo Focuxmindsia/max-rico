@@ -1,5 +1,5 @@
 import productEmpanadas from "/product-empanadas.png";
-import productEmpanadaCarneTernera from "@/assets/empanada-carne-ternera-x10.jpeg";
+import productEmpanadaCarneVacuno from "@/assets/empanada-carne-vacuno-x10.jpg";
 import combo2Empanadas from "@/assets/combo-2-empanadas.jpeg";
 import productOfertaLimitada from "@/assets/combo-valluno-new.jpg";
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
@@ -91,8 +91,8 @@ export const products: Product[] = [
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 17.90,
     memberPrice: 16.99,
-    image: productEmpanadaCarneTernera,
-    gallery: [productEmpanadaCarneTernera, productEmpanadasGrandes10, productEmpanadasGrandes10Pack],
+    image: productEmpanadaCarneVacuno,
+    gallery: [productEmpanadaCarneVacuno, productEmpanadasGrandes10, productEmpanadasGrandes10Pack],
     badge: "top",
     rating: 4.9,
     packSize: "10 unidades",
