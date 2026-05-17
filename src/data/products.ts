@@ -86,7 +86,7 @@ export const products: Product[] = [
     slug: "empanadas-grandes-pack-10",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Pack de 10 empanadas colombianas grandes de 13,5 cm. Perfectas para reuniones y celebraciones familiares.",
-    ingredients: "Masa 100% maíz molido, rellenas de carne de Ternera /pollo, patata cocida, cebolla, ajo, comino, sal.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     preparation: " Freír en aceite a 180°C por 12 min, aproximadamente. No hace falta descongelar el producto para freírlo. ",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 17.90,
