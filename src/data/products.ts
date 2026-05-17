@@ -407,7 +407,7 @@ export const products: Product[] = [
     slug: "combo-4-empanadas-pequenas-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · ¡Mega combo! 51 empanadas pequeñas fritas para fiestas and eventos. Incluye domicilio en Zaragoza capital.",
-    ingredients: "Harina de maíz, carne de res, patata cocida, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Ternera /pollo, patata cocida, cebolla, ajo, comino, sal.",
     preparation: "¡Ya vienen fritas y listas! Solo calentar si lo deseas.",
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 46.99,
