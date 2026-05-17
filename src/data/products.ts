@@ -373,7 +373,7 @@ export const products: Product[] = [
     slug: "combo-2-empanadas-grandes-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · 10 empanadas grandes fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
-    ingredients: "Masa 100% maíz molido, rellenas de carne de Ternera /pollo, patata cocida, cebolla, ajo, comino, sal.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     preparation: "¡Ya vienen fritas y listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 22.99,
