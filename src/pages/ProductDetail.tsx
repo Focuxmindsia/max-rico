@@ -41,12 +41,11 @@ export default function ProductDetail() {
   const savings = product.price - product.memberPrice;
   const extras = getProductExtras(product);
 
-  // Galería combinada: imagen principal + gallery del producto + extras (sin duplicados)
+  // Galería: solo imágenes propias del producto (sin mezclar entre productos)
   const fullGallery = useMemo(() => {
     const base = product.gallery && product.gallery.length > 0 ? product.gallery : [product.image];
-    const all = [...base, ...extras.galleryExtras];
-    return Array.from(new Set(all));
-  }, [product, extras]);
+    return Array.from(new Set(base));
+  }, [product]);
 
   const currentImage = fullGallery[selectedImage] ?? product.image;
 
