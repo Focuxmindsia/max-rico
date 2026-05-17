@@ -73,9 +73,9 @@ export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
     highlights: ["17 unidades · 510 g", "Tamaño 8 cm (cóctel)", "Pollo · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
   "26": {
-    longDescription: `${QUALITY_CORN} Mini empanadas tipo cóctel de 8 cm rellenas de carne de ternera. Ideales para picoteo, eventos y para los más peques. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Mini empanadas tipo cóctel de 8 cm rellenas de carne de Vacuno. Ideales para picoteo, eventos y para los más peques. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
-    highlights: ["17 unidades · 510 g", "Tamaño 8 cm (cóctel)", "Ternera · sin gluten", "🧊 Ultracongeladas a -18°C"],
+    highlights: ["17 unidades · 510 g", "Tamaño 8 cm (cóctel)", "Vacuno · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
   // === AREPAS ===
   "7": {
