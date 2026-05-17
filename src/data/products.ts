@@ -358,7 +358,7 @@ export const products: Product[] = [
     slug: "combo-1-empanadas-pequenas-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · 17 empanadas pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
-    ingredients: "Harina de maíz, carne de res, patata cocida, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Ternera /pollo, patata cocida, cebolla, ajo, comino, sal.",
     preparation: "¡Ya vienen fritas y listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
     conservation: "Consumir en el día. Se pueden recalentar.",
     price: 19.99,
