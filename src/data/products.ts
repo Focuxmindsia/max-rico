@@ -436,7 +436,7 @@ export const products: Product[] = [
   },
   {
     id: "29",
-    name: "Combo Valluno — Champús + 2 Empanadas Grandes de Ternera + Chorizo Santarrosano",
+    name: "Combo Valluno — Champús + 2 Empanadas Grandes de Vacuno + Chorizo Santarrosano",
     slug: "combo-valluno-champus-empanadas",
     category: "Combos",
     description: "🔥 OFERTA ESPECIAL · Auténtico Combo Valluno: 1 Champús Valluno tradicional (bebida de maíz, lulo, piña y panela) + 2 empanadas grandes de ternera recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano del Valle del Cauca.",
