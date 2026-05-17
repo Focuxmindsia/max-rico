@@ -52,12 +52,12 @@ const FRITO_DETAIL = "🚚 Listo para consumir: te llega ya frito y caliente, co
 export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
   // === EMPANADAS GRANDES TERNERA ===
   "1": {
-    longDescription: `${QUALITY_CORN} Empanadas grandes de 13,5 cm rellenas de carne de ternera jugosa, patata cocida y un sofrito tradicional. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Empanadas grandes de 13,5 cm rellenas de carne de Vacuno jugosa, patata cocida y un sofrito tradicional. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
     highlights: ["6 unidades · 450 g", "Tamaño 13,5 cm", "100% maíz · sin gluten", "🧊 Ultracongeladas a -18°C"],
   },
   "2": {
-    longDescription: `${QUALITY_CORN} Pack familiar de 10 empanadas grandes de 13,5 cm con relleno de carne de ternera, ideales para reuniones, celebraciones o tener siempre en casa. ${FROZEN_DETAIL}`,
+    longDescription: `${QUALITY_CORN} Pack familiar de 10 empanadas grandes de 13,5 cm con relleno de carne de Vacuno, ideales para reuniones, celebraciones o tener siempre en casa. ${FROZEN_DETAIL}`,
     galleryExtras: G.empanadasCongeladasTernera,
     highlights: ["10 unidades · 750 g", "Tamaño 13,5 cm", "Relleno de ternera + papa", "🧊 Ultracongeladas a -18°C"],
   },
