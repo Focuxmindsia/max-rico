@@ -165,7 +165,7 @@ export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
     highlights: ["10 grandes + salami + 3 arepas", "🔥 Listas para consumir", "🚚 Domicilio GRATIS (Zaragoza)", "Incluye salsas de ají"],
   },
   "29": {
-    longDescription: `${FRITO_DETAIL} Auténtico Combo Valluno del Valle del Cauca: 1 Champús tradicional (bebida fría de maíz, lulo, piña y panela con canela) + 2 empanadas grandes de ternera recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano.`,
+    longDescription: `${FRITO_DETAIL} Auténtico Combo Valluno del Valle del Cauca: 1 Champús tradicional (bebida fría de maíz, lulo, piña y panela con canela) + 2 empanadas grandes de Vacuno recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano.`,
     galleryExtras: G.comboValluno,
     highlights: ["1 champús + 2 empanadas + chorizo", "🔥 Listo para consumir", "🚚 Domicilio incluido (Zaragoza)", "Tradición del Valle del Cauca"],
   },
