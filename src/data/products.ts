@@ -144,7 +144,7 @@ export const products: Product[] = [
     slug: "empanadas-cocteleras-pack-17-ternera",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
-    ingredients: "Harina de maíz, carne de res, patata cocida, cebolla, ajo, comino, sal, pimienta, aceite vegetal.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Ternera /pollo, patata cocida, cebolla, ajo, comino, sal.",
     preparation: "Freír: aceite a 180°C por 3-4 min. Air fryer: 180°C por 8 min. Horno: 200°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 14.90,
