@@ -100,7 +100,7 @@ export const products: Product[] = [
     price: 17.90,
     memberPrice: 16.99,
     image: productEmpanadaCarneVacuno,
-    gallery: [productEmpanadaCarneVacuno, productEmpanadasGrandes10, productEmpanadasCongeladasTerneraPollo, productEmpanadasGrandesTerneraTamano],
+    gallery: [productEmpanadaCarneVacuno, productEmpanadasGrandesTerneraTamano, productEmpanadasGrandes10, productEmpanadasCongeladasTerneraPollo],
     badge: "top",
     rating: 4.9,
     packSize: "10 unidades",
