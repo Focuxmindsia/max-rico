@@ -10,6 +10,7 @@ import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10
 import productEmpanadasCongeladasTerneraPollo from "@/assets/empanadas-congeladas-ternera-pollo-x10.png";
 import productEmpanadasGrandesPolloTamano from "@/assets/empanadas-grandes-pollo-tamano.png";
 import productEmpanadasGrandesPolloBandeja from "@/assets/empanadas-grandes-pollo-bandeja.jpeg";
+import productEmpanadasGrandesTerneraTamano from "@/assets/empanadas-grandes-ternera-tamano.jpg";
 
 import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
@@ -99,7 +100,7 @@ export const products: Product[] = [
     price: 17.90,
     memberPrice: 16.99,
     image: productEmpanadaCarneVacuno,
-    gallery: [productEmpanadaCarneVacuno, productEmpanadasGrandes10, productEmpanadasGrandes10Pack, productEmpanadasCongeladasTerneraPollo],
+    gallery: [productEmpanadaCarneVacuno, productEmpanadasGrandes10, productEmpanadasGrandes10Pack, productEmpanadasCongeladasTerneraPollo, productEmpanadasGrandesTerneraTamano],
     badge: "top",
     rating: 4.9,
     packSize: "10 unidades",
