@@ -14,7 +14,7 @@ import productEmpanadasGrandesTerneraTamano from "@/assets/empanadas-grandes-ter
 
 import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
-import productEmpanadasCoctelerasTernera from "@/assets/empanadas-cocteleras-ternera.jpg";
+import productEmpanadasCoctelerasTernera from "@/assets/empanadas-cocteleras-ternera-new.jpg";
 import productEmpanadasCoctelerasPollo from "@/assets/empanadas-cocteleras-pollo.png";
 import productTequenos from "@/assets/product-tequenos.jpg";
 import productPandebonos from "@/assets/product-pandebonos.webp";
