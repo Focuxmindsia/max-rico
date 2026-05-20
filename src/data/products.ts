@@ -8,7 +8,7 @@ import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.png";
 import productEmpanadasCongeladasTerneraPollo from "@/assets/empanadas-congeladas-ternera-pollo-x10.png";
-import productEmpanadasGrandesPolloTamano from "@/assets/empanadas-grandes-pollo-tamano.png";
+import productEmpanadasGrandesPolloTamano from "@/assets/empanadas-grandes-pollo-tamano.jpg";
 import productEmpanadasGrandesPolloBandeja from "@/assets/empanadas-grandes-pollo-bandeja.jpeg";
 import productEmpanadasGrandesTerneraTamano from "@/assets/empanadas-grandes-ternera-tamano.jpg";
 
