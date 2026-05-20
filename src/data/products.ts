@@ -1,6 +1,6 @@
 import productEmpanadas from "/product-empanadas.png";
 import productEmpanadasX6TernerasPack from "@/assets/empanadas-x6-ternera-pack.png";
-import productEmpanadasX6TernerasPlato from "@/assets/empanadas-x6-ternera-plato.jpeg";
+import productEmpanadasX6TernerasPlato from "@/assets/empanadas-x6-ternera-plato.jpg";
 import productEmpanadaCarneVacuno from "@/assets/empanada-carne-vacuno-x10.jpg";
 import combo2Empanadas from "@/assets/combo-2-empanadas.jpeg";
 import productOfertaLimitada from "@/assets/combo-valluno-new.jpg";
