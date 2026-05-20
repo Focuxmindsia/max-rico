@@ -8,6 +8,8 @@ import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.png";
 import productEmpanadasCongeladasTerneraPollo from "@/assets/empanadas-congeladas-ternera-pollo-x10.png";
+import productEmpanadasGrandesPolloTamano from "@/assets/empanadas-grandes-pollo-tamano.png";
+import productEmpanadasGrandesPolloBandeja from "@/assets/empanadas-grandes-pollo-bandeja.jpeg";
 
 import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
@@ -118,6 +120,7 @@ export const products: Product[] = [
     originalPrice: 17.90,
     memberPrice: 16.49,
     image: productEmpanadasGrandesPollo,
+    gallery: [productEmpanadasGrandesPollo, productEmpanadasGrandesPolloTamano, productEmpanadasGrandesPolloBandeja],
     badge: "oferta",
     rating: 4.8,
     packSize: "10 unidades",
