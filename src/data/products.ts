@@ -189,7 +189,7 @@ export const products: Product[] = [
     name: "Arepa de Chócolo con Queso Colombiana x4 und",
     slug: "arepa-chocolo-queso-pack-4",
     category: "Arepas",
-    description: "🧊 CONGELADA · Arepa de chócolo con queso colombiana de Dcarnilsa, elaborada con maíz tierno y rellena de queso fundente. Paquete de 4 unidades (500 g), lista para calentar y disfrutar.",
+    description: "🧊 CONGELADA · Arepa de chócolo (hecha con maíz tierno molido) con queso latino, de sabor suave y un toque dulcecito, ideal para desayuno o merienda.\n Producto ultracongelado a -18°C para preservar todo su sabor y textura artesanal. Llega a tu casa en perfecto estado, listo para que lo prepares cuando quieras. Sin conservantes artificiales.",
     ingredients: "Maíz tierno (chócolo), queso, mantequilla, sal, azúcar.",
     preparation: "Plancha/sartén: 4-5 min por lado a fuego medio. Horno: 200°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
