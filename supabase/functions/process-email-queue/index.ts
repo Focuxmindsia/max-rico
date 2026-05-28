@@ -260,14 +260,14 @@ Deno.serve(async (req) => {
             text: payload.text,
             purpose: payload.purpose,
             label: payload.label,
-            idempotencyKey: payload.idempotency_key ?? payload.idempotencyKey,
+            idempotency_key: payload.idempotency_key ?? payload.idempotencyKey,
             unsubscribe_token: payload.unsubscribe_token,
             message_id: payload.message_id,
           },
           // sendUrl is optional — when LOVABLE_SEND_URL is not set, the library
           // falls back to the default Lovable API endpoint (https://api.lovable.dev).
           // Set LOVABLE_SEND_URL as a Supabase secret to override (e.g. for local dev).
-          { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
+          { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL'), idempotencyKey: payload.idempotency_key ?? payload.idempotencyKey }
         )
 
         // Log success
