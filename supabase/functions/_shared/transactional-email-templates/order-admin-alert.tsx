@@ -68,7 +68,7 @@ export const template = {
   component: OrderAdminAlertEmail,
   subject: (d: any) => `Nuevo pedido${d?.orderId ? ` ${d.orderId}` : ''} — ${d?.totalEur || ''}`,
   displayName: 'Alerta de pedido (admin)',
-  to: 'maxrico@maxrico.es',
+  to: 'clientes@maxrico.es',
   previewData: {
     customerName: 'Ana García',
     customerEmail: 'ana@example.com',
