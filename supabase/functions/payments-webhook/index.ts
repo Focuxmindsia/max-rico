@@ -15,11 +15,13 @@ function getSupabase() {
 async function sendEmail(templateName: string, recipientEmail: string, idempotencyKey: string, templateData?: Record<string, unknown>) {
   try {
     const url = `${Deno.env.get("SUPABASE_URL")}/functions/v1/send-transactional-email`;
+    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
+        Authorization: `Bearer ${serviceRoleKey}`,
+        "x-internal-service-key": serviceRoleKey ?? "",
       },
       body: JSON.stringify({ templateName, recipientEmail, idempotencyKey, templateData }),
     });
@@ -90,7 +92,7 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
       items: itemsForEmail,
     };
     await sendEmail("order-receipt", customerEmail, `order-receipt-${session.id}`, commonData);
-    await sendEmail("order-admin-alert", "maxrico@maxrico.es", `order-admin-${session.id}`, commonData);
+    await sendEmail("order-admin-alert", "clientes@maxrico.es", `order-admin-${session.id}`, commonData);
   }
 }
 
