@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { type StripeEnv, createStripeClient } from "../_shared/stripe.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -22,6 +23,33 @@ function sanitizeOrder(order: any) {
     status: order.status,
     notes: order.notes,
     created_at: order.created_at,
+  };
+}
+
+function formatSessionAsOrder(session: any, env: StripeEnv) {
+  const m = session.metadata || {};
+  let items: any[] = [];
+  try {
+    items = m.items ? JSON.parse(m.items) : [];
+  } catch (_) {
+    items = [];
+  }
+
+  return {
+    stripe_session_id: session.id,
+    customer_email: session.customer_email || session.customer_details?.email || "",
+    customer_name: m.customerName || session.customer_details?.name || null,
+    customer_phone: m.customerPhone || null,
+    customer_address: m.customerAddress || null,
+    city: m.city || null,
+    delivery_method: m.deliveryMethod === "domicilio" ? "domicilio" : "recogida",
+    scheduled_for: m.scheduledFor || null,
+    items,
+    amount_total_cents: session.amount_total ?? 0,
+    currency: session.currency ?? "eur",
+    status: session.payment_status === "paid" ? "paid" : "pending",
+    notes: m.notes || null,
+    environment: env,
   };
 }
 
@@ -53,7 +81,27 @@ Deno.serve(async (req) => {
     if (error) throw error;
 
     if (!data) {
-      return new Response(JSON.stringify({ status: "processing", order: null }), {
+      const env: StripeEnv = sessionId.startsWith("cs_test_") ? "sandbox" : "live";
+      const stripe = createStripeClient(env);
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+      if (!session || session.payment_status !== "paid") {
+        return new Response(JSON.stringify({ status: "processing", order: null }), {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const orderPayload = formatSessionAsOrder(session, env);
+      const { data: createdOrder, error: upsertError } = await supabase
+        .from("orders")
+        .upsert(orderPayload, { onConflict: "stripe_session_id" })
+        .select("*")
+        .single();
+
+      if (upsertError) throw upsertError;
+
+      return new Response(JSON.stringify({ status: "found", order: sanitizeOrder(createdOrder) }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
