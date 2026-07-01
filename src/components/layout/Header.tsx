@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart, User, Search, Menu, X, LogOut, Crown } from "lucide-react";
+import { ShoppingCart, User, Search, Menu, X, LogOut, Crown, ClipboardList } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useSubscription } from "@/hooks/useSubscription";
+import { isAdminEmail } from "@/lib/admin";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +26,7 @@ export default function Header() {
   const { totalItems } = useCart();
   const { user, signOut } = useAuth();
   const { isSocio } = useSubscription();
+  const isAdmin = isAdminEmail(user?.email);
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -112,6 +114,11 @@ export default function Header() {
                   {!isSocio && (
                     <DropdownMenuItem onClick={() => navigate("/socios")}>
                       <Crown className="h-4 w-4 mr-2" /> Hacerme socio
+                    </DropdownMenuItem>
+                  )}
+                  {isAdmin && (
+                    <DropdownMenuItem onClick={() => navigate("/admin/pedidos")}>
+                      <ClipboardList className="h-4 w-4 mr-2" /> Panel de pedidos
                     </DropdownMenuItem>
                   )}
                   <DropdownMenuItem onClick={handleSignOut}>

@@ -161,7 +161,15 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     if (!priceId || !product) throw new Error("Sin producto");
     const { data, error } = await supabase.functions.invoke("create-checkout", {
       body: {
-        items: [{ priceId, quantity: 1 }],
+        items: [
+          {
+            priceId,
+            productId: product.id,
+            name: product.name,
+            quantity: 1,
+            price: product.price,
+          },
+        ],
         customerEmail: email,
         customerName: name,
         customerPhone: phone,

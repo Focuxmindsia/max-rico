@@ -8,6 +8,9 @@ const corsHeaders = {
 interface CheckoutItem {
   priceId: string;
   quantity: number;
+  productId?: string;
+  name?: string;
+  price?: number;
 }
 
 interface Body {
