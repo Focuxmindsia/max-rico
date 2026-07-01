@@ -1,16 +1,78 @@
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { CheckCircle2, Crown } from "lucide-react";
+import { CheckCircle2, Crown, Loader2, Mail, MessageCircle, Printer, ReceiptText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
+import { buildOrderWhatsAppMessage, formatCurrency, formatDateTime, getOrderItemDetails, type OrderItemLike } from "@/lib/orderUtils";
+
+const WHATSAPP_NUMBER = "34695798632";
+
+interface OrderReceipt {
+  id: string;
+  stripe_session_id: string | null;
+  customer_email: string;
+  customer_name: string | null;
+  customer_phone: string | null;
+  customer_address: string | null;
+  city: string | null;
+  delivery_method: string;
+  scheduled_for: string | null;
+  items: OrderItemLike[];
+  amount_total_cents: number;
+  currency: string;
+  status: string;
+  notes: string | null;
+  created_at: string;
+}
 
 export default function CheckoutReturn() {
   const [params] = useSearchParams();
   const sessionId = params.get("session_id");
   const type = params.get("type");
   const isSocio = type === "socio";
+  const [order, setOrder] = useState<OrderReceipt | null>(null);
+  const [loadingOrder, setLoadingOrder] = useState(Boolean(sessionId && !isSocio));
+  const [orderError, setOrderError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!sessionId || isSocio) return;
+
+    let cancelled = false;
+    const loadOrder = async () => {
+      setLoadingOrder(true);
+      setOrderError(null);
+      const { data, error } = await supabase.functions.invoke("get-order-status", {
+        body: { sessionId },
+      });
+
+      if (cancelled) return;
+      if (error) {
+        setOrderError("Tu pago fue recibido, pero no pudimos cargar el comprobante completo en este momento.");
+      } else if (data?.order) {
+        setOrder(data.order);
+      } else {
+        setOrderError("Tu pago fue recibido. Estamos terminando de registrar el pedido; guarda esta referencia y contáctanos por WhatsApp si necesitas confirmarlo ahora.");
+      }
+      setLoadingOrder(false);
+    };
+
+    loadOrder();
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionId, isSocio]);
+
+  const whatsappMessage = useMemo(() => {
+    if (order) return buildOrderWhatsAppMessage(order);
+    return `Hola MaxRico, acabo de pagar mi pedido y quiero confirmar la entrega. Referencia: ${(sessionId || "").slice(-8).toUpperCase()}`;
+  }, [order, sessionId]);
+
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-6">
-      <div className="max-w-md w-full text-center space-y-6 bg-white rounded-2xl shadow-lg p-8 border">
+      <div className="max-w-2xl w-full text-center space-y-6 bg-white rounded-2xl shadow-lg p-8 border print:shadow-none print:border-0">
         {isSocio ? (
           <>
             <Crown className="h-20 w-20 text-primary mx-auto fill-primary" />
@@ -24,16 +86,117 @@ export default function CheckoutReturn() {
             <CheckCircle2 className="h-20 w-20 text-green-500 mx-auto" />
             <h1 className="text-3xl font-black text-foreground">¡Pago recibido!</h1>
             <p className="text-muted-foreground">
-              Gracias por tu compra en <span translate="no" className="notranslate font-bold">MaxRico</span>. Te enviaremos los detalles por email y coordinamos la entrega contigo por WhatsApp.
+              Gracias por tu compra en <span translate="no" className="notranslate font-bold">MaxRico</span>. Tu pedido quedó registrado correctamente.
             </p>
           </>
         )}
+
+        {!isSocio && (
+          <div className="space-y-4 text-left">
+            {loadingOrder && (
+              <Card className="bg-yellow-50 border-yellow-200">
+                <CardContent className="p-4 flex items-center gap-3 text-yellow-900">
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <span className="text-sm font-semibold">Preparando tu comprobante de pedido...</span>
+                </CardContent>
+              </Card>
+            )}
+
+            {orderError && (
+              <Card className="bg-orange-50 border-orange-200">
+                <CardContent className="p-4 text-sm text-orange-900">{orderError}</CardContent>
+              </Card>
+            )}
+
+            {order && (
+              <Card className="overflow-hidden text-left">
+                <div className="bg-yellow-400 px-5 py-3 text-black font-black flex items-center gap-2">
+                  <ReceiptText className="h-5 w-5" /> Comprobante de pedido pagado
+                </div>
+                <CardContent className="p-5 space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-3 text-sm">
+                    <div>
+                      <p className="text-muted-foreground">Referencia</p>
+                      <p className="font-mono font-bold">{(order.stripe_session_id || order.id).slice(-8).toUpperCase()}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Estado</p>
+                      <p className="font-bold text-green-700">Pagado correctamente</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Cliente</p>
+                      <p className="font-semibold">{order.customer_name || "Cliente"}</p>
+                      <p>{order.customer_email}</p>
+                      {order.customer_phone && <p>{order.customer_phone}</p>}
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Entrega</p>
+                      <p className="font-semibold">{order.delivery_method === "domicilio" ? "Domicilio" : "Recogida en local"}</p>
+                      {order.customer_address && <p>{order.customer_address}</p>}
+                      {order.city && <p>{order.city}</p>}
+                      {order.scheduled_for && <p>{formatDateTime(order.scheduled_for)}</p>}
+                    </div>
+                  </div>
+
+                  <div className="border-t pt-4">
+                    <p className="font-black mb-2">Productos</p>
+                    <div className="space-y-2">
+                      {(order.items || []).map((item, index) => {
+                        const details = getOrderItemDetails(item);
+                        return (
+                          <div key={`${details.name}-${index}`} className="flex items-center justify-between gap-3 text-sm">
+                            <span>{details.quantity} x {details.name}</span>
+                            {details.unitPrice && <span className="font-semibold">{details.unitPrice.toFixed(2)}€</span>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {order.notes && (
+                    <div className="border-t pt-4 text-sm">
+                      <p className="font-black mb-1">Notas del pedido</p>
+                      <p>{order.notes}</p>
+                    </div>
+                  )}
+
+                  <div className="border-t pt-4 flex items-center justify-between text-lg">
+                    <span className="font-black">Total pagado</span>
+                    <span className="font-black">{formatCurrency(order.amount_total_cents, order.currency)}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            <Card className="bg-red-50 border-red-200 print:hidden">
+              <CardContent className="p-4 text-sm text-red-900 flex gap-3">
+                <Mail className="h-5 w-5 shrink-0 mt-0.5" />
+                <p>
+                  El email automático está preparado, pero ahora mismo está bloqueado porque el dominio de correo de envío no está verificado. Mientras lo resolvemos, esta pantalla funciona como ticket y puedes enviarnos el pedido por WhatsApp con un clic.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
         {sessionId && (
           <p className="text-xs text-muted-foreground font-mono break-all">
             Ref: {sessionId}
           </p>
         )}
         <div className="flex flex-col gap-2">
+          {!isSocio && (
+            <>
+              <Button asChild className="bg-green-600 hover:bg-green-700 text-white font-bold print:hidden">
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4 mr-2" /> Confirmar entrega por WhatsApp
+                </a>
+              </Button>
+              <Button type="button" variant="outline" onClick={() => window.print()} className="print:hidden">
+                <Printer className="h-4 w-4 mr-2" /> Imprimir o guardar comprobante
+              </Button>
+            </>
+          )}
           <Button asChild className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
             <Link to="/catalogo">{isSocio ? "Ver catálogo con mis precios" : "Seguir comprando"}</Link>
           </Button>
