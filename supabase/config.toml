@@ -5,6 +5,10 @@ project_id = "vpmibqroavbixvirssvh"
     verify_jwt = false
   [functions.create-checkout]
     verify_jwt = false
+  [functions.get-order-status]
+    verify_jwt = false
+  [functions.admin-orders]
+    verify_jwt = true
   [functions.handle-email-suppression]
     verify_jwt = false
   [functions.handle-email-unsubscribe]
