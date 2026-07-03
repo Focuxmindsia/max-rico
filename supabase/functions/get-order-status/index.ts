@@ -1,5 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
-import { type StripeEnv, createStripeClient } from "../_shared/stripe.ts";
+import { type StripeEnv, stripeGatewayJson } from "../_shared/stripe.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -82,8 +82,9 @@ Deno.serve(async (req) => {
 
     if (!data) {
       const env: StripeEnv = sessionId.startsWith("cs_test_") ? "sandbox" : "live";
-      const stripe = createStripeClient(env);
-      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      const session = await stripeGatewayJson(env, `/v1/checkout/sessions/${sessionId}`, {
+        method: "GET",
+      });
 
       if (!session || session.payment_status !== "paid") {
         return new Response(JSON.stringify({ status: "processing", order: null }), {

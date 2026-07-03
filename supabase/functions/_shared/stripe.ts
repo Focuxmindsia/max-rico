@@ -1,5 +1,4 @@
 import { encode } from "https://deno.land/std@0.168.0/encoding/hex.ts";
-import Stripe from "https://esm.sh/stripe@18.5.0";
 
 const getEnv = (key: string): string => {
   const value = Deno.env.get(key);
@@ -9,7 +8,7 @@ const getEnv = (key: string): string => {
 
 export type StripeEnv = "sandbox" | "live";
 
-const GATEWAY_STRIPE_BASE = "https://connector-gateway.lovable.dev/stripe";
+const STRIPE_API_BASE = "https://api.stripe.com";
 
 export function getConnectionApiKey(env: StripeEnv): string {
   return env === "sandbox"
@@ -17,24 +16,35 @@ export function getConnectionApiKey(env: StripeEnv): string {
     : getEnv("STRIPE_LIVE_API_KEY");
 }
 
-export function createStripeClient(env: StripeEnv): Stripe {
-  const connectionApiKey = getConnectionApiKey(env);
-  const lovableApiKey = getEnv("LOVABLE_API_KEY");
-
-  return new Stripe(connectionApiKey, {
-    apiVersion: "2025-03-31.basil",
-    httpClient: Stripe.createFetchHttpClient((url: string | URL, init?: RequestInit) => {
-      const gatewayUrl = url.toString().replace("https://api.stripe.com", GATEWAY_STRIPE_BASE);
-      return fetch(gatewayUrl, {
-        ...init,
-        headers: {
-          ...Object.fromEntries(new Headers(init?.headers).entries()),
-          "X-Connection-Api-Key": connectionApiKey,
-          Authorization: `Bearer ${lovableApiKey}`,
-        },
-      });
-    }),
+export async function stripeGatewayJson<T = any>(
+  env: StripeEnv,
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
+  const apiKey = getConnectionApiKey(env);
+  const response = await fetch(`${STRIPE_API_BASE}${path}`, {
+    ...init,
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Stripe-Version": "2025-03-31.basil",
+      ...init.headers,
+    },
   });
+
+  const text = await response.text();
+  let payload: any = null;
+  try {
+    payload = text ? JSON.parse(text) : null;
+  } catch (_) {
+    payload = { raw: text };
+  }
+
+  if (!response.ok) {
+    const message = payload?.error?.message || payload?.message || text || "Stripe request failed";
+    throw new Error(`Stripe ${response.status}: ${message}`);
+  }
+
+  return payload as T;
 }
 
 export async function verifyWebhook(
