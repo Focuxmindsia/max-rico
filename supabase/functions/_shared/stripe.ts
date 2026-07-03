@@ -9,6 +9,7 @@ const getEnv = (key: string): string => {
 export type StripeEnv = "sandbox" | "live";
 
 const GATEWAY_STRIPE_BASE = "https://connector-gateway.lovable.dev/stripe";
+const STRIPE_API_BASE = "https://api.stripe.com";
 
 export function getConnectionApiKey(env: StripeEnv): string {
   return env === "sandbox"
@@ -21,13 +22,12 @@ export async function stripeGatewayJson<T = any>(
   path: string,
   init: RequestInit = {},
 ): Promise<T> {
-  const connectionApiKey = getConnectionApiKey(env);
-  const lovableApiKey = getEnv("LOVABLE_API_KEY");
-  const response = await fetch(`${GATEWAY_STRIPE_BASE}${path}`, {
+  const apiKey = getConnectionApiKey(env);
+  const response = await fetch(`${STRIPE_API_BASE}${path}`, {
     ...init,
     headers: {
-      Authorization: `Bearer ${lovableApiKey}`,
-      "X-Connection-Api-Key": connectionApiKey,
+      Authorization: `Bearer ${apiKey}`,
+      "Stripe-Version": "2025-03-31.basil",
       ...init.headers,
     },
   });
