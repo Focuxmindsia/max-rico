@@ -198,7 +198,7 @@ Deno.serve(async (req) => {
     await supabase.from('email_send_log').insert({
       message_id: messageId, template_name: templateName,
       recipient_email: effectiveRecipient, status: 'sent',
-      provider_message_id: resendJson.id ?? null,
+      metadata: { provider: 'resend', provider_id: resendJson.id ?? null },
     })
 
     console.log('Email sent via Resend', { templateName, effectiveRecipient, id: resendJson.id })
