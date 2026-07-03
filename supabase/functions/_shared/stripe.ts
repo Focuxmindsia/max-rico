@@ -30,7 +30,7 @@ export function createStripeClient(env: StripeEnv): Stripe {
         headers: {
           ...Object.fromEntries(new Headers(init?.headers).entries()),
           "X-Connection-Api-Key": connectionApiKey,
-          "Lovable-API-Key": lovableApiKey,
+          Authorization: `Bearer ${lovableApiKey}`,
         },
       });
     }),
