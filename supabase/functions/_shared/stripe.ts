@@ -13,7 +13,7 @@ const GATEWAY_STRIPE_BASE = "https://connector-gateway.lovable.dev/stripe";
 
 export function getConnectionApiKey(env: StripeEnv): string {
   return env === "sandbox"
-    ? getEnv("STRIPE_SANDBOX_API_KEY")
+    ? getEnv("STRIPE_RESTRICTED_API_KEY")
     : getEnv("STRIPE_LIVE_API_KEY");
 }
 
