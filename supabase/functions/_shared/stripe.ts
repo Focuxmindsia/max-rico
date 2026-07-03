@@ -8,7 +8,6 @@ const getEnv = (key: string): string => {
 
 export type StripeEnv = "sandbox" | "live";
 
-const GATEWAY_STRIPE_BASE = "https://connector-gateway.lovable.dev/stripe";
 const STRIPE_API_BASE = "https://api.stripe.com";
 
 export function getConnectionApiKey(env: StripeEnv): string {
