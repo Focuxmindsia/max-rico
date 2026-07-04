@@ -62,6 +62,46 @@ export default function AdminOrders() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
   const isAdmin = isAdminEmail(user?.email);
+  const [notifEnabled, setNotifEnabled] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("maxrico_notif_enabled") === "1";
+  });
+  const seenIdsRef = useRef<Set<string>>(new Set());
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const playSound = () => {
+    try {
+      if (!audioRef.current) {
+        audioRef.current = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+        audioRef.current.volume = 0.9;
+      }
+      audioRef.current.currentTime = 0;
+      void audioRef.current.play();
+    } catch { /* ignore */ }
+  };
+
+  const enableNotifications = async () => {
+    if (typeof Notification === "undefined") {
+      toast.error("Este navegador no soporta notificaciones");
+      return;
+    }
+    let perm = Notification.permission;
+    if (perm === "default") perm = await Notification.requestPermission();
+    if (perm !== "granted") {
+      toast.error("Permiso denegado. Actívalo en los ajustes del navegador.");
+      return;
+    }
+    localStorage.setItem("maxrico_notif_enabled", "1");
+    setNotifEnabled(true);
+    playSound();
+    toast.success("Notificaciones activadas. Sonará cada pedido nuevo.");
+  };
+
+  const disableNotifications = () => {
+    localStorage.removeItem("maxrico_notif_enabled");
+    setNotifEnabled(false);
+    toast("Notificaciones desactivadas");
+  };
 
   const loadOrders = async () => {
     if (!isAdmin) return;
