@@ -115,8 +115,48 @@ export default function AdminOrders() {
       toast.error("No pudimos cargar los pedidos");
       return;
     }
-    setOrders(data?.orders || []);
+    const list = data?.orders || [];
+    list.forEach((o: AdminOrder) => seenIdsRef.current.add(o.id));
+    setOrders(list);
   };
+
+  // Realtime: escuchar pedidos nuevos y avisar
+  useEffect(() => {
+    if (!isAdmin) return;
+    const channel = supabase
+      .channel("admin-orders-realtime")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "orders" },
+        (payload) => {
+          const order = payload.new as AdminOrder;
+          if (seenIdsRef.current.has(order.id)) return;
+          seenIdsRef.current.add(order.id);
+          setOrders((cur) => [order, ...cur]);
+          const totalEur = (order.amount_total_cents / 100).toFixed(2) + "€";
+          const title = "🔔 Nuevo pedido MaxRico";
+          const body = `${order.customer_name || "Cliente"} · ${totalEur}`;
+          toast.success(title, { description: body, duration: 15000 });
+          playSound();
+          if (notifEnabled && typeof Notification !== "undefined" && Notification.permission === "granted") {
+            try {
+              const n = new Notification(title, { body, tag: order.id, requireInteraction: true });
+              n.onclick = () => { window.focus(); n.close(); };
+            } catch { /* ignore */ }
+          }
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "orders" },
+        (payload) => {
+          const updated = payload.new as AdminOrder;
+          setOrders((cur) => cur.map((o) => (o.id === updated.id ? { ...o, ...updated } : o)));
+        }
+      )
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, [isAdmin, notifEnabled]);
 
   useEffect(() => {
     loadOrders();
