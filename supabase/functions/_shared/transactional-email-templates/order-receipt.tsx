@@ -6,7 +6,7 @@ import type { TemplateEntry } from './registry.ts'
 
 const SITE_NAME = 'MaxRico'
 const SITE_URL = 'https://maxrico.es'
-const LOGO_URL = 'https://maxrico.es/maxrico-logo.png'
+const LOGO_URL = 'https://maxrico.es/__l5e/assets-v1/f182b81a-75e2-4b2e-9b29-d3e731285cc4/maxrico-logo-email.png'
 
 interface OrderReceiptProps {
   customerName?: string
@@ -34,7 +34,7 @@ const OrderReceiptEmail = ({
       <Container style={container}>
         <Section style={header}>
           <Link href={SITE_URL} style={logoLink}>
-            <Img src={LOGO_URL} alt={SITE_NAME} width="96" height="96" style={logo} />
+            <Img src={LOGO_URL} alt={SITE_NAME} width="120" height="120" style={logo} />
           </Link>
           <Heading style={brand}>{SITE_NAME}</Heading>
           <Text style={tagline}>Gastronomía artesana colombiana</Text>
@@ -129,7 +129,7 @@ const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif', marg
 const container = { maxWidth: '560px', margin: '0 auto', padding: '0' }
 const header = { backgroundColor: '#FFD400', padding: '24px', textAlign: 'center' as const }
 const logoLink = { display: 'inline-block', textDecoration: 'none' }
-const logo = { display: 'block', margin: '0 auto 8px', borderRadius: '50%' }
+const logo = { display: 'block', margin: '0 auto 8px' }
 const brand = { fontSize: '28px', fontWeight: 800, color: '#000000', margin: 0, letterSpacing: '-0.5px' }
 const tagline = { fontSize: '13px', color: '#000000', margin: '4px 0 0' }
 const content = { padding: '28px 24px' }
