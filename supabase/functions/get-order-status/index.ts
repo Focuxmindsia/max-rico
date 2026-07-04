@@ -6,6 +6,57 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+function formatEur(cents: number, currency = "eur") {
+  return new Intl.NumberFormat("es-ES", { style: "currency", currency: currency.toUpperCase() }).format((cents ?? 0) / 100);
+}
+
+async function sendEmail(templateName: string, recipientEmail: string, idempotencyKey: string, templateData?: Record<string, unknown>) {
+  try {
+    const url = `${Deno.env.get("SUPABASE_URL")}/functions/v1/send-transactional-email`;
+    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${serviceRoleKey}`,
+        "x-internal-service-key": serviceRoleKey ?? "",
+        "x-lovable-api-key": lovableApiKey ?? "",
+      },
+      body: JSON.stringify({ templateName, recipientEmail, idempotencyKey, templateData }),
+    });
+    if (!res.ok) console.error("send-transactional-email failed", templateName, await res.text());
+  } catch (e) {
+    console.error("send-transactional-email error", templateName, e);
+  }
+}
+
+async function sendOrderEmails(session: any, order: any) {
+  const m = session.metadata || {};
+  let items: any[] = [];
+  try { items = m.items ? JSON.parse(m.items) : []; } catch (_) { items = []; }
+  const itemsForEmail = items.map((it: any) => ({
+    name: it.name || it.title || "Producto",
+    qty: it.quantity || it.qty || 1,
+    price: it.price ? formatEur(Math.round(Number(it.price) * 100), session.currency ?? "eur") : "",
+  }));
+  const commonData = {
+    customerName: order.customer_name,
+    customerEmail: order.customer_email,
+    customerPhone: order.customer_phone,
+    orderId: session.id.slice(-8).toUpperCase(),
+    totalEur: formatEur(session.amount_total ?? 0, session.currency ?? "eur"),
+    deliveryMethod: order.delivery_method,
+    city: order.city,
+    address: order.customer_address,
+    scheduledFor: order.scheduled_for,
+    notes: order.notes,
+    items: itemsForEmail,
+  };
+  await sendEmail("order-receipt", order.customer_email, `order-receipt-${session.id}`, commonData);
+  await sendEmail("order-admin-alert", "clientes@maxrico.es", `order-admin-${session.id}`, commonData);
+}
+
 function sanitizeOrder(order: any) {
   return {
     id: order.id,
@@ -102,11 +153,37 @@ Deno.serve(async (req) => {
 
       if (upsertError) throw upsertError;
 
+      // Webhook may not have fired (test mode / missing endpoint). Send emails here.
+      // Idempotency keys ensure no duplicates if the webhook eventually arrives.
+      if (createdOrder?.customer_email && createdOrder.status === "paid") {
+        await sendOrderEmails(session, createdOrder);
+      }
+
       return new Response(JSON.stringify({ status: "found", order: sanitizeOrder(createdOrder) }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
+    // Existing order: if paid but we've never sent a receipt to this email, send now (webhook fallback).
+    if (data.status === "paid" && data.customer_email) {
+      const { count } = await supabase
+        .from("email_send_log")
+        .select("id", { count: "exact", head: true })
+        .eq("recipient_email", data.customer_email)
+        .eq("template_name", "order-receipt")
+        .in("status", ["sent", "pending"]);
+      if (!count || count === 0) {
+        const env: StripeEnv = sessionId.startsWith("cs_test_") ? "sandbox" : "live";
+        try {
+          const session = await stripeGatewayJson(env, `/v1/checkout/sessions/${sessionId}`, { method: "GET" });
+          await sendOrderEmails(session, data);
+        } catch (e) {
+          console.error("fallback send failed", e);
+        }
+      }
+    }
+
 
     return new Response(JSON.stringify({ status: "found", order: sanitizeOrder(data) }), {
       status: 200,
