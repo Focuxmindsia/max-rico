@@ -153,6 +153,12 @@ Deno.serve(async (req) => {
 
       if (upsertError) throw upsertError;
 
+      // Webhook may not have fired (test mode / missing endpoint). Send emails here.
+      // Idempotency keys ensure no duplicates if the webhook eventually arrives.
+      if (createdOrder?.customer_email && createdOrder.status === "paid") {
+        await sendOrderEmails(session, createdOrder);
+      }
+
       return new Response(JSON.stringify({ status: "found", order: sanitizeOrder(createdOrder) }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
