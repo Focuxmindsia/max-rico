@@ -11,9 +11,18 @@ export type StripeEnv = "sandbox" | "live";
 const STRIPE_API_BASE = "https://api.stripe.com";
 
 export function getConnectionApiKey(env: StripeEnv): string {
-  return env === "sandbox"
-    ? getEnv("STRIPE_RESTRICTED_API_KEY")
-    : getEnv("STRIPE_LIVE_API_KEY");
+  if (env === "sandbox") {
+    // Prefer the dedicated sandbox/test key; fall back to the restricted key
+    // only if it's a test key (rk_test_/sk_test_).
+    const sandboxKey = Deno.env.get("STRIPE_SANDBOX_API_KEY");
+    if (sandboxKey) return sandboxKey;
+    const restricted = Deno.env.get("STRIPE_RESTRICTED_API_KEY");
+    if (restricted && /^(rk|sk)_test_/.test(restricted)) return restricted;
+    throw new Error(
+      "No hay clave de Stripe de test configurada (STRIPE_SANDBOX_API_KEY). La tarjeta 4242 solo funciona con una clave rk_test_/sk_test_.",
+    );
+  }
+  return getEnv("STRIPE_LIVE_API_KEY");
 }
 
 export async function stripeGatewayJson<T = any>(
