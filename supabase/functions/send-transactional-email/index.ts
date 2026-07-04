@@ -10,7 +10,7 @@ const FROM_ADDRESS = `${SITE_NAME} <${FROM_EMAIL}>`
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-internal-service-key, x-lovable-api-key',
 }
 
 function generateToken(): string {
@@ -40,9 +40,14 @@ Deno.serve(async (req) => {
 
   const authHeader = req.headers.get('Authorization')
   const internalServiceKey = req.headers.get('x-internal-service-key')
+  const lovableApiKeyHeader = req.headers.get('x-lovable-api-key')
   const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.slice(7).trim() : null
+  const lovableApiKey = Deno.env.get('LOVABLE_API_KEY')
 
-  if (bearerToken !== supabaseServiceKey && internalServiceKey !== supabaseServiceKey) {
+  const isServiceAuthorized = bearerToken === supabaseServiceKey || internalServiceKey === supabaseServiceKey
+  const isLovableAuthorized = !!lovableApiKey && lovableApiKeyHeader === lovableApiKey
+
+  if (!isServiceAuthorized && !isLovableAuthorized) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
       status: 401,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
