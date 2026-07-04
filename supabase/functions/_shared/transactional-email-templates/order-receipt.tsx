@@ -147,3 +147,4 @@ const hr = { borderColor: '#eeeeee', margin: '20px 0' }
 const footer = { padding: '16px 24px', backgroundColor: '#f6f6f6', textAlign: 'center' as const }
 const footerText = { fontSize: '12px', color: '#666666', margin: 0 }
 const footerLink = { color: '#666666', textDecoration: 'none' }
+const whatsappLink = { color: '#25D366', fontWeight: 'bold', textDecoration: 'underline' }
