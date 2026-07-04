@@ -6,7 +6,7 @@ import type { TemplateEntry } from './registry.ts'
 
 const SITE_NAME = 'MaxRico'
 const SITE_URL = 'https://maxrico.es'
-const LOGO_URL = 'https://maxrico.es/maxrico-logo.png'
+const LOGO_URL = 'https://maxrico.es/__l5e/assets-v1/f182b81a-75e2-4b2e-9b29-d3e731285cc4/maxrico-logo-email.png'
 
 interface OrderReceiptProps {
   customerName?: string
