@@ -16,12 +16,14 @@ async function sendEmail(templateName: string, recipientEmail: string, idempoten
   try {
     const url = `${Deno.env.get("SUPABASE_URL")}/functions/v1/send-transactional-email`;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
     const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${serviceRoleKey}`,
         "x-internal-service-key": serviceRoleKey ?? "",
+        "x-lovable-api-key": lovableApiKey ?? "",
       },
       body: JSON.stringify({ templateName, recipientEmail, idempotencyKey, templateData }),
     });
