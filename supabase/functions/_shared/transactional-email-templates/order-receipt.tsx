@@ -34,7 +34,7 @@ const OrderReceiptEmail = ({
       <Container style={container}>
         <Section style={header}>
           <Link href={SITE_URL} style={logoLink}>
-            <Img src={LOGO_URL} alt={SITE_NAME} width="96" height="96" style={logo} />
+            <Img src={LOGO_URL} alt={SITE_NAME} width="120" height="120" style={logo} />
           </Link>
           <Heading style={brand}>{SITE_NAME}</Heading>
           <Text style={tagline}>Gastronomía artesana colombiana</Text>
