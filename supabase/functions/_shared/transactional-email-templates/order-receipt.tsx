@@ -93,7 +93,10 @@ const OrderReceiptEmail = ({
 
           <Hr style={hr} />
           <Text style={text}>
-            Si necesitas cualquier cosa, escríbenos por WhatsApp al <strong>+34 695 798 632</strong>.
+            Si necesitas cualquier cosa, escríbenos por WhatsApp al <strong>+34 695 798 632</strong>.{' '}
+            <Link href="https://wa.me/34695798632?text=hola%20tengo%20una%20consulta%20con%20el%20pago%20que%20acabo%20de%20hacer%20sobre%20mi%20pedido" style={whatsappLink}>
+              Pulsa aquí 👉
+            </Link>
           </Text>
         </Section>
 
