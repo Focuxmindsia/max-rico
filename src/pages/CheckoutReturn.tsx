@@ -168,11 +168,11 @@ export default function CheckoutReturn() {
               </Card>
             )}
 
-            <Card className="bg-red-50 border-red-200 print:hidden">
-              <CardContent className="p-4 text-sm text-red-900 flex gap-3">
+            <Card className="bg-green-50 border-green-200 print:hidden">
+              <CardContent className="p-4 text-sm text-green-900 flex gap-3">
                 <Mail className="h-5 w-5 shrink-0 mt-0.5" />
                 <p>
-                  El email automático está preparado, pero ahora mismo está bloqueado porque el dominio de correo de envío no está verificado. Mientras lo resolvemos, esta pantalla funciona como ticket y puedes enviarnos el pedido por WhatsApp con un clic.
+                  Te hemos enviado el comprobante de este pedido por correo electrónico. Si no lo ves en unos minutos, revisa la carpeta de spam o confírmanos por WhatsApp.
                 </p>
               </CardContent>
             </Card>
