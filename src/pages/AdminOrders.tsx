@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { AlertCircle, CheckCircle2, Clock, Loader2, MessageCircle, PackageCheck, Printer, RefreshCw, Search, Truck } from "lucide-react";
+import { AlertCircle, Bell, BellOff, CheckCircle2, Clock, Loader2, MessageCircle, PackageCheck, Printer, RefreshCw, Search, Truck } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -62,6 +62,46 @@ export default function AdminOrders() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
   const isAdmin = isAdminEmail(user?.email);
+  const [notifEnabled, setNotifEnabled] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("maxrico_notif_enabled") === "1";
+  });
+  const seenIdsRef = useRef<Set<string>>(new Set());
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const playSound = () => {
+    try {
+      if (!audioRef.current) {
+        audioRef.current = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+        audioRef.current.volume = 0.9;
+      }
+      audioRef.current.currentTime = 0;
+      void audioRef.current.play();
+    } catch { /* ignore */ }
+  };
+
+  const enableNotifications = async () => {
+    if (typeof Notification === "undefined") {
+      toast.error("Este navegador no soporta notificaciones");
+      return;
+    }
+    let perm = Notification.permission;
+    if (perm === "default") perm = await Notification.requestPermission();
+    if (perm !== "granted") {
+      toast.error("Permiso denegado. Actívalo en los ajustes del navegador.");
+      return;
+    }
+    localStorage.setItem("maxrico_notif_enabled", "1");
+    setNotifEnabled(true);
+    playSound();
+    toast.success("Notificaciones activadas. Sonará cada pedido nuevo.");
+  };
+
+  const disableNotifications = () => {
+    localStorage.removeItem("maxrico_notif_enabled");
+    setNotifEnabled(false);
+    toast("Notificaciones desactivadas");
+  };
 
   const loadOrders = async () => {
     if (!isAdmin) return;
@@ -75,8 +115,48 @@ export default function AdminOrders() {
       toast.error("No pudimos cargar los pedidos");
       return;
     }
-    setOrders(data?.orders || []);
+    const list = data?.orders || [];
+    list.forEach((o: AdminOrder) => seenIdsRef.current.add(o.id));
+    setOrders(list);
   };
+
+  // Realtime: escuchar pedidos nuevos y avisar
+  useEffect(() => {
+    if (!isAdmin) return;
+    const channel = supabase
+      .channel("admin-orders-realtime")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "orders" },
+        (payload) => {
+          const order = payload.new as AdminOrder;
+          if (seenIdsRef.current.has(order.id)) return;
+          seenIdsRef.current.add(order.id);
+          setOrders((cur) => [order, ...cur]);
+          const totalEur = (order.amount_total_cents / 100).toFixed(2) + "€";
+          const title = "🔔 Nuevo pedido MaxRico";
+          const body = `${order.customer_name || "Cliente"} · ${totalEur}`;
+          toast.success(title, { description: body, duration: 15000 });
+          playSound();
+          if (notifEnabled && typeof Notification !== "undefined" && Notification.permission === "granted") {
+            try {
+              const n = new Notification(title, { body, tag: order.id, requireInteraction: true });
+              n.onclick = () => { window.focus(); n.close(); };
+            } catch { /* ignore */ }
+          }
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "orders" },
+        (payload) => {
+          const updated = payload.new as AdminOrder;
+          setOrders((cur) => cur.map((o) => (o.id === updated.id ? { ...o, ...updated } : o)));
+        }
+      )
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, [isAdmin, notifEnabled]);
 
   useEffect(() => {
     loadOrders();
@@ -172,6 +252,15 @@ export default function AdminOrders() {
             <p className="text-muted-foreground">Aquí ves cada pedido que entra por tarjeta aunque el correo automático esté bloqueado.</p>
           </div>
           <div className="flex gap-2 print:hidden">
+            {notifEnabled ? (
+              <Button variant="outline" onClick={disableNotifications} title="Desactivar avisos">
+                <Bell className="h-4 w-4 mr-2 text-green-600" /> Avisos ON
+              </Button>
+            ) : (
+              <Button variant="outline" onClick={enableNotifications} className="border-red-300 text-red-700" title="Activar sonido y notificaciones">
+                <BellOff className="h-4 w-4 mr-2" /> Activar avisos
+              </Button>
+            )}
             <Button variant="outline" onClick={() => window.print()}>
               <Printer className="h-4 w-4 mr-2" /> Imprimir
             </Button>
