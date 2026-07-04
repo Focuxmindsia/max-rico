@@ -12,17 +12,20 @@ const STRIPE_API_BASE = "https://api.stripe.com";
 
 export function getConnectionApiKey(env: StripeEnv): string {
   if (env === "sandbox") {
-    // Prefer the dedicated sandbox/test key; fall back to the restricted key
-    // only if it's a test key (rk_test_/sk_test_).
-    const sandboxKey = Deno.env.get("STRIPE_SANDBOX_API_KEY");
-    if (sandboxKey) return sandboxKey;
-    const restricted = Deno.env.get("STRIPE_RESTRICTED_API_KEY");
-    if (restricted && /^(rk|sk)_test_/.test(restricted)) return restricted;
+    const candidates = [
+      Deno.env.get("STRIPE_SANDBOX_API_KEY"),
+      Deno.env.get("STRIPE_RESTRICTED_API_KEY"),
+    ];
+    for (const key of candidates) {
+      if (key && /^(rk|sk)_test_/.test(key.trim())) return key.trim();
+    }
     throw new Error(
-      "No hay clave de Stripe de test configurada (STRIPE_SANDBOX_API_KEY). La tarjeta 4242 solo funciona con una clave rk_test_/sk_test_.",
+      "No hay ninguna clave de Stripe de TEST configurada. La tarjeta 4242 4242 4242 4242 solo funciona con una clave que empiece por rk_test_ o sk_test_. Actualiza el secret STRIPE_SANDBOX_API_KEY con una clave de test desde el dashboard de Stripe (Modo Test → Developers → API keys).",
     );
   }
-  return getEnv("STRIPE_LIVE_API_KEY");
+  const liveKey = Deno.env.get("STRIPE_RESTRICTED_API_KEY") || Deno.env.get("STRIPE_LIVE_API_KEY");
+  if (!liveKey) throw new Error("STRIPE_RESTRICTED_API_KEY is not configured");
+  return liveKey.trim();
 }
 
 export async function stripeGatewayJson<T = any>(
