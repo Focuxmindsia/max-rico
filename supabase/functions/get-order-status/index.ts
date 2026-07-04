@@ -165,25 +165,14 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Existing order: if paid but we've never sent a receipt for it, send now (webhook fallback).
+    // Existing order: if paid but we've never sent a receipt to this email, send now (webhook fallback).
     if (data.status === "paid" && data.customer_email) {
-      const { data: existingLog } = await supabase
-        .from("email_send_log")
-        .select("id")
-        .eq("template_name", "order-receipt")
-        .eq("recipient_email", data.customer_email)
-        .in("status", ["sent", "pending"])
-        .ilike("message_id", "%")
-        .limit(1);
       const { count } = await supabase
         .from("email_send_log")
         .select("id", { count: "exact", head: true })
         .eq("recipient_email", data.customer_email)
-        .eq("template_name", "order-receipt");
-      // Simpler: check if any sent log exists tied to this session by scanning error_message/metadata? Use a marker approach instead:
-      const { data: sentAlready } = await supabase.rpc("check_order_receipt_sent", { p_session_id: sessionId }).maybeSingle?.() ?? { data: null };
-      // Fallback: only send if there are zero receipts for this email OR force via query.
-      // To avoid loops, we rely on Resend idempotency + gate on absence of any sent log tying template+email in the last hour.
+        .eq("template_name", "order-receipt")
+        .in("status", ["sent", "pending"]);
       if (!count || count === 0) {
         const env: StripeEnv = sessionId.startsWith("cs_test_") ? "sandbox" : "live";
         try {
@@ -194,6 +183,7 @@ Deno.serve(async (req) => {
         }
       }
     }
+
 
     return new Response(JSON.stringify({ status: "found", order: sanitizeOrder(data) }), {
       status: 200,
