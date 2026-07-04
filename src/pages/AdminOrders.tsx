@@ -252,6 +252,15 @@ export default function AdminOrders() {
             <p className="text-muted-foreground">Aquí ves cada pedido que entra por tarjeta aunque el correo automático esté bloqueado.</p>
           </div>
           <div className="flex gap-2 print:hidden">
+            {notifEnabled ? (
+              <Button variant="outline" onClick={disableNotifications} title="Desactivar avisos">
+                <Bell className="h-4 w-4 mr-2 text-green-600" /> Avisos ON
+              </Button>
+            ) : (
+              <Button variant="outline" onClick={enableNotifications} className="border-red-300 text-red-700" title="Activar sonido y notificaciones">
+                <BellOff className="h-4 w-4 mr-2" /> Activar avisos
+              </Button>
+            )}
             <Button variant="outline" onClick={() => window.print()}>
               <Printer className="h-4 w-4 mr-2" /> Imprimir
             </Button>
