@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "maxrico-mcp",
+      "version": "0.1.0",
+      "title": "MaxRico — Catálogo"
+    },
+    "tools": [
+      {
+        "name": "list_products",
+        "title": "Listar productos MaxRico",
+        "description": "Devuelve el catálogo de productos artesanales colombianos (empanadas, tequeños, PandeBono, arepas, chorizos, etc.) con precio normal, precio socio y disponibilidad.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Filtro opcional por categoría (ej: Empanadas, PandeBono, Arepas)."
+            },
+            "onlyAvailable": {
+              "type": "boolean",
+              "description": "Si es true, excluye productos agotados."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Detalle de producto",
+        "description": "Devuelve la ficha completa de un producto MaxRico por slug o id: descripción, ingredientes, preparación, conservación, precios y disponibilidad.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slugOrId": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Slug o id del producto."
+            }
+          },
+          "required": [
+            "slugOrId"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_categories",
+        "title": "Listar categorías",
+        "description": "Devuelve las categorías del catálogo MaxRico y el número de productos en cada una.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
