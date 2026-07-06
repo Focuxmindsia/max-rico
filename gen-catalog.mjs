@@ -8,7 +8,6 @@ const stubPlugin = {
     build.onResolve({ filter: /\.(png|jpe?g|webp|svg|gif|avif)$/ }, args => ({ path: args.path, namespace: "stub" }));
     build.onLoad({ filter: /.*/, namespace: "stub" }, () => ({ contents: 'export default "";', loader: "js" }));
     build.onResolve({ filter: /^@\// }, args => ({ path: path.resolve("/dev-server/src", args.path.slice(2)) }));
-    build.onResolve({ filter: /^\// }, args => ({ path: args.path, namespace: "stub" }));
   }
 };
 
