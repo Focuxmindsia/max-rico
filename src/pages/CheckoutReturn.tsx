@@ -38,10 +38,17 @@ export default function CheckoutReturn() {
   const [loadingOrder, setLoadingOrder] = useState(Boolean(sessionId && !isSocio));
   const [orderError, setOrderError] = useState<string | null>(null);
   const { user } = useAuth();
+  const { clearCart } = useCart();
   const [magicLoading, setMagicLoading] = useState(false);
   const [magicSent, setMagicSent] = useState(false);
 
   const sameEmailAsUser = Boolean(user?.email && order?.customer_email && user.email.toLowerCase() === order.customer_email.toLowerCase());
+
+  // Vaciar carrito una vez confirmado el pago
+  useEffect(() => {
+    if (order && order.status === "paid") clearCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order?.id, order?.status]);
 
   const handleMagicLink = async () => {
     if (!order?.customer_email) return;
