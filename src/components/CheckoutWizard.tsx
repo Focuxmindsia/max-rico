@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +21,7 @@ export interface CartCheckoutItem {
 }
 
 interface CheckoutWizardProps {
-  // Modo 1 producto (legacy, desde catálogo)
+  // Modo 1 producto (desde catálogo / ficha)
   product?: Product | null;
   priceId?: string | null;
   // Modo carrito (múltiples productos)
@@ -32,7 +32,7 @@ interface CheckoutWizardProps {
 
 type Step = "location" | "delivery" | "schedule" | "form" | "payment" | "waitlist";
 
-const ZARAGOZA_POSTAL_PREFIX = "50"; // Zaragoza province postal codes
+const ZARAGOZA_POSTAL_PREFIX = "50";
 
 export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange }: CheckoutWizardProps) {
   const { isSocio } = useSubscription();
@@ -41,7 +41,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [delivery, setDelivery] = useState<"recogida" | "domicilio">("recogida");
-  const [scheduledFor, setScheduledFor] = useState<string>(""); // datetime-local
+  const [scheduledFor, setScheduledFor] = useState<string>("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -50,8 +50,29 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   const [loading, setLoading] = useState(false);
   const [waitlistSent, setWaitlistSent] = useState(false);
 
-  const isFrito = product ? isProductFrito(product.id) : false;
+  // Unifica ambos modos: producto único o carrito
+  const effectiveItems: CartCheckoutItem[] = useMemo(() => {
+    if (cartItems && cartItems.length > 0) return cartItems;
+    if (product) return [{ product, quantity: 1 }];
+    return [];
+  }, [cartItems, product]);
+
+  const totalPrice = useMemo(
+    () => effectiveItems.reduce((s, i) => s + i.product.price * i.quantity, 0),
+    [effectiveItems],
+  );
+
+  const hasFrito = useMemo(
+    () => effectiveItems.some((i) => isProductFrito(i.product.id)),
+    [effectiveItems],
+  );
+
   const isInZaragoza = postalCode.startsWith(ZARAGOZA_POSTAL_PREFIX);
+
+  // Pre-rellena con datos del usuario si está logueado
+  useEffect(() => {
+    if (open && user?.email && !email) setEmail(user.email);
+  }, [open, user, email]);
 
   const reset = () => {
     setStep("location");
@@ -73,7 +94,6 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     onOpenChange(o);
   };
 
-  // Compute min datetime for fritos (now + 2h)
   const minDateTime = useMemo(() => {
     const d = new Date(Date.now() + 2 * 60 * 60 * 1000);
     d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
@@ -89,44 +109,26 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     const h = target.getHours();
     const inComida = h >= 12 && h < 17;
     const inCena = h >= 19 && h < 23;
-    if (!inComida && !inCena) {
-      return "Horario disponible: comida (12:00–17:00) o cena (19:00–23:00)";
-    }
+    if (!inComida && !inCena) return "Horario disponible: comida (12:00–17:00) o cena (19:00–23:00)";
     return null;
   };
 
   const handleLocationNext = () => {
-    if (postalCode.length < 5) {
-      toast.error("Introduce un código postal válido");
-      return;
-    }
-    if (!isInZaragoza) {
-      // Resto de España: bloqueo + waitlist
-      setStep("waitlist");
-      return;
-    }
+    if (postalCode.length < 5) return toast.error("Introduce un código postal válido");
+    if (!isInZaragoza) return setStep("waitlist");
     setStep("delivery");
   };
 
-  const handleDeliveryNext = () => {
-    if (isFrito) setStep("schedule");
-    else setStep("form");
-  };
+  const handleDeliveryNext = () => setStep(hasFrito ? "schedule" : "form");
 
   const handleScheduleNext = () => {
     const err = validateFritoSchedule(scheduledFor);
-    if (err) {
-      toast.error(err);
-      return;
-    }
+    if (err) return toast.error(err);
     setStep("form");
   };
 
   const handleSubmitWaitlist = async () => {
-    if (!email || !email.includes("@")) {
-      toast.error("Introduce un email válido");
-      return;
-    }
+    if (!email || !email.includes("@")) return toast.error("Introduce un email válido");
     setLoading(true);
     const { error } = await supabase.from("waitlist_resto_espana").insert({
       email,
@@ -134,68 +136,63 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
       phone: phone || null,
       city: city || null,
       postal_code: postalCode || null,
-      products_interested: product ? [{ id: product.id, name: product.name }] : [],
+      products_interested: effectiveItems.map((i) => ({ id: i.product.id, name: i.product.name })),
     });
     setLoading(false);
-    if (error) {
-      toast.error("No se pudo registrar. Inténtalo de nuevo.");
-      return;
-    }
+    if (error) return toast.error("No se pudo registrar. Inténtalo de nuevo.");
     setWaitlistSent(true);
     toast.success("¡Te avisaremos cuando lleguemos a tu zona!");
   };
 
   const handleStartPayment = () => {
-    if (!name || !email || !phone) {
-      toast.error("Completa nombre, email y teléfono");
-      return;
-    }
-    if (delivery === "domicilio" && !address) {
-      toast.error("Indica la dirección de entrega");
-      return;
-    }
+    if (!name || !email || !phone) return toast.error("Completa nombre, email y teléfono");
+    if (delivery === "domicilio" && !address) return toast.error("Indica la dirección de entrega");
+    if (effectiveItems.length === 0) return toast.error("No hay productos para pagar");
     setStep("payment");
   };
 
   const fetchClientSecret = async (): Promise<string> => {
-    if (!priceId || !product) throw new Error("Sin producto");
+    if (effectiveItems.length === 0) throw new Error("Sin productos");
+
+    const items = effectiveItems.map((i) => {
+      const pid = priceId && effectiveItems.length === 1 ? priceId : getPriceId(i.product.id);
+      if (!pid) throw new Error(`Producto sin precio configurado: ${i.product.name}`);
+      return {
+        priceId: pid,
+        productId: i.product.id,
+        name: i.product.name,
+        quantity: i.quantity,
+        price: i.product.price,
+      };
+    });
+
     const { data, error } = await supabase.functions.invoke("create-checkout", {
       body: {
-        items: [
-          {
-            priceId,
-            productId: product.id,
-            name: product.name,
-            quantity: 1,
-            price: product.price,
-          },
-        ],
+        items,
         customerEmail: email,
         customerName: name,
         customerPhone: phone,
         customerAddress: delivery === "domicilio" ? address : null,
         city: city || "Zaragoza",
         deliveryMethod: delivery,
-        scheduledFor: isFrito && scheduledFor ? new Date(scheduledFor).toISOString() : null,
+        scheduledFor: hasFrito && scheduledFor ? new Date(scheduledFor).toISOString() : null,
         notes,
         userId: user?.id,
         returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
         environment: getStripeEnvironment(),
       },
     });
-    if (error || !data?.clientSecret) {
-      throw new Error(error?.message || "No se pudo iniciar el pago");
-    }
+    if (error || !data?.clientSecret) throw new Error(error?.message || "No se pudo iniciar el pago");
     return data.clientSecret;
   };
+
+  const title = product?.name ?? (effectiveItems.length > 1 ? `Tu pedido (${effectiveItems.reduce((s,i)=>s+i.quantity,0)} productos)` : "Comprar");
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-black">
-            {product?.name ?? "Comprar"}
-          </DialogTitle>
+          <DialogTitle className="text-xl font-black">{title}</DialogTitle>
           <DialogDescription>
             {step === "location" && "1 / 3 · ¿A dónde lo enviamos?"}
             {step === "delivery" && "2 / 3 · ¿Cómo prefieres recibirlo?"}
@@ -206,7 +203,6 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
           </DialogDescription>
         </DialogHeader>
 
-        {/* STEP 1: LOCATION */}
         {step === "location" && (
           <div className="space-y-4">
             <div className="flex items-start gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -223,13 +219,10 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Label htmlFor="city">Ciudad / Localidad</Label>
               <Input id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Zaragoza" />
             </div>
-            <Button onClick={handleLocationNext} className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
-              Continuar
-            </Button>
+            <Button onClick={handleLocationNext} className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold">Continuar</Button>
           </div>
         )}
 
-        {/* STEP 2: DELIVERY METHOD */}
         {step === "delivery" && (
           <div className="space-y-4">
             <RadioGroup value={delivery} onValueChange={(v) => setDelivery(v as any)}>
@@ -255,14 +248,13 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
           </div>
         )}
 
-        {/* STEP 3: SCHEDULE (only fritos) */}
         {step === "schedule" && (
           <div className="space-y-4">
             <div className="flex items-start gap-3 p-3 bg-orange-50 border border-orange-200 rounded-lg">
               <Clock className="h-5 w-5 text-orange-700 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-orange-900 space-y-1">
-                <p><strong>Producto frito recién hecho.</strong> Los pedidos para hoy requieren <strong>mínimo 2 horas de antelación</strong> para garantizar la entrega.</p>
-                <p>Horario disponible: <strong>comida (12:00–17:00)</strong> o <strong>cena (19:00–23:00)</strong>. También puedes reservar para cualquier día futuro.</p>
+                <p>Tu pedido incluye <strong>productos fritos recién hechos</strong>. Requieren <strong>mínimo 2 horas de antelación</strong>.</p>
+                <p>Horario: <strong>comida (12:00–17:00)</strong> o <strong>cena (19:00–23:00)</strong>.</p>
               </div>
             </div>
             <div>
@@ -276,9 +268,22 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
           </div>
         )}
 
-        {/* STEP 4: CONTACT FORM */}
         {step === "form" && (
           <div className="space-y-3">
+            {effectiveItems.length > 1 && (
+              <div className="p-3 bg-secondary rounded-lg text-sm">
+                <p className="font-bold mb-1">Resumen ({effectiveItems.reduce((s,i)=>s+i.quantity,0)} productos)</p>
+                {effectiveItems.map(({ product: p, quantity }) => (
+                  <div key={p.id} className="flex justify-between text-xs">
+                    <span>{quantity} × {p.name}</span>
+                    <span className="font-semibold">{(p.price * quantity).toFixed(2)}€</span>
+                  </div>
+                ))}
+                <div className="flex justify-between font-black mt-2 pt-2 border-t">
+                  <span>Total</span><span>{totalPrice.toFixed(2)}€</span>
+                </div>
+              </div>
+            )}
             <div>
               <Label htmlFor="name">Nombre completo *</Label>
               <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -302,16 +307,15 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={2} placeholder="Alergias, instrucciones, etc." />
             </div>
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" onClick={() => setStep(isFrito ? "schedule" : "delivery")} className="flex-1">Atrás</Button>
+              <Button variant="outline" onClick={() => setStep(hasFrito ? "schedule" : "delivery")} className="flex-1">Atrás</Button>
               <Button onClick={handleStartPayment} className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
-                Pagar {product?.price.toFixed(2)}€
+                Pagar {totalPrice.toFixed(2)}€
               </Button>
             </div>
           </div>
         )}
 
-        {/* STEP 5: PAYMENT */}
-        {step === "payment" && priceId && (
+        {step === "payment" && effectiveItems.length > 0 && (
           <div id="checkout" className="min-h-[500px]">
             <EmbeddedCheckoutProvider stripe={getStripe()} options={{ fetchClientSecret }}>
               <EmbeddedCheckout />
@@ -319,7 +323,6 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
           </div>
         )}
 
-        {/* STEP 6: WAITLIST (resto de España) */}
         {step === "waitlist" && (
           <div className="space-y-4">
             {!waitlistSent ? (
