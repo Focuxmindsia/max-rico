@@ -8,7 +8,7 @@ import { useSeo } from "@/hooks/useSeo";
 type SortOption = "relevance" | "price-asc" | "price-desc" | "rating";
 
 export default function Catalog() {
-  const [selectedCategory, setSelectedCategory] = useState("Todas");
+  const [selectedCategory, setSelectedCategory] = useState("Todos los Productos Congelados");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortOption>("relevance");
 
@@ -39,7 +39,7 @@ export default function Catalog() {
 
   const filtered = useMemo(() => {
     let result = products;
-    if (selectedCategory !== "Todas") {
+    if (selectedCategory !== "Todos los Productos Congelados") {
       result = result.filter((p) => p.category === selectedCategory);
     }
     if (search.trim()) {
