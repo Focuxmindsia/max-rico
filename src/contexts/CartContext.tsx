@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { Product } from "@/data/products";
+import { toast } from "@/hooks/use-toast";
 
 interface CartItem {
   product: Product;
@@ -22,6 +23,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
   const addToCart = useCallback((product: Product, quantity = 1) => {
+    if (product.soldOut) {
+      toast({
+        title: "Producto agotado",
+        description: `${product.name} está agotado temporalmente. Te avisaremos cuando vuelva a estar disponible.`,
+        variant: "destructive",
+      });
+      return;
+    }
     setItems((prev) => {
       const existing = prev.find((i) => i.product.id === product.id);
       if (existing) {
@@ -34,6 +43,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [...prev, { product, quantity }];
     });
   }, []);
+
 
   const removeFromCart = useCallback((productId: string) => {
     setItems((prev) => prev.filter((i) => i.product.id !== productId));

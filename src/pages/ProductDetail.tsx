@@ -1,14 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useMemo } from "react";
-import { products } from "@/data/products";
+import { products, getAllergensForCategory } from "@/data/products";
 import { getProductExtras } from "@/data/productExtras";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake, Check } from "lucide-react";
+import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake, Check, AlertTriangle } from "lucide-react";
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import ImageLightbox from "@/components/catalog/ImageLightbox";
+
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -129,16 +130,23 @@ export default function ProductDetail() {
             {/* Quantity + Add */}
             <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center border border-border rounded-lg">
-                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-3 hover:bg-secondary transition-colors">
+                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-3 hover:bg-secondary transition-colors" disabled={product.soldOut}>
                   <Minus className="h-4 w-4" />
                 </button>
                 <span className="px-4 font-bold">{quantity}</span>
-                <button onClick={() => setQuantity(quantity + 1)} className="p-3 hover:bg-secondary transition-colors">
+                <button onClick={() => setQuantity(quantity + 1)} className="p-3 hover:bg-secondary transition-colors" disabled={product.soldOut}>
                   <Plus className="h-4 w-4" />
                 </button>
               </div>
-              <Button variant="cta" size="lg" className="flex-1" onClick={() => addToCart(product, quantity)}>
-                <ShoppingCart className="h-4 w-4 mr-2" /> Añadir al carrito
+              <Button
+                variant="cta"
+                size="lg"
+                className="flex-1"
+                disabled={product.soldOut}
+                onClick={() => addToCart(product, quantity)}
+              >
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                {product.soldOut ? "Agotado" : "Añadir al carrito"}
               </Button>
             </div>
 
@@ -165,7 +173,15 @@ export default function ProductDetail() {
                   <p className="text-sm text-muted-foreground">{product.ingredients}</p>
                 </div>
               </div>
+              <div className="flex items-start gap-3 p-4 rounded-lg border border-destructive/40 bg-destructive/5">
+                <AlertTriangle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-bold text-sm mb-1">Alérgenos <span className="font-normal text-xs text-muted-foreground">(Reglamento UE 1169/2011)</span></p>
+                  <p className="text-sm text-muted-foreground">{product.allergens ?? getAllergensForCategory(product.category)}</p>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
 

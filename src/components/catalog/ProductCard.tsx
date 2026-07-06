@@ -35,7 +35,14 @@ export default function ProductCard({ product }: { product: Product }) {
             {badgeInfo.label}
           </Badge>
         )}
-        {savings > 0 && (
+        {product.soldOut && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <span className="bg-destructive text-destructive-foreground font-black px-4 py-2 rounded-lg text-sm uppercase tracking-wide">
+              Agotado
+            </span>
+          </div>
+        )}
+        {savings > 0 && !product.soldOut && (
           <div className="absolute top-3 right-3 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded-full">
             Socios ahorran {savings.toFixed(2)}€
           </div>
@@ -78,6 +85,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <Button
             variant="cta"
             size="sm"
+            disabled={product.soldOut}
             onClick={(e) => {
               e.preventDefault();
               addToCart(product);
@@ -86,6 +94,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <ShoppingCart className="h-4 w-4" />
           </Button>
         </div>
+
       </div>
 
       <ImageLightbox
