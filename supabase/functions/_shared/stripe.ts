@@ -14,6 +14,7 @@ export function getConnectionApiKey(env: StripeEnv): string {
   if (env === "sandbox") {
     const candidates = [
       Deno.env.get("STRIPE_SANDBOX_API_KEY"),
+      Deno.env.get("STRIPE_TEST_API_KEY"),
       Deno.env.get("STRIPE_RESTRICTED_API_KEY"),
     ];
     for (const key of candidates) {
