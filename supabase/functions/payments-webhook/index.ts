@@ -92,6 +92,7 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
       scheduledFor: m.scheduledFor || null,
       notes: m.notes || null,
       items: itemsForEmail,
+      createAccountUrl: `https://maxrico.es/checkout/return?session_id=${session.id}`,
     };
     await sendEmail("order-receipt", customerEmail, `order-receipt-${session.id}`, commonData);
     await sendEmail("order-admin-alert", "clientes@maxrico.es", `order-admin-${session.id}`, commonData);

@@ -16,6 +16,8 @@ interface OrderReceiptProps {
   scheduledFor?: string
   notes?: string
   items?: Array<{ name: string; qty: number; price: string }>
+  createAccountUrl?: string
+  customerEmail?: string
 }
 
 const OrderReceiptEmail = ({
@@ -26,6 +28,8 @@ const OrderReceiptEmail = ({
   scheduledFor,
   notes,
   items = [],
+  createAccountUrl,
+  customerEmail,
 }: OrderReceiptProps) => (
   <Html lang="es" dir="ltr">
     <Head />
@@ -100,6 +104,21 @@ const OrderReceiptEmail = ({
           </Text>
         </Section>
 
+        {createAccountUrl && (
+          <Section style={ctaBox}>
+            <Heading style={ctaTitle}>¿Quieres seguir tus pedidos y acumular beneficios de socio?</Heading>
+            <Text style={ctaText}>
+              Crea tu cuenta con 1 clic{customerEmail ? <> asociada a <strong>{customerEmail}</strong></> : ''} — sin contraseñas. Podrás ver el historial de tus pedidos y disfrutar de los beneficios del Club MaxRico.
+            </Text>
+            <Link href={createAccountUrl} style={ctaButton}>
+              Crear mi cuenta con 1 clic
+            </Link>
+            <Text style={ctaHint}>
+              Si ya tienes cuenta, el mismo enlace te inicia sesión y vincula este pedido a tu perfil.
+            </Text>
+          </Section>
+        )}
+
         <Section style={footer}>
           <Text style={footerText}>
             <Link href={SITE_URL} style={footerLink}>{SITE_NAME} · maxrico.es</Link>
@@ -125,6 +144,8 @@ export const template = {
       { name: 'PandeBono x6', qty: 2, price: '9,90 €' },
       { name: 'Buñuelos x10', qty: 1, price: '5,10 €' },
     ],
+    createAccountUrl: 'https://maxrico.es/checkout/return?session_id=cs_test_demo',
+    customerEmail: 'ana@example.com',
   },
 } satisfies TemplateEntry
 
@@ -148,3 +169,8 @@ const footer = { padding: '16px 24px', backgroundColor: '#f6f6f6', textAlign: 'c
 const footerText = { fontSize: '12px', color: '#666666', margin: 0 }
 const footerLink = { color: '#666666', textDecoration: 'none' }
 const whatsappLink = { color: '#25D366', fontWeight: 'bold', textDecoration: 'underline' }
+const ctaBox = { margin: '0 24px 24px', padding: '20px', backgroundColor: '#FFF8DB', border: '2px solid #FFD400', borderRadius: '8px', textAlign: 'center' as const }
+const ctaTitle = { fontSize: '16px', fontWeight: 'bold', color: '#000000', margin: '0 0 8px' }
+const ctaText = { fontSize: '14px', color: '#333333', lineHeight: '1.5', margin: '0 0 16px' }
+const ctaButton = { display: 'inline-block', backgroundColor: '#FFD400', color: '#000000', fontSize: '15px', fontWeight: 'bold', textDecoration: 'none', padding: '12px 24px', borderRadius: '6px' }
+const ctaHint = { fontSize: '12px', color: '#666666', margin: '12px 0 0' }
