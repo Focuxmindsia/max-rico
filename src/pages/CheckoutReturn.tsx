@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { CheckCircle2, Crown, Loader2, Mail, MessageCircle, Printer, ReceiptText } from "lucide-react";
+import { CheckCircle2, Crown, Loader2, Mail, MessageCircle, Printer, ReceiptText, UserPlus, CheckCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import { buildOrderWhatsAppMessage, formatCurrency, formatDateTime, getOrderItemDetails, type OrderItemLike } from "@/lib/orderUtils";
 
 const WHATSAPP_NUMBER = "34695798632";
