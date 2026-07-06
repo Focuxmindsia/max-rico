@@ -36,6 +36,31 @@ export default function CheckoutReturn() {
   const [order, setOrder] = useState<OrderReceipt | null>(null);
   const [loadingOrder, setLoadingOrder] = useState(Boolean(sessionId && !isSocio));
   const [orderError, setOrderError] = useState<string | null>(null);
+  const { user } = useAuth();
+  const [magicLoading, setMagicLoading] = useState(false);
+  const [magicSent, setMagicSent] = useState(false);
+
+  const sameEmailAsUser = Boolean(user?.email && order?.customer_email && user.email.toLowerCase() === order.customer_email.toLowerCase());
+
+  const handleMagicLink = async () => {
+    if (!order?.customer_email) return;
+    setMagicLoading(true);
+    const { error } = await supabase.auth.signInWithOtp({
+      email: order.customer_email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: `${window.location.origin}/`,
+        data: order.customer_name ? { full_name: order.customer_name, phone: order.customer_phone ?? undefined } : undefined,
+      },
+    });
+    setMagicLoading(false);
+    if (error) {
+      toast.error("No pudimos enviar el enlace", { description: error.message });
+      return;
+    }
+    setMagicSent(true);
+    toast.success("Revisa tu correo", { description: `Enviamos un enlace a ${order.customer_email}` });
+  };
 
   useEffect(() => {
     if (!sessionId || isSocio) return;
