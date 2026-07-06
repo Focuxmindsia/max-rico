@@ -173,13 +173,23 @@ export default function ProductDetail() {
                   <p className="text-sm text-muted-foreground">{product.ingredients}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-4 rounded-lg border border-destructive/40 bg-destructive/5">
-                <AlertTriangle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-bold text-sm mb-1">Alérgenos <span className="font-normal text-xs text-muted-foreground">(Reglamento UE 1169/2011)</span></p>
-                  <p className="text-sm text-muted-foreground">{product.allergens ?? getAllergensForCategory(product.category)}</p>
+              {product.category === "Empanadas" ? (
+                <div className="flex items-start gap-3 p-4 rounded-lg border border-primary/40 bg-primary/5">
+                  <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-bold text-sm mb-1">100% Sin Gluten — Certificado</p>
+                    <p className="text-sm text-muted-foreground">Elaboradas exclusivamente con maíz molido. No contienen gluten, huevo ni soja, y no se procesan en instalaciones que manipulen cereales con gluten.</p>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="flex items-start gap-3 p-4 rounded-lg border border-destructive/40 bg-destructive/5">
+                  <AlertTriangle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-bold text-sm mb-1">Alérgenos <span className="font-normal text-xs text-muted-foreground">(Reglamento UE 1169/2011)</span></p>
+                    <p className="text-sm text-muted-foreground">{product.allergens ?? getAllergensForCategory(product.category)}</p>
+                  </div>
+                </div>
+              )}
             </div>
 
           </div>

@@ -17,7 +17,7 @@ export default function LegalTerminos() {
         <div className="prose prose-sm max-w-none space-y-6 text-foreground/90">
           <section>
             <h2 className="text-xl font-bold mb-2">1. Titular</h2>
-            <p>Este sitio web (maxrico.es) es titularidad de <strong>MaxRico</strong>, ubicado en Zaragoza (España). Contacto: <a href="mailto:info@maxrico.es" className="text-primary underline">info@maxrico.es</a> · WhatsApp <a href="https://wa.me/34695798632" className="text-primary underline">+34 695 79 86 32</a>.</p>
+            <p>Este sitio web (maxrico.es) es titularidad de <strong>MaxRico</strong>, ubicado en Zaragoza (España). Contacto: <a href="mailto:clientes@maxrico.es" className="text-primary underline">clientes@maxrico.es</a> · WhatsApp <a href="https://wa.me/34695798632" className="text-primary underline">+34 695 79 86 32</a>.</p>
           </section>
           <section>
             <h2 className="text-xl font-bold mb-2">2. Objeto</h2>
