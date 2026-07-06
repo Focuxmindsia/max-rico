@@ -144,6 +144,8 @@ export const template = {
       { name: 'PandeBono x6', qty: 2, price: '9,90 €' },
       { name: 'Buñuelos x10', qty: 1, price: '5,10 €' },
     ],
+    createAccountUrl: 'https://maxrico.es/checkout/return?session_id=cs_test_demo',
+    customerEmail: 'ana@example.com',
   },
 } satisfies TemplateEntry
 
