@@ -4,6 +4,7 @@ import productEmpanadasX6TernerasPlato from "@/assets/empanadas-x6-ternera-plato
 import productEmpanadaCarneVacuno from "@/assets/empanada-carne-vacuno-x10.jpg";
 import combo2Empanadas from "@/assets/combo-2-empanadas.jpeg";
 import productOfertaLimitada from "@/assets/combo-valluno-new.jpg";
+import comboVallunoReal from "@/assets/combo-valluno-real.jpg.asset.json";
 import productEmpanadasGrandesPollo from "@/assets/empanadas-pollo-v2.jpg";
 import productEmpanadasGrandes10 from "@/assets/product-empanadas-grandes-10.jpeg";
 import productEmpanadasGrandes10Pack from "@/assets/product-empanadas-grandes-10-pack.png";
@@ -39,6 +40,7 @@ export interface Product {
   category: string;
   description: string;
   ingredients: string;
+  allergens?: string;
   preparation: string;
   conservation: string;
   price: number;
@@ -68,6 +70,23 @@ export const categories = [
   "Combos",
 ];
 
+// Alérgenos genéricos por categoría (según Reglamento UE 1169/2011)
+const ALLERGENS_BY_CATEGORY: Record<string, string> = {
+  Empanadas: "Puede contener trazas de: gluten, huevo, soja y lácteos. Elaborado en instalaciones que también procesan cereales con gluten.",
+  Tequeños: "Contiene: gluten (trigo), lácteos, huevo. Puede contener trazas de soja.",
+  PandeBono: "Contiene: lácteos, huevo. Puede contener trazas de gluten y soja. (SIN GLUTEN en su receta principal a base de yuca.)",
+  Buñuelos: "Contiene: lácteos, huevo. Puede contener trazas de gluten y soja.",
+  Arepas: "Contiene: lácteos (en variantes con queso). Sin gluten en la masa de maíz. Puede contener trazas de soja.",
+  Chorizos: "Contiene: sulfitos. Puede contener trazas de lácteos, gluten, mostaza y soja.",
+  Embutidos: "Contiene: sulfitos. Puede contener trazas de lácteos, gluten, mostaza y soja.",
+  Hojaldres: "Contiene: gluten (trigo), lácteos, huevo. Puede contener trazas de frutos secos y soja.",
+  Combos: "Ver alérgenos de cada producto individual incluido en el combo.",
+};
+
+export function getAllergensForCategory(category: string): string {
+  return ALLERGENS_BY_CATEGORY[category] ?? "Consulta la ficha del producto o contáctanos para información detallada de alérgenos.";
+}
+
 export const products: Product[] = [
   // === EMPANADAS GRANDES CONGELADAS ===
   {
@@ -76,7 +95,7 @@ export const products: Product[] = [
     slug: "empanadas-grandes-pack-6",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Empanadas colombianas grandes de 13,5 cm. Masa crujiente de maíz por fuera, jugosas por dentro. Ideales para toda la familia.",
-    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno 🥩 sal. patata cocida y un sofrito tradicional.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno, sal, patata cocida y un sofrito tradicional.",
     preparation: " Freír en aceite a 180°C por 12 min, aproximadamente. No hace falta descongelar el producto para freírlo. ",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 10.90,
@@ -94,7 +113,7 @@ export const products: Product[] = [
     slug: "empanadas-grandes-pack-10",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Pack de 10 empanadas colombianas grandes de 13,5 cm. Perfectas para reuniones y celebraciones familiares.",
-    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno 🥩 sal. patata cocida y un sofrito tradicional.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno, sal, patata cocida y un sofrito tradicional.",
     preparation: " Freír en aceite a 180°C por 12 min, aproximadamente. No hace falta descongelar el producto para freírlo. ",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 17.90,
@@ -114,7 +133,7 @@ export const products: Product[] = [
     slug: "empanadas-grandes-pollo-pack-10",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Pack de 10 empanadas colombianas grandes de pollo mechado. Masa crujiente de maíz 100% y relleno jugoso de pollo desmechado.",
-    ingredients: "Masa 100% maíz molido, rellenas de Pollo, 🐓 sal. patata cocida y un sofrito tradicional.",
+    ingredients: "Masa 100% maíz molido, rellenas de Pollo, sal, patata cocida y un sofrito tradicional.",
     preparation: " Freír en aceite a 180°C por 12 min, aproximadamente. No hace falta descongelar el producto para freírlo. ",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 16.99,
@@ -135,7 +154,7 @@ export const products: Product[] = [
     slug: "empanadas-cocteleras-pack-17-pollo",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
-    ingredients: "Masa 100% maíz molido, rellenas de Pollo, 🐓 sal. patata cocida y un sofrito tradicional.",
+    ingredients: "Masa 100% maíz molido, rellenas de Pollo, sal, patata cocida y un sofrito tradicional.",
     preparation: "Freír en aceite a 180°C por 12 min, aproximadamente. No hace falta descongelar el producto para freírlo.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 14.90,
@@ -153,7 +172,7 @@ export const products: Product[] = [
     slug: "empanadas-cocteleras-pack-17-ternera",
     category: "Empanadas",
     description: "🧊 CONGELADAS · Mini empanadas colombianas tipo cóctel de 8 cm. Perfectas como aperitivo o snack. Tamaño bocado, sabor gigante.",
-    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno 🥩 sal. patata cocida y un sofrito tradicional.",
+    ingredients: "Masa 100% maíz molido, rellenas de carne de Vacuno, sal, patata cocida y un sofrito tradicional.",
     preparation: "Freír en aceite a 180°C por 12 min, aproximadamente. No hace falta descongelar el producto para freírlo.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",
     price: 14.90,
@@ -454,7 +473,7 @@ export const products: Product[] = [
     conservation: "Consumir en el día. Mantener champús refrigerado.",
     price: 12.99,
     memberPrice: 11.99,
-    image: productOfertaLimitada,
+    image: comboVallunoReal.url,
     badge: "oferta",
     rating: 5.0,
     packSize: "1 combo (champús + 2 empanadas + chorizo)",
@@ -462,10 +481,10 @@ export const products: Product[] = [
   // === HOJALDRES ===
   {
     id: "27",
-    name: "Pastel Gloria D'Carnilsa",
+    name: "Pastel Gloria D'Carnilsa x6 und",
     slug: "pastel-gloria",
     category: "Hojaldres",
-    description: "🧊 CONGELADO · Pastel Gloria D'Carnilsa, hojaldre tradicional colombiano relleno, suave y dorado. Ideal para el desayuno o la merienda.",
+    description: "🧊 CONGELADO · Pastel Gloria D'Carnilsa, hojaldre tradicional colombiano relleno, suave y dorado. Pack de 6 unidades. Ideal para el desayuno o la merienda.",
     ingredients: "Harina de trigo, mantequilla, huevo, azúcar, relleno tradicional, sal.",
     preparation: "Horno: 180°C por 15-18 min. Air fryer: 170°C por 12 min.",
     conservation: "Conservar congelado a -18°C. No recongelar una vez descongelado.",

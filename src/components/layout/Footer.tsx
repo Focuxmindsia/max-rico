@@ -30,12 +30,14 @@ const footerSections = [
   {
     title: "Legal",
     links: [
-      { to: "#", label: "Términos y condiciones" },
-      { to: "#", label: "Política de privacidad" },
-      { to: "#", label: "Cookies" },
+      { to: "/legal/terminos", label: "Términos y condiciones" },
+      { to: "/legal/privacidad", label: "Política de privacidad" },
+      { to: "/legal/aviso-legal", label: "Aviso legal" },
+      { to: "/legal/cookies", label: "Política de cookies" },
     ],
   },
 ];
+
 
 export default function Footer() {
   return (
