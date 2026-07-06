@@ -1,9 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { CheckCircle2, Crown, Loader2, Mail, MessageCircle, Printer, ReceiptText } from "lucide-react";
+import { CheckCircle2, Crown, Loader2, Mail, MessageCircle, Printer, ReceiptText, UserPlus, CheckCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
 import { buildOrderWhatsAppMessage, formatCurrency, formatDateTime, getOrderItemDetails, type OrderItemLike } from "@/lib/orderUtils";
 
 const WHATSAPP_NUMBER = "34695798632";
@@ -34,6 +37,38 @@ export default function CheckoutReturn() {
   const [order, setOrder] = useState<OrderReceipt | null>(null);
   const [loadingOrder, setLoadingOrder] = useState(Boolean(sessionId && !isSocio));
   const [orderError, setOrderError] = useState<string | null>(null);
+  const { user } = useAuth();
+  const { clearCart } = useCart();
+  const [magicLoading, setMagicLoading] = useState(false);
+  const [magicSent, setMagicSent] = useState(false);
+
+  const sameEmailAsUser = Boolean(user?.email && order?.customer_email && user.email.toLowerCase() === order.customer_email.toLowerCase());
+
+  // Vaciar carrito una vez confirmado el pago
+  useEffect(() => {
+    if (order && order.status === "paid") clearCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order?.id, order?.status]);
+
+  const handleMagicLink = async () => {
+    if (!order?.customer_email) return;
+    setMagicLoading(true);
+    const { error } = await supabase.auth.signInWithOtp({
+      email: order.customer_email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: `${window.location.origin}/`,
+        data: order.customer_name ? { full_name: order.customer_name, phone: order.customer_phone ?? undefined } : undefined,
+      },
+    });
+    setMagicLoading(false);
+    if (error) {
+      toast.error("No pudimos enviar el enlace", { description: error.message });
+      return;
+    }
+    setMagicSent(true);
+    toast.success("Revisa tu correo", { description: `Enviamos un enlace a ${order.customer_email}` });
+  };
 
   useEffect(() => {
     if (!sessionId || isSocio) return;
@@ -176,6 +211,55 @@ export default function CheckoutReturn() {
                 </p>
               </CardContent>
             </Card>
+
+            {order?.customer_email && sameEmailAsUser && (
+              <Card className="bg-blue-50 border-blue-200 print:hidden">
+                <CardContent className="p-4 text-sm text-blue-900 flex gap-3">
+                  <CheckCheck className="h-5 w-5 shrink-0 mt-0.5" />
+                  <p>
+                    Este pedido se ha añadido a tu cuenta. Puedes ver tu historial cuando quieras iniciando sesión con <strong>{order.customer_email}</strong>.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+
+            {order?.customer_email && !user && !magicSent && (
+              <Card className="bg-yellow-50 border-yellow-300 print:hidden">
+                <CardContent className="p-5 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <UserPlus className="h-6 w-6 text-yellow-700 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-black text-base">¿Quieres seguir tus pedidos y acumular beneficios de socio?</p>
+                      <p className="text-sm text-yellow-900 mt-1">
+                        Crea tu cuenta con 1 clic. Te enviamos un enlace mágico a <strong>{order.customer_email}</strong> — sin contraseñas.
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={handleMagicLink}
+                    disabled={magicLoading}
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold"
+                  >
+                    {magicLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                    Crear mi cuenta con 1 clic
+                  </Button>
+                  <p className="text-xs text-yellow-800 text-center">
+                    Si ya tienes cuenta, el mismo enlace te inicia sesión y vincula este pedido.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+
+            {magicSent && (
+              <Card className="bg-green-50 border-green-300 print:hidden">
+                <CardContent className="p-4 text-sm text-green-900 flex gap-3">
+                  <CheckCheck className="h-5 w-5 shrink-0 mt-0.5" />
+                  <p>
+                    Enlace enviado a <strong>{order?.customer_email}</strong>. Ábrelo desde tu correo para entrar en tu cuenta.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
           </div>
         )}
 
