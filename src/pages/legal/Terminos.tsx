@@ -3,6 +3,7 @@ import { useSeo } from "@/hooks/useSeo";
 
 export default function LegalTerminos() {
   useSeo({
+    canonical: window.location.href,
     title: "Términos y Condiciones — MaxRico",
     description: "Términos y condiciones de uso y venta de MaxRico. Información sobre pedidos, pagos, envíos y devoluciones.",
   });

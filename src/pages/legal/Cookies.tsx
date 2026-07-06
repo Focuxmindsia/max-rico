@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function LegalCookies() {
   useSeo({
+    canonical: window.location.href,
     title: "Política de Cookies — MaxRico",
     description: "Qué cookies usa MaxRico y cómo puedes gestionarlas.",
   });

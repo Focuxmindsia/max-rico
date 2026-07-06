@@ -3,6 +3,7 @@ import { useSeo } from "@/hooks/useSeo";
 
 export default function LegalPrivacidad() {
   useSeo({
+    canonical: window.location.href,
     title: "Política de Privacidad — MaxRico",
     description: "Cómo MaxRico recopila, usa y protege tus datos personales según el RGPD y la LOPDGDD.",
   });

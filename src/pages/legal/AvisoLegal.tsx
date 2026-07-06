@@ -3,6 +3,7 @@ import { useSeo } from "@/hooks/useSeo";
 
 export default function LegalAviso() {
   useSeo({
+    canonical: window.location.href,
     title: "Aviso Legal — MaxRico",
     description: "Información legal sobre el titular del sitio web maxrico.es conforme a la LSSICE.",
   });
