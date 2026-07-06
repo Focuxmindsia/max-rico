@@ -28,6 +28,8 @@ const OrderReceiptEmail = ({
   scheduledFor,
   notes,
   items = [],
+  createAccountUrl,
+  customerEmail,
 }: OrderReceiptProps) => (
   <Html lang="es" dir="ltr">
     <Head />
