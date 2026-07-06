@@ -330,7 +330,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
                 <div className="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
                   <AlertTriangle className="h-5 w-5 text-red-700 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-900">
-                    Por ahora solo entregamos en <strong>Zaragoza</strong>. Déjanos tu email y te avisamos en cuanto lleguemos a tu zona.
+                    Parece que estás fuera de <strong>Zaragoza capital y alrededores</strong>. Consulta la cobertura de envío con nuestro asistente virtual. También puedes dejarnos tu email y te avisamos cuando ampliemos zona.
                   </p>
                 </div>
                 <div>
