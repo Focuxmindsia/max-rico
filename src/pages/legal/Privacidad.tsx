@@ -17,7 +17,7 @@ export default function LegalPrivacidad() {
         <div className="space-y-6 text-foreground/90">
           <section>
             <h2 className="text-xl font-bold mb-2">1. Responsable del tratamiento</h2>
-            <p><strong>MaxRico</strong> · Zaragoza (España) · <a href="mailto:info@maxrico.es" className="text-primary underline">info@maxrico.es</a></p>
+            <p><strong>MaxRico</strong> · Zaragoza (España) · <a href="mailto:clientes@maxrico.es" className="text-primary underline">clientes@maxrico.es</a></p>
           </section>
           <section>
             <h2 className="text-xl font-bold mb-2">2. Datos que recopilamos</h2>
@@ -50,7 +50,7 @@ export default function LegalPrivacidad() {
           </section>
           <section>
             <h2 className="text-xl font-bold mb-2">7. Tus derechos</h2>
-            <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad enviando un email a <a href="mailto:info@maxrico.es" className="text-primary underline">info@maxrico.es</a>. También puedes reclamar ante la <strong>Agencia Española de Protección de Datos</strong> (aepd.es).</p>
+            <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad enviando un email a <a href="mailto:clientes@maxrico.es" className="text-primary underline">clientes@maxrico.es</a>. También puedes reclamar ante la <strong>Agencia Española de Protección de Datos</strong> (aepd.es).</p>
           </section>
         </div>
       </div>

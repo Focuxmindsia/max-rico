@@ -21,7 +21,7 @@ export default function LegalAviso() {
             <ul className="list-disc pl-6 space-y-1 mt-2">
               <li><strong>Titular:</strong> MaxRico</li>
               <li><strong>Domicilio:</strong> Zaragoza (España)</li>
-              <li><strong>Contacto:</strong> <a href="mailto:info@maxrico.es" className="text-primary underline">info@maxrico.es</a> · WhatsApp <a href="https://wa.me/34695798632" className="text-primary underline">+34 695 79 86 32</a></li>
+              <li><strong>Contacto:</strong> <a href="mailto:clientes@maxrico.es" className="text-primary underline">clientes@maxrico.es</a> · WhatsApp <a href="https://wa.me/34695798632" className="text-primary underline">+34 695 79 86 32</a></li>
               <li><strong>Dominio:</strong> maxrico.es</li>
             </ul>
           </section>
