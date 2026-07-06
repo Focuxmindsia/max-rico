@@ -203,6 +203,55 @@ export default function CheckoutReturn() {
                 </p>
               </CardContent>
             </Card>
+
+            {order?.customer_email && sameEmailAsUser && (
+              <Card className="bg-blue-50 border-blue-200 print:hidden">
+                <CardContent className="p-4 text-sm text-blue-900 flex gap-3">
+                  <CheckCheck className="h-5 w-5 shrink-0 mt-0.5" />
+                  <p>
+                    Este pedido se ha añadido a tu cuenta. Puedes ver tu historial cuando quieras iniciando sesión con <strong>{order.customer_email}</strong>.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+
+            {order?.customer_email && !user && !magicSent && (
+              <Card className="bg-yellow-50 border-yellow-300 print:hidden">
+                <CardContent className="p-5 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <UserPlus className="h-6 w-6 text-yellow-700 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-black text-base">¿Quieres seguir tus pedidos y acumular beneficios de socio?</p>
+                      <p className="text-sm text-yellow-900 mt-1">
+                        Crea tu cuenta con 1 clic. Te enviamos un enlace mágico a <strong>{order.customer_email}</strong> — sin contraseñas.
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={handleMagicLink}
+                    disabled={magicLoading}
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold"
+                  >
+                    {magicLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                    Crear mi cuenta con 1 clic
+                  </Button>
+                  <p className="text-xs text-yellow-800 text-center">
+                    Si ya tienes cuenta, el mismo enlace te inicia sesión y vincula este pedido.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+
+            {magicSent && (
+              <Card className="bg-green-50 border-green-300 print:hidden">
+                <CardContent className="p-4 text-sm text-green-900 flex gap-3">
+                  <CheckCheck className="h-5 w-5 shrink-0 mt-0.5" />
+                  <p>
+                    Enlace enviado a <strong>{order?.customer_email}</strong>. Ábrelo desde tu correo para entrar en tu cuenta.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
           </div>
         )}
 
