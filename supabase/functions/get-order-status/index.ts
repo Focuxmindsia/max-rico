@@ -52,6 +52,7 @@ async function sendOrderEmails(session: any, order: any) {
     scheduledFor: order.scheduled_for,
     notes: order.notes,
     items: itemsForEmail,
+    createAccountUrl: `https://maxrico.es/checkout/return?session_id=${session.id}`,
   };
   await sendEmail("order-receipt", order.customer_email, `order-receipt-${session.id}`, commonData);
   await sendEmail("order-admin-alert", "clientes@maxrico.es", `order-admin-${session.id}`, commonData);
