@@ -104,6 +104,21 @@ const OrderReceiptEmail = ({
           </Text>
         </Section>
 
+        {createAccountUrl && (
+          <Section style={ctaBox}>
+            <Heading style={ctaTitle}>¿Quieres seguir tus pedidos y acumular beneficios de socio?</Heading>
+            <Text style={ctaText}>
+              Crea tu cuenta con 1 clic{customerEmail ? <> asociada a <strong>{customerEmail}</strong></> : ''} — sin contraseñas. Podrás ver el historial de tus pedidos y disfrutar de los beneficios del Club MaxRico.
+            </Text>
+            <Link href={createAccountUrl} style={ctaButton}>
+              Crear mi cuenta con 1 clic
+            </Link>
+            <Text style={ctaHint}>
+              Si ya tienes cuenta, el mismo enlace te inicia sesión y vincula este pedido a tu perfil.
+            </Text>
+          </Section>
+        )}
+
         <Section style={footer}>
           <Text style={footerText}>
             <Link href={SITE_URL} style={footerLink}>{SITE_NAME} · maxrico.es</Link>
