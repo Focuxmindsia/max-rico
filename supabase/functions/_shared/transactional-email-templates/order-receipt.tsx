@@ -16,6 +16,8 @@ interface OrderReceiptProps {
   scheduledFor?: string
   notes?: string
   items?: Array<{ name: string; qty: number; price: string }>
+  createAccountUrl?: string
+  customerEmail?: string
 }
 
 const OrderReceiptEmail = ({
