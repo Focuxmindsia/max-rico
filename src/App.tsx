@@ -19,6 +19,11 @@ import BlogPost from "./pages/BlogPost";
 import AdminOrders from "./pages/AdminOrders";
 import NotFound from "./pages/NotFound";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
+import CookieBanner from "@/components/CookieBanner";
+import LegalTerminos from "./pages/legal/Terminos";
+import LegalPrivacidad from "./pages/legal/Privacidad";
+import LegalAviso from "./pages/legal/AvisoLegal";
+import LegalCookies from "./pages/legal/Cookies";
 
 const queryClient = new QueryClient();
 
@@ -44,9 +49,14 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/admin/pedidos" element={<AdminOrders />} />
+              <Route path="/legal/terminos" element={<LegalTerminos />} />
+              <Route path="/legal/privacidad" element={<LegalPrivacidad />} />
+              <Route path="/legal/aviso-legal" element={<LegalAviso />} />
+              <Route path="/legal/cookies" element={<LegalCookies />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <CookieBanner />
           </BrowserRouter>
         </CartProvider>
       </AuthProvider>
@@ -55,3 +65,4 @@ const App = () => (
 );
 
 export default App;
+
