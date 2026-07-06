@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2, ShoppingCart, ArrowRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import { CheckoutWizard } from "@/components/CheckoutWizard";
 
 export default function Cart() {
   const { items, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   if (items.length === 0) {
     return (
@@ -28,7 +31,6 @@ export default function Cart() {
         <h1 className="text-3xl font-black mb-8">Tu carrito ({totalItems})</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map(({ product, quantity }) => (
               <div key={product.id} className="flex gap-4 p-4 border border-border rounded-xl">
@@ -60,7 +62,6 @@ export default function Cart() {
             ))}
           </div>
 
-          {/* Summary */}
           <div className="bg-secondary rounded-xl p-6 h-fit sticky top-24">
             <h2 className="font-black text-lg mb-4">Resumen del pedido</h2>
             <div className="space-y-2 mb-4">
@@ -79,15 +80,26 @@ export default function Cart() {
                 <span className="font-black text-lg">{totalPrice.toFixed(2)}€</span>
               </div>
             </div>
-            <Button variant="cta" size="lg" className="w-full">
+            <Button
+              variant="cta"
+              size="lg"
+              className="w-full"
+              onClick={() => setCheckoutOpen(true)}
+            >
               Ir al checkout <ArrowRight className="h-4 w-4 ml-1" />
             </Button>
             <p className="text-xs text-muted-foreground text-center mt-3">
-              ¿Eres socio? Los descuentos se aplican en checkout
+              Puedes pagar como invitado. Al finalizar podrás guardar el pedido en tu cuenta con 1 clic.
             </p>
           </div>
         </div>
       </div>
+
+      <CheckoutWizard
+        open={checkoutOpen}
+        onOpenChange={setCheckoutOpen}
+        cartItems={items}
+      />
     </Layout>
   );
 }
