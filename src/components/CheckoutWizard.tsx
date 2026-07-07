@@ -155,6 +155,11 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   };
 
   const handleLocationNext = () => {
+    const hasExtra = effectiveItems.some((i) => i.product.requiresCombo);
+    const hasCombo = effectiveItems.some((i) => i.product.category === "Combos");
+    if (hasExtra && !hasCombo) {
+      return toast.error("El Extra Chorizo XL solo se puede comprar junto con un combo frito. Añádelo al carrito con un combo.");
+    }
     if (postalCode.length < 5) return toast.error("Introduce un código postal válido");
     if (!isInZaragoza) return setStep("waitlist");
     setStep("delivery");

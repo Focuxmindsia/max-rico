@@ -32,6 +32,8 @@ import productSalamiLatino from "@/assets/product-salami-latino.webp";
 import comboXXLMixto from "/combo-xxl-mixto.png";
 import productPastelGloria from "@/assets/pastel-gloria.webp";
 import productChicharronHojaldre from "@/assets/chicharron-hojaldre.webp";
+import combo15Chorizo from "@/assets/combo-15-chorizo.png.asset.json";
+import chorizoXLExtra from "@/assets/chorizo-xl-extra.png.asset.json";
 
 export interface Product {
   id: string;
@@ -55,6 +57,7 @@ export interface Product {
   format?: string;
   soldOut?: boolean;
   imagePosition?: string;
+  requiresCombo?: boolean;
 }
 
 export const categories = [
@@ -68,6 +71,7 @@ export const categories = [
   "Embutidos",
   "Hojaldres",
   "Combos",
+  "Extras",
 ];
 
 // Alérgenos genéricos por categoría (según Reglamento UE 1169/2011)
@@ -477,6 +481,39 @@ export const products: Product[] = [
     badge: "oferta",
     rating: 5.0,
     packSize: "1 combo (champús + 2 empanadas + chorizo)",
+    soldOut: true,
+  },
+  {
+    id: "30",
+    name: "Combo +15 — 15 Empanadas Grandes + Chorizo XL + 3 Salsas de la Casa",
+    slug: "combo-15-empanadas-chorizo-xl",
+    category: "Combos",
+    description: "🔥 BESTSELLER · Nuestro combo estrella: 15 empanadas grandes recién fritas + 1 chorizo XL santarrosano a la parrilla + 3 salsas artesanales de la casa (ají verde, rosada y pico de gallo). Ideal para compartir en familia o con amigos. Incluye domicilio en Zaragoza capital.",
+    ingredients: "Empanadas: masa 100% maíz molido, carne de Vacuno 🥩 / pollo 🐓, patata, sofrito. Chorizo XL: carne de cerdo, especias, ajo, comino. Salsas: ají verde, salsa rosada y pico de gallo caseros.",
+    preparation: "¡Ya vienen listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
+    conservation: "Consumir en el día. Se pueden recalentar.",
+    price: 34.99,
+    memberPrice: 31.99,
+    image: combo15Chorizo.url,
+    badge: "top",
+    rating: 5.0,
+    packSize: "15 empanadas + 1 chorizo XL + 3 salsas",
+  },
+  // === EXTRAS (requieren combo) ===
+  {
+    id: "31",
+    name: "Extra Chorizo XL Santarrosano (solo con Combo)",
+    slug: "extra-chorizo-xl",
+    category: "Extras",
+    description: "➕ EXTRA · Añade un chorizo XL santarrosano a la parrilla a tu combo frito. ⚠️ Este producto SOLO se puede comprar junto con uno de nuestros combos fritos — no se vende por separado.",
+    ingredients: "Carne de cerdo, especias naturales, ajo, cebolla, comino, sal, tripa natural.",
+    preparation: "Ya viene asado y listo para consumir. Calentar 1 min en microondas si lo deseas.",
+    conservation: "Consumir en el día.",
+    price: 3.50,
+    memberPrice: 3.20,
+    image: chorizoXLExtra.url,
+    packSize: "1 chorizo XL",
+    requiresCombo: true,
   },
   // === HOJALDRES ===
   {

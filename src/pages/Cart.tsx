@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, ShoppingCart, ArrowRight } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingCart, ArrowRight, AlertTriangle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
+import { toast } from "sonner";
 
 export default function Cart() {
   const { items, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const hasExtraOnly = useMemo(() => {
+    const hasExtra = items.some((i) => i.product.requiresCombo);
+    const hasCombo = items.some((i) => i.product.category === "Combos");
+    return hasExtra && !hasCombo;
+  }, [items]);
+
+  const handleCheckout = () => {
+    if (hasExtraOnly) {
+      toast.error("El Extra Chorizo XL solo se puede comprar junto con un combo. Añade un combo frito a tu carrito.");
+      return;
+    }
+    setCheckoutOpen(true);
+  };
+
 
   if (items.length === 0) {
     return (
@@ -80,11 +96,20 @@ export default function Cart() {
                 <span className="font-black text-lg">{totalPrice.toFixed(2)}€</span>
               </div>
             </div>
+            {hasExtraOnly && (
+              <div className="flex items-start gap-2 p-3 mb-3 bg-red-50 border border-red-200 rounded-lg">
+                <AlertTriangle className="h-4 w-4 text-red-700 flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-red-900">
+                  El <strong>Extra Chorizo XL</strong> solo se puede comprar junto con uno de nuestros <strong>combos fritos</strong>. Añade un combo para continuar.
+                </p>
+              </div>
+            )}
             <Button
               variant="cta"
               size="lg"
               className="w-full"
-              onClick={() => setCheckoutOpen(true)}
+              disabled={hasExtraOnly}
+              onClick={handleCheckout}
             >
               Ir al checkout <ArrowRight className="h-4 w-4 ml-1" />
             </Button>
