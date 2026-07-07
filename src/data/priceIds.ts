@@ -25,13 +25,22 @@ export const PRICE_ID_BY_PRODUCT_ID: Record<string, string> = {
   "27": "prod_27_price",
   "28": "prod_28_price",
   "29": "prod_29_price",
+  "30": "prod_30_price",
+  "31": "prod_31_price",
 };
 
 export const SOCIO_PRICE_ID = "socio_anual_59";
 
 // Product IDs that are "Productos Fritos Listos para Consumir"
-// (need 2h advance scheduling for same-day, only Zaragoza, restaurant comida/cena hours)
-export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29"]);
+// (need scheduling, only Zaragoza, restaurant hours)
+export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31"]);
+
+// Extras that MUST be bought together with a combo (cannot be sold alone).
+export const REQUIRES_COMBO_PRODUCT_IDS = new Set(["31"]);
+
+export function isExtraRequiresCombo(productId: string): boolean {
+  return REQUIRES_COMBO_PRODUCT_IDS.has(productId);
+}
 
 export function getPriceId(productId: string): string | null {
   return PRICE_ID_BY_PRODUCT_ID[productId] ?? null;
