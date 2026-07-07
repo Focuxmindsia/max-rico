@@ -94,25 +94,35 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     onOpenChange(o);
   };
 
-  // Lead time interno: 1h 15min mínimo. Horario de entregas: 11:00 – 22:00.
-  // Si el "earliest" cae fuera de ese horario, se desplaza a las 11:00 del siguiente día hábil.
+  // Lead time interno: 1h 15min mínimo.
+  // Horario L-S: 11:00 – 22:00. Domingos: 15:30 – 22:00.
   const OPEN_HOUR = 11;
+  const SUNDAY_OPEN_HOUR = 15;
+  const SUNDAY_OPEN_MIN = 30;
   const CLOSE_HOUR = 22;
   const LEAD_MINUTES = 75;
 
+  const openingFor = (d: Date): { h: number; m: number } => {
+    if (d.getDay() === 0) return { h: SUNDAY_OPEN_HOUR, m: SUNDAY_OPEN_MIN };
+    return { h: OPEN_HOUR, m: 0 };
+  };
+
+  const isBeforeOpening = (d: Date): boolean => {
+    const { h, m } = openingFor(d);
+    return d.getHours() < h || (d.getHours() === h && d.getMinutes() < m);
+  };
+
   const computeEarliest = (from: Date = new Date()): Date => {
     const d = new Date(from.getTime() + LEAD_MINUTES * 60 * 1000);
-    const h = d.getHours();
-    const m = d.getMinutes();
-    // Antes de apertura → mismo día a las 11:00
-    if (h < OPEN_HOUR) {
-      d.setHours(OPEN_HOUR, 0, 0, 0);
+    if (isBeforeOpening(d)) {
+      const { h, m } = openingFor(d);
+      d.setHours(h, m, 0, 0);
       return d;
     }
-    // Después del cierre (o justo en el límite) → siguiente día a las 11:00
-    if (h > CLOSE_HOUR || (h === CLOSE_HOUR && m > 0) || h >= CLOSE_HOUR) {
+    if (d.getHours() >= CLOSE_HOUR) {
       d.setDate(d.getDate() + 1);
-      d.setHours(OPEN_HOUR, 0, 0, 0);
+      const { h, m } = openingFor(d);
+      d.setHours(h, m, 0, 0);
       return d;
     }
     return d;
@@ -130,11 +140,16 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     const target = new Date(iso);
     const earliest = computeEarliest();
     if (target.getTime() < earliest.getTime()) {
-      return `La hora más temprana disponible es ${earliest.toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}`;
+      return `La hora más cercana disponible es ${earliest.toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}`;
     }
-    const h = target.getHours();
-    if (h < OPEN_HOUR || h >= CLOSE_HOUR) {
+    if (isBeforeOpening(target)) {
+      if (target.getDay() === 0) {
+        return "Los domingos el horario empieza a las 15:30";
+      }
       return `Horario de entregas: ${OPEN_HOUR}:00 – ${CLOSE_HOUR}:00`;
+    }
+    if (target.getHours() >= CLOSE_HOUR) {
+      return `Horario de entregas: hasta las ${CLOSE_HOUR}:00`;
     }
     return null;
   };
@@ -280,7 +295,8 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Clock className="h-5 w-5 text-orange-700 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-orange-900 space-y-1">
                 <p>Elige cuándo quieres <strong>{delivery === "domicilio" ? "recibir" : "recoger"}</strong> tu pedido.</p>
-                <p>Horario de {delivery === "domicilio" ? "entregas" : "recogida"}: <strong>11:00 – 22:00</strong>.</p>
+                <p>Horario de {delivery === "domicilio" ? "entregas" : "recogida"}: <strong>Lunes a Sábado 11:00 – 22:00</strong>.</p>
+                <p>Domingos: <strong>15:30 – 22:00</strong>.</p>
                 {hasFrito && (
                   <p className="text-orange-800">Tu pedido incluye <strong>productos fritos recién hechos</strong>: los preparamos al momento.</p>
                 )}
@@ -290,7 +306,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Label htmlFor="when">Fecha y hora *</Label>
               <Input id="when" type="datetime-local" min={minDateTime} value={scheduledFor} onChange={(e) => setScheduledFor(e.target.value)} />
               <p className="text-xs text-muted-foreground mt-1">
-                Más pronto disponible: {new Date(minDateTime).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}
+                La hora más cercana disponible es {new Date(minDateTime).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}
               </p>
             </div>
             <div className="flex gap-2">
