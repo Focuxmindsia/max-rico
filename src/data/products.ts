@@ -71,6 +71,7 @@ export const categories = [
   "Embutidos",
   "Hojaldres",
   "Combos",
+  "Extras",
 ];
 
 // Alérgenos genéricos por categoría (según Reglamento UE 1169/2011)
