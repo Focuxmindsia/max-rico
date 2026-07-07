@@ -279,13 +279,19 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
             <div className="flex items-start gap-3 p-3 bg-orange-50 border border-orange-200 rounded-lg">
               <Clock className="h-5 w-5 text-orange-700 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-orange-900 space-y-1">
-                <p>Tu pedido incluye <strong>productos fritos recién hechos</strong>. Requieren <strong>mínimo 2 horas de antelación</strong>.</p>
-                <p>Horario: <strong>comida (12:00–17:00)</strong> o <strong>cena (19:00–23:00)</strong>.</p>
+                <p>Elige cuándo quieres <strong>{delivery === "domicilio" ? "recibir" : "recoger"}</strong> tu pedido.</p>
+                <p>Horario de {delivery === "domicilio" ? "entregas" : "recogida"}: <strong>11:00 – 22:00</strong>.</p>
+                {hasFrito && (
+                  <p className="text-orange-800">Tu pedido incluye <strong>productos fritos recién hechos</strong>: los preparamos al momento.</p>
+                )}
               </div>
             </div>
             <div>
               <Label htmlFor="when">Fecha y hora *</Label>
               <Input id="when" type="datetime-local" min={minDateTime} value={scheduledFor} onChange={(e) => setScheduledFor(e.target.value)} />
+              <p className="text-xs text-muted-foreground mt-1">
+                Más pronto disponible: {new Date(minDateTime).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}
+              </p>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setStep("delivery")} className="flex-1">Atrás</Button>
