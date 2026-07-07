@@ -94,22 +94,48 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     onOpenChange(o);
   };
 
-  const minDateTime = useMemo(() => {
-    const d = new Date(Date.now() + 2 * 60 * 60 * 1000);
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().slice(0, 16);
-  }, [open]);
+  // Lead time interno: 1h 15min mínimo. Horario de entregas: 11:00 – 22:00.
+  // Si el "earliest" cae fuera de ese horario, se desplaza a las 11:00 del siguiente día hábil.
+  const OPEN_HOUR = 11;
+  const CLOSE_HOUR = 22;
+  const LEAD_MINUTES = 75;
 
-  const validateFritoSchedule = (iso: string): string | null => {
+  const computeEarliest = (from: Date = new Date()): Date => {
+    const d = new Date(from.getTime() + LEAD_MINUTES * 60 * 1000);
+    const h = d.getHours();
+    const m = d.getMinutes();
+    // Antes de apertura → mismo día a las 11:00
+    if (h < OPEN_HOUR) {
+      d.setHours(OPEN_HOUR, 0, 0, 0);
+      return d;
+    }
+    // Después del cierre (o justo en el límite) → siguiente día a las 11:00
+    if (h > CLOSE_HOUR || (h === CLOSE_HOUR && m > 0) || h >= CLOSE_HOUR) {
+      d.setDate(d.getDate() + 1);
+      d.setHours(OPEN_HOUR, 0, 0, 0);
+      return d;
+    }
+    return d;
+  };
+
+  const toLocalInputValue = (d: Date): string => {
+    const off = new Date(d.getTime() - d.getTimezoneOffset() * 60_000);
+    return off.toISOString().slice(0, 16);
+  };
+
+  const minDateTime = useMemo(() => toLocalInputValue(computeEarliest()), [open]);
+
+  const validateSchedule = (iso: string): string | null => {
     if (!iso) return "Selecciona fecha y hora";
     const target = new Date(iso);
-    const now = new Date();
-    const diffH = (target.getTime() - now.getTime()) / 3_600_000;
-    if (diffH < 2) return "Mínimo 2 horas de antelación";
+    const earliest = computeEarliest();
+    if (target.getTime() < earliest.getTime()) {
+      return `La hora más temprana disponible es ${earliest.toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}`;
+    }
     const h = target.getHours();
-    const inComida = h >= 12 && h < 17;
-    const inCena = h >= 19 && h < 23;
-    if (!inComida && !inCena) return "Horario disponible: comida (12:00–17:00) o cena (19:00–23:00)";
+    if (h < OPEN_HOUR || h >= CLOSE_HOUR) {
+      return `Horario de entregas: ${OPEN_HOUR}:00 – ${CLOSE_HOUR}:00`;
+    }
     return null;
   };
 
