@@ -19,6 +19,7 @@ import BlogPost from "./pages/BlogPost";
 import AdminOrders from "./pages/AdminOrders";
 import NotFound from "./pages/NotFound";
 import TestPago from "./pages/TestPago";
+import OAuthConsent from "./pages/OAuthConsent";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 import CookieBanner from "@/components/CookieBanner";
 import LegalTerminos from "./pages/legal/Terminos";
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="/legal/aviso-legal" element={<LegalAviso />} />
               <Route path="/legal/cookies" element={<LegalCookies />} />
               <Route path="/test-pago" element={<TestPago />} />
+              <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

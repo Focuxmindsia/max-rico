@@ -3,7 +3,7 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
 
 // src/lib/mcp/tools/list-products.ts
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.20.0";
@@ -560,11 +560,16 @@ var list_categories_default = defineTool3({
 });
 
 // src/lib/mcp/index.ts
+var projectRef = "vpmibqroavbixvirssvh";
 var mcp_default = defineMcp({
   name: "maxrico-mcp",
   title: "MaxRico \u2014 Cat\xE1logo",
   version: "0.1.0",
   instructions: "Herramientas de solo lectura del cat\xE1logo de MaxRico (gastronom\xEDa artesanal colombiana, 100% ma\xEDz molido, sin gluten). Usa list_categories y list_products para explorar el cat\xE1logo, y get_product para la ficha completa. Los pedidos se hacen en https://maxrico.es o por WhatsApp +34 695798632.",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated"
+  }),
   tools: [list_products_default, get_product_default, list_categories_default]
 });
 
