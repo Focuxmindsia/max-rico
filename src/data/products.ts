@@ -71,7 +71,6 @@ export const categories = [
   "Embutidos",
   "Hojaldres",
   "Combos",
-  "Extras",
 ];
 
 // Alérgenos genéricos por categoría (según Reglamento UE 1169/2011)
@@ -386,7 +385,7 @@ export const products: Product[] = [
   // === COMBOS EMPANADAS FRITAS (LISTAS PARA CONSUMIR) ===
   {
     id: "20",
-    name: "Combo Uno\nmás 17 empanadas pequeñas fritas",
+    name: "Combo #1: +17 empanadas pequeñas fritas",
     slug: "combo-1-empanadas-pequenas-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · Combo Uno: más 17 empanadas pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
@@ -401,7 +400,7 @@ export const products: Product[] = [
   },
   {
     id: "21",
-    name: "Combo Dos\nmás 10 empanadas grandes fritas",
+    name: "Combo #2: +10 empanadas grandes fritas",
     slug: "combo-2-empanadas-grandes-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · Combo Dos: más 10 empanadas grandes fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
@@ -418,7 +417,7 @@ export const products: Product[] = [
   },
   {
     id: "22",
-    name: "Combo Tres Mixto\n10 empanadas grandes más 17 pequeñas fritas",
+    name: "Combo #3: Mixto 10 empanadas grandes más 17 pequeñas fritas",
     slug: "combo-3-mixto-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · Combo Tres Mixto: 10 empanadas grandes más 17 pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
@@ -435,7 +434,7 @@ export const products: Product[] = [
   },
   {
     id: "23",
-    name: "Combo Cuatro\nmás 51 empanadas pequeñas fritas",
+    name: "Combo #4: +51 empanadas pequeñas fritas",
     slug: "combo-4-empanadas-pequenas-fritas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · Combo Cuatro: más 51 empanadas pequeñas fritas, perfecto para fiestas y eventos. Incluye domicilio en Zaragoza capital.",
@@ -451,7 +450,7 @@ export const products: Product[] = [
   },
   {
     id: "24",
-    name: "Combo Cinco\n10 empanadas grandes, salami, arepas y salsas",
+    name: "Combo #5: 10 empanadas grandes, salami, arepas y salsas",
     slug: "combo-xxl-mixto-salami-arepas",
     category: "Combos",
     description: "🔥 LISTAS PARA CONSUMIR · Combo Cinco: 10 empanadas grandes, salami latino, arepas de queso y salsas de ají. Incluye domicilio en Zaragoza capital.",
@@ -485,7 +484,7 @@ export const products: Product[] = [
   },
   {
     id: "30",
-    name: "Combo Seis\nmás 15 empanadas grandes, chorizo XL y salsas",
+    name: "Combo #6: +15 empanadas grandes, chorizo XL y salsas",
     slug: "combo-15-empanadas-chorizo-xl",
     category: "Combos",
     description: "🔥 BESTSELLER · Combo Seis: más 15 empanadas grandes, chorizo XL santarrosano y 3 salsas artesanales de la casa. Ideal para compartir. Incluye domicilio en Zaragoza capital.",
@@ -499,13 +498,13 @@ export const products: Product[] = [
     rating: 5.0,
     packSize: "15 empanadas + 1 chorizo XL + 3 salsas",
   },
-  // === EXTRAS (requieren combo) ===
+  // === EXTRA FRITO LISTO (requiere combo) ===
   {
     id: "31",
-    name: "Extra Chorizo XL Santarrosano (solo con Combo)",
+    name: "Extra Chorizo XL Santarrosano a la parrilla (solo con Combo)",
     slug: "extra-chorizo-xl",
-    category: "Extras",
-    description: "➕ EXTRA · Añade un chorizo XL santarrosano a la parrilla a tu combo frito. ⚠️ Este producto SOLO se puede comprar junto con uno de nuestros combos fritos — no se vende por separado.",
+    category: "Combos",
+    description: "🔥 LISTO PARA CONSUMIR · Chorizo XL santarrosano a la parrilla, ya asado y listo para disfrutar. ⚠️ Este extra SOLO se puede comprar junto con uno de nuestros combos fritos — no se vende por separado.",
     ingredients: "Carne de cerdo, especias naturales, ajo, cebolla, comino, sal, tripa natural.",
     preparation: "Ya viene asado y listo para consumir. Calentar 1 min en microondas si lo deseas.",
     conservation: "Consumir en el día.",
