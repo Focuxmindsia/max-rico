@@ -9,7 +9,8 @@ export const categories = [
   "Chorizos",
   "Embutidos",
   "Hojaldres",
-  "Combos"
+  "Combos",
+  "Extras"
 ] as const;
 export const products = [
   {
@@ -303,9 +304,9 @@ export const products = [
   {
     "id": "20",
     "slug": "combo-1-empanadas-pequenas-fritas",
-    "name": "Combo 1 / Hay 17 Empanadas Pequeñas Fritas",
+    "name": "Combo Uno\nmás 17 empanadas pequeñas fritas",
     "category": "Combos",
-    "description": "🔥 LISTAS PARA CONSUMIR · 17 empanadas pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
+    "description": "🔥 LISTAS PARA CONSUMIR · Combo Uno: más 17 empanadas pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
     "ingredients": "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     "preparation": "¡Ya vienen fritas y listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
     "conservation": "Consumir en el día. Se pueden recalentar.",
@@ -321,9 +322,9 @@ export const products = [
   {
     "id": "21",
     "slug": "combo-2-empanadas-grandes-fritas",
-    "name": "Combo 2 — 10 Empanadas Grandes Fritas",
+    "name": "Combo Dos\nmás 10 empanadas grandes fritas",
     "category": "Combos",
-    "description": "🔥 LISTAS PARA CONSUMIR · 10 empanadas grandes fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
+    "description": "🔥 LISTAS PARA CONSUMIR · Combo Dos: más 10 empanadas grandes fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
     "ingredients": "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     "preparation": "¡Ya vienen fritas y listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
     "conservation": "Consumir en el día. Se pueden recalentar.",
@@ -339,9 +340,9 @@ export const products = [
   {
     "id": "22",
     "slug": "combo-3-mixto-fritas",
-    "name": "Combo 3 — Mixto (10 Grandes + 17 Pequeñas) Fritas",
+    "name": "Combo Tres Mixto\n10 empanadas grandes más 17 pequeñas fritas",
     "category": "Combos",
-    "description": "🔥 LISTAS PARA CONSUMIR · Combo mixto: 10 empanadas grandes + 17 pequeñas, todas fritas. Incluye domicilio en Zaragoza capital.",
+    "description": "🔥 LISTAS PARA CONSUMIR · Combo Tres Mixto: 10 empanadas grandes más 17 pequeñas fritas, listas para disfrutar. Incluye domicilio en Zaragoza capital.",
     "ingredients": "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     "preparation": "¡Ya vienen fritas y listas! Solo calentar si lo deseas.",
     "conservation": "Consumir en el día. Se pueden recalentar.",
@@ -357,9 +358,9 @@ export const products = [
   {
     "id": "23",
     "slug": "combo-4-empanadas-pequenas-fritas",
-    "name": "Combo 4__ +51 Empanadas Pequeñas Fritas",
+    "name": "Combo Cuatro\nmás 51 empanadas pequeñas fritas",
     "category": "Combos",
-    "description": "🔥 LISTAS PARA CONSUMIR · ¡Mega combo! 51 empanadas pequeñas fritas para fiestas and eventos. Incluye domicilio en Zaragoza capital.",
+    "description": "🔥 LISTAS PARA CONSUMIR · Combo Cuatro: más 51 empanadas pequeñas fritas, perfecto para fiestas y eventos. Incluye domicilio en Zaragoza capital.",
     "ingredients": "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     "preparation": "¡Ya vienen fritas y listas! Solo calentar si lo deseas.",
     "conservation": "Consumir en el día. Se pueden recalentar.",
@@ -375,9 +376,9 @@ export const products = [
   {
     "id": "24",
     "slug": "combo-xxl-mixto-salami-arepas",
-    "name": "Combo XXL : 10 Empanadas Grandes + Salami Latino + 3 Arepas + Salsas Ají + Domicilio GRATIS",
+    "name": "Combo Cinco\n10 empanadas grandes, salami, arepas y salsas",
     "category": "Combos",
-    "description": "🔥 LISTAS PARA CONSUMIR · El combo definitivo: 10 empanadas grandes + 17 pequeñas fritas + salami + 3 arepas de queso. Incluye domicilio en Zaragoza capital.",
+    "description": "🔥 LISTAS PARA CONSUMIR · Combo Cinco: 10 empanadas grandes, salami latino, arepas de queso y salsas de ají. Incluye domicilio en Zaragoza capital.",
     "ingredients": "Masa 100% maíz molido, rellenas de carne de Vacuno /pollo, patata cocida, cebolla, ajo, comino, sal.",
     "preparation": "¡Ya vienen fritas y listas! Solo calentar si lo deseas.",
     "conservation": "Consumir en el día. Se pueden recalentar.",
@@ -393,9 +394,9 @@ export const products = [
   {
     "id": "29",
     "slug": "combo-valluno-champus-empanadas",
-    "name": "Combo Valluno — Champús + 2 Empanadas Grandes de Vacuno + Chorizo Santarrosano",
+    "name": "Combo Valluno\nchampús, 2 empanadas y chorizo",
     "category": "Combos",
-    "description": "🔥 OFERTA ESPECIAL · Auténtico Combo Valluno: 1 Champús Valluno tradicional (bebida de maíz, lulo, piña y panela) + 2 empanadas grandes de ternera recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano del Valle del Cauca.",
+    "description": "🔥 OFERTA ESPECIAL · Auténtico Combo Valluno: champús tradicional, 2 empanadas grandes de ternera recién fritas y chorizo santarrosano a la parrilla. Sabor 100% colombiano del Valle del Cauca.",
     "ingredients": "Champús: maíz, lulo, piña, panela, canela, hojas de naranjo agrio. Empanadas: harina de maíz, carne de Vacuno, papa, cebolla, ajo, comino, sal. Chorizo: carne de cerdo, especias naturales, ajo, comino, sal.",
     "preparation": "¡Listo para disfrutar! Champús servir frío. Empanadas y chorizo calentar 1 min en microondas o 5 min en horno a 180°C.",
     "conservation": "Consumir en el día. Mantener champús refrigerado.",
@@ -405,8 +406,44 @@ export const products = [
     "packSize": "1 combo (champús + 2 empanadas + chorizo)",
     "weight": null,
     "format": null,
-    "soldOut": false,
+    "soldOut": true,
     "badge": "oferta"
+  },
+  {
+    "id": "30",
+    "slug": "combo-15-empanadas-chorizo-xl",
+    "name": "Combo Seis\nmás 15 empanadas grandes, chorizo XL y salsas",
+    "category": "Combos",
+    "description": "🔥 BESTSELLER · Combo Seis: más 15 empanadas grandes, chorizo XL santarrosano y 3 salsas artesanales de la casa. Ideal para compartir. Incluye domicilio en Zaragoza capital.",
+    "ingredients": "Empanadas: masa 100% maíz molido, carne de Vacuno / pollo, patata, sofrito. Chorizo XL: carne de cerdo, especias, ajo, comino. Salsas: ají verde, salsa rosada y pico de gallo caseros.",
+    "preparation": "¡Ya vienen listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
+    "conservation": "Consumir en el día. Se pueden recalentar.",
+    "price": 34.99,
+    "originalPrice": null,
+    "memberPrice": 31.99,
+    "packSize": "15 empanadas + 1 chorizo XL + 3 salsas",
+    "weight": null,
+    "format": null,
+    "soldOut": false,
+    "badge": "top"
+  },
+  {
+    "id": "31",
+    "slug": "extra-chorizo-xl",
+    "name": "Extra Chorizo XL Santarrosano (solo con Combo)",
+    "category": "Extras",
+    "description": "➕ EXTRA · Añade un chorizo XL santarrosano a la parrilla a tu combo frito. Este producto SOLO se puede comprar junto con uno de nuestros combos fritos.",
+    "ingredients": "Carne de cerdo, especias naturales, ajo, cebolla, comino, sal, tripa natural.",
+    "preparation": "Ya viene asado y listo para consumir. Calentar 1 min en microondas si lo deseas.",
+    "conservation": "Consumir en el día.",
+    "price": 3.5,
+    "originalPrice": null,
+    "memberPrice": 3.2,
+    "packSize": "1 chorizo XL",
+    "weight": null,
+    "format": null,
+    "soldOut": false,
+    "badge": null
   },
   {
     "id": "27",
