@@ -220,10 +220,10 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
         <DialogHeader>
           <DialogTitle className="text-xl font-black">{title}</DialogTitle>
           <DialogDescription>
-            {step === "location" && "1 / 3 · ¿A dónde lo enviamos?"}
-            {step === "delivery" && "2 / 3 · ¿Cómo prefieres recibirlo?"}
-            {step === "schedule" && "3 / 3 · ¿Cuándo lo necesitas?"}
-            {step === "form" && "Casi listo · Tus datos de contacto"}
+            {step === "location" && "1 / 4 · ¿A dónde lo enviamos?"}
+            {step === "delivery" && "2 / 4 · ¿Cómo prefieres recibirlo?"}
+            {step === "schedule" && "3 / 4 · ¿Cuándo lo quieres?"}
+            {step === "form" && "4 / 4 · Tus datos de contacto"}
             {step === "payment" && "Paga con tarjeta de forma segura"}
             {step === "waitlist" && "Aún no llegamos a tu zona"}
           </DialogDescription>
