@@ -295,7 +295,8 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Clock className="h-5 w-5 text-orange-700 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-orange-900 space-y-1">
                 <p>Elige cuándo quieres <strong>{delivery === "domicilio" ? "recibir" : "recoger"}</strong> tu pedido.</p>
-                <p>Horario de {delivery === "domicilio" ? "entregas" : "recogida"}: <strong>11:00 – 22:00</strong>.</p>
+                <p>Horario de {delivery === "domicilio" ? "entregas" : "recogida"}: <strong>Lunes a Sábado 11:00 – 22:00</strong>.</p>
+                <p>Domingos: <strong>15:30 – 22:00</strong>.</p>
                 {hasFrito && (
                   <p className="text-orange-800">Tu pedido incluye <strong>productos fritos recién hechos</strong>: los preparamos al momento.</p>
                 )}
@@ -305,7 +306,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Label htmlFor="when">Fecha y hora *</Label>
               <Input id="when" type="datetime-local" min={minDateTime} value={scheduledFor} onChange={(e) => setScheduledFor(e.target.value)} />
               <p className="text-xs text-muted-foreground mt-1">
-                Más pronto disponible: {new Date(minDateTime).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}
+                La hora más cercana disponible es {new Date(minDateTime).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}
               </p>
             </div>
             <div className="flex gap-2">
