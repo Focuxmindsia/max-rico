@@ -18,6 +18,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import AdminOrders from "./pages/AdminOrders";
 import NotFound from "./pages/NotFound";
+import TestPago from "./pages/TestPago";
 import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 import CookieBanner from "@/components/CookieBanner";
 import LegalTerminos from "./pages/legal/Terminos";
