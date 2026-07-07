@@ -468,10 +468,10 @@ export const products: Product[] = [
   },
   {
     id: "29",
-    name: "Combo Valluno — Champús + 2 Empanadas Grandes de Vacuno + Chorizo Santarrosano",
+    name: "Combo Valluno\nchampús, 2 empanadas y chorizo",
     slug: "combo-valluno-champus-empanadas",
     category: "Combos",
-    description: "🔥 OFERTA ESPECIAL · Auténtico Combo Valluno: 1 Champús Valluno tradicional (bebida de maíz, lulo, piña y panela) + 2 empanadas grandes de ternera recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano del Valle del Cauca.",
+    description: "🔥 OFERTA ESPECIAL · Auténtico Combo Valluno: champús tradicional, 2 empanadas grandes de ternera recién fritas y chorizo santarrosano a la parrilla. Sabor 100% colombiano del Valle del Cauca.",
     ingredients: "Champús: maíz, lulo, piña, panela, canela, hojas de naranjo agrio. Empanadas: harina de maíz, carne de Vacuno, papa, cebolla, ajo, comino, sal. Chorizo: carne de cerdo, especias naturales, ajo, comino, sal.",
     preparation: "¡Listo para disfrutar! Champús servir frío. Empanadas y chorizo calentar 1 min en microondas o 5 min en horno a 180°C.",
     conservation: "Consumir en el día. Mantener champús refrigerado.",
