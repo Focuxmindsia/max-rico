@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, ShoppingCart, ArrowRight } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingCart, ArrowRight, AlertTriangle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
+import { toast } from "sonner";
 
 export default function Cart() {
   const { items, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const hasExtraOnly = useMemo(() => {
+    const hasExtra = items.some((i) => i.product.requiresCombo);
+    const hasCombo = items.some((i) => i.product.category === "Combos");
+    return hasExtra && !hasCombo;
+  }, [items]);
+
+  const handleCheckout = () => {
+    if (hasExtraOnly) {
+      toast.error("El Extra Chorizo XL solo se puede comprar junto con un combo. Añade un combo frito a tu carrito.");
+      return;
+    }
+    setCheckoutOpen(true);
+  };
+
 
   if (items.length === 0) {
     return (
