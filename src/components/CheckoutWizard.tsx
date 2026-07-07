@@ -339,7 +339,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={2} placeholder="Alergias, instrucciones, etc." />
             </div>
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" onClick={() => setStep(hasFrito ? "schedule" : "delivery")} className="flex-1">Atrás</Button>
+              <Button variant="outline" onClick={() => setStep("schedule")} className="flex-1">Atrás</Button>
               <Button onClick={handleStartPayment} className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
                 Pagar {totalPrice.toFixed(2)}€
               </Button>
