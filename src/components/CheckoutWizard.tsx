@@ -145,10 +145,10 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     setStep("delivery");
   };
 
-  const handleDeliveryNext = () => setStep(hasFrito ? "schedule" : "form");
+  const handleDeliveryNext = () => setStep("schedule");
 
   const handleScheduleNext = () => {
-    const err = validateFritoSchedule(scheduledFor);
+    const err = validateSchedule(scheduledFor);
     if (err) return toast.error(err);
     setStep("form");
   };
