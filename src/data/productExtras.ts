@@ -140,34 +140,39 @@ export const PRODUCT_EXTRAS: Record<string, ProductExtras> = {
   },
   // === COMBOS FRITOS LISTOS PARA CONSUMIR ===
   "20": {
-    longDescription: `${FRITO_DETAIL} 17 empanadas pequeñas (8 cm) ${QUALITY_CORN}`,
+    longDescription: `${FRITO_DETAIL} Combo Uno: más 17 empanadas pequeñas (8 cm) recién fritas. ${QUALITY_CORN}`,
     galleryExtras: G.empanadasFritas,
     highlights: ["17 empanadas pequeñas", "🔥 Listas para consumir", "🚚 Domicilio incluido (Zaragoza)", "Sin gluten · 100% maíz"],
   },
   "21": {
-    longDescription: `${FRITO_DETAIL} 10 empanadas grandes (13,5 cm) recién fritas. ${QUALITY_CORN}`,
+    longDescription: `${FRITO_DETAIL} Combo Dos: más 10 empanadas grandes (13,5 cm) recién fritas. ${QUALITY_CORN}`,
     galleryExtras: G.empanadasFritas,
     highlights: ["10 empanadas grandes", "🔥 Listas para consumir", "🚚 Domicilio incluido (Zaragoza)", "Sin gluten · 100% maíz"],
   },
   "22": {
-    longDescription: `${FRITO_DETAIL} Combo mixto: 10 empanadas grandes + 17 pequeñas, todas fritas. Ideal para reuniones y celebraciones. ${QUALITY_CORN}`,
+    longDescription: `${FRITO_DETAIL} Combo Tres Mixto: 10 empanadas grandes más 17 pequeñas, todas fritas. Ideal para reuniones y celebraciones. ${QUALITY_CORN}`,
     galleryExtras: G.empanadasFritas,
     highlights: ["10 grandes + 17 pequeñas", "🔥 Listas para consumir", "🚚 Domicilio incluido (Zaragoza)", "Sin gluten · 100% maíz"],
   },
   "23": {
-    longDescription: `${FRITO_DETAIL} Mega combo de 17 empanadas pequeñas fritas, perfecto para fiestas, eventos y celebraciones. ${QUALITY_CORN}`,
+    longDescription: `${FRITO_DETAIL} Combo Cuatro: más 51 empanadas pequeñas fritas, perfecto para fiestas, eventos y celebraciones. ${QUALITY_CORN}`,
     galleryExtras: G.empanadasFritas,
-    highlights: ["17 empanadas pequeñas", "🔥 Listas para consumir", "🚚 Domicilio incluido (Zaragoza)", "Para fiestas y eventos"],
+    highlights: ["51 empanadas pequeñas", "🔥 Listas para consumir", "🚚 Domicilio incluido (Zaragoza)", "Para fiestas y eventos"],
   },
   "24": {
-    longDescription: `${FRITO_DETAIL} Combo XXL definitivo: 10 empanadas grandes + salami latino + 3 arepas de queso + salsas de ají. El combo completo para compartir.`,
+    longDescription: `${FRITO_DETAIL} Combo Cinco: 10 empanadas grandes, salami latino, arepas de queso y salsas de ají. El combo completo para compartir.`,
     galleryExtras: G.empanadasFritas,
-    highlights: ["10 grandes + salami + 3 arepas", "🔥 Listas para consumir", "🚚 Domicilio GRATIS (Zaragoza)", "Incluye salsas de ají"],
+    highlights: ["10 grandes + salami + arepas", "🔥 Listas para consumir", "🚚 Domicilio GRATIS (Zaragoza)", "Incluye salsas de ají"],
   },
   "29": {
     longDescription: `${FRITO_DETAIL} Auténtico Combo Valluno del Valle del Cauca: 1 Champús tradicional (bebida fría de maíz, lulo, piña y panela con canela) + 2 empanadas grandes de Vacuno recién fritas + 1 chorizo santarrosano a la parrilla. Sabor 100% colombiano.`,
     galleryExtras: G.comboValluno,
     highlights: ["1 champús + 2 empanadas + chorizo", "🔥 Listo para consumir", "🚚 Domicilio incluido (Zaragoza)", "Tradición del Valle del Cauca"],
+  },
+  "30": {
+    longDescription: `${FRITO_DETAIL} Combo Seis: más 15 empanadas grandes, chorizo XL santarrosano y 3 salsas artesanales de la casa. Nuestro bestseller para compartir.`,
+    galleryExtras: G.empanadasFritas,
+    highlights: ["15 grandes + chorizo XL + 3 salsas", "🔥 Listas para consumir", "🚚 Domicilio incluido (Zaragoza)", "Bestseller"],
   },
   // === HOJALDRES ===
   "27": {
