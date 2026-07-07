@@ -20,7 +20,8 @@ var categories = [
   "Chorizos",
   "Embutidos",
   "Hojaldres",
-  "Combos"
+  "Combos",
+  "Extras"
 ];
 var products = [
   {

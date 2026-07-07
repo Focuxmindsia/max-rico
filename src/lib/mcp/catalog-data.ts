@@ -9,7 +9,8 @@ export const categories = [
   "Chorizos",
   "Embutidos",
   "Hojaldres",
-  "Combos"
+  "Combos",
+  "Extras"
 ] as const;
 export const products = [
   {
