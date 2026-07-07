@@ -52,7 +52,7 @@ export default function TestPago() {
 
       <CheckoutWizard
         product={TEST_PRODUCT}
-        priceId={null}
+        priceId="test_1eur_inline"
         open={open}
         onOpenChange={setOpen}
       />
