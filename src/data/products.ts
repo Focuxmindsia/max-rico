@@ -57,6 +57,7 @@ export interface Product {
   format?: string;
   soldOut?: boolean;
   imagePosition?: string;
+  requiresCombo?: boolean;
 }
 
 export const categories = [
