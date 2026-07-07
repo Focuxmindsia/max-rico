@@ -201,7 +201,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
         customerAddress: delivery === "domicilio" ? address : null,
         city: city || "Zaragoza",
         deliveryMethod: delivery,
-        scheduledFor: hasFrito && scheduledFor ? new Date(scheduledFor).toISOString() : null,
+        scheduledFor: scheduledFor ? new Date(scheduledFor).toISOString() : null,
         notes,
         userId: user?.id,
         returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
