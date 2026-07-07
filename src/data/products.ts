@@ -32,6 +32,8 @@ import productSalamiLatino from "@/assets/product-salami-latino.webp";
 import comboXXLMixto from "/combo-xxl-mixto.png";
 import productPastelGloria from "@/assets/pastel-gloria.webp";
 import productChicharronHojaldre from "@/assets/chicharron-hojaldre.webp";
+import combo15Chorizo from "@/assets/combo-15-chorizo.png.asset.json";
+import chorizoXLExtra from "@/assets/chorizo-xl-extra.png.asset.json";
 
 export interface Product {
   id: string;
