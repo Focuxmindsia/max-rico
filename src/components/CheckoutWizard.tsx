@@ -94,22 +94,48 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     onOpenChange(o);
   };
 
-  const minDateTime = useMemo(() => {
-    const d = new Date(Date.now() + 2 * 60 * 60 * 1000);
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().slice(0, 16);
-  }, [open]);
+  // Lead time interno: 1h 15min mínimo. Horario de entregas: 11:00 – 22:00.
+  // Si el "earliest" cae fuera de ese horario, se desplaza a las 11:00 del siguiente día hábil.
+  const OPEN_HOUR = 11;
+  const CLOSE_HOUR = 22;
+  const LEAD_MINUTES = 75;
 
-  const validateFritoSchedule = (iso: string): string | null => {
+  const computeEarliest = (from: Date = new Date()): Date => {
+    const d = new Date(from.getTime() + LEAD_MINUTES * 60 * 1000);
+    const h = d.getHours();
+    const m = d.getMinutes();
+    // Antes de apertura → mismo día a las 11:00
+    if (h < OPEN_HOUR) {
+      d.setHours(OPEN_HOUR, 0, 0, 0);
+      return d;
+    }
+    // Después del cierre (o justo en el límite) → siguiente día a las 11:00
+    if (h > CLOSE_HOUR || (h === CLOSE_HOUR && m > 0) || h >= CLOSE_HOUR) {
+      d.setDate(d.getDate() + 1);
+      d.setHours(OPEN_HOUR, 0, 0, 0);
+      return d;
+    }
+    return d;
+  };
+
+  const toLocalInputValue = (d: Date): string => {
+    const off = new Date(d.getTime() - d.getTimezoneOffset() * 60_000);
+    return off.toISOString().slice(0, 16);
+  };
+
+  const minDateTime = useMemo(() => toLocalInputValue(computeEarliest()), [open]);
+
+  const validateSchedule = (iso: string): string | null => {
     if (!iso) return "Selecciona fecha y hora";
     const target = new Date(iso);
-    const now = new Date();
-    const diffH = (target.getTime() - now.getTime()) / 3_600_000;
-    if (diffH < 2) return "Mínimo 2 horas de antelación";
+    const earliest = computeEarliest();
+    if (target.getTime() < earliest.getTime()) {
+      return `La hora más temprana disponible es ${earliest.toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}`;
+    }
     const h = target.getHours();
-    const inComida = h >= 12 && h < 17;
-    const inCena = h >= 19 && h < 23;
-    if (!inComida && !inCena) return "Horario disponible: comida (12:00–17:00) o cena (19:00–23:00)";
+    if (h < OPEN_HOUR || h >= CLOSE_HOUR) {
+      return `Horario de entregas: ${OPEN_HOUR}:00 – ${CLOSE_HOUR}:00`;
+    }
     return null;
   };
 
@@ -119,10 +145,10 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     setStep("delivery");
   };
 
-  const handleDeliveryNext = () => setStep(hasFrito ? "schedule" : "form");
+  const handleDeliveryNext = () => setStep("schedule");
 
   const handleScheduleNext = () => {
-    const err = validateFritoSchedule(scheduledFor);
+    const err = validateSchedule(scheduledFor);
     if (err) return toast.error(err);
     setStep("form");
   };
@@ -175,7 +201,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
         customerAddress: delivery === "domicilio" ? address : null,
         city: city || "Zaragoza",
         deliveryMethod: delivery,
-        scheduledFor: hasFrito && scheduledFor ? new Date(scheduledFor).toISOString() : null,
+        scheduledFor: scheduledFor ? new Date(scheduledFor).toISOString() : null,
         notes,
         userId: user?.id,
         returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
@@ -194,10 +220,10 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
         <DialogHeader>
           <DialogTitle className="text-xl font-black">{title}</DialogTitle>
           <DialogDescription>
-            {step === "location" && "1 / 3 · ¿A dónde lo enviamos?"}
-            {step === "delivery" && "2 / 3 · ¿Cómo prefieres recibirlo?"}
-            {step === "schedule" && "3 / 3 · ¿Cuándo lo necesitas?"}
-            {step === "form" && "Casi listo · Tus datos de contacto"}
+            {step === "location" && "1 / 4 · ¿A dónde lo enviamos?"}
+            {step === "delivery" && "2 / 4 · ¿Cómo prefieres recibirlo?"}
+            {step === "schedule" && "3 / 4 · ¿Cuándo lo quieres?"}
+            {step === "form" && "4 / 4 · Tus datos de contacto"}
             {step === "payment" && "Paga con tarjeta de forma segura"}
             {step === "waitlist" && "Aún no llegamos a tu zona"}
           </DialogDescription>
@@ -253,13 +279,19 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
             <div className="flex items-start gap-3 p-3 bg-orange-50 border border-orange-200 rounded-lg">
               <Clock className="h-5 w-5 text-orange-700 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-orange-900 space-y-1">
-                <p>Tu pedido incluye <strong>productos fritos recién hechos</strong>. Requieren <strong>mínimo 2 horas de antelación</strong>.</p>
-                <p>Horario: <strong>comida (12:00–17:00)</strong> o <strong>cena (19:00–23:00)</strong>.</p>
+                <p>Elige cuándo quieres <strong>{delivery === "domicilio" ? "recibir" : "recoger"}</strong> tu pedido.</p>
+                <p>Horario de {delivery === "domicilio" ? "entregas" : "recogida"}: <strong>11:00 – 22:00</strong>.</p>
+                {hasFrito && (
+                  <p className="text-orange-800">Tu pedido incluye <strong>productos fritos recién hechos</strong>: los preparamos al momento.</p>
+                )}
               </div>
             </div>
             <div>
               <Label htmlFor="when">Fecha y hora *</Label>
               <Input id="when" type="datetime-local" min={minDateTime} value={scheduledFor} onChange={(e) => setScheduledFor(e.target.value)} />
+              <p className="text-xs text-muted-foreground mt-1">
+                Más pronto disponible: {new Date(minDateTime).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}
+              </p>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setStep("delivery")} className="flex-1">Atrás</Button>
@@ -307,7 +339,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
               <Textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={2} placeholder="Alergias, instrucciones, etc." />
             </div>
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" onClick={() => setStep(hasFrito ? "schedule" : "delivery")} className="flex-1">Atrás</Button>
+              <Button variant="outline" onClick={() => setStep("schedule")} className="flex-1">Atrás</Button>
               <Button onClick={handleStartPayment} className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
                 Pagar {totalPrice.toFixed(2)}€
               </Button>
