@@ -31,6 +31,23 @@ export default function ProductDetail() {
     );
   }
 
+  // Meta Pixel — ViewContent
+  useEffect(() => {
+    if (!product) return;
+    metaTrack(
+      "ViewContent",
+      {
+        content_ids: [product.id],
+        content_name: product.name,
+        content_type: "product",
+        content_category: product.category,
+        value: product.price,
+        currency: "EUR",
+      },
+      metaEventId("vc", product.id),
+    );
+  }, [product?.id]);
+
   const EXTRA_RECOMMENDATIONS: Record<string, string[]> = {
     "7": ["10", "21"],
   };

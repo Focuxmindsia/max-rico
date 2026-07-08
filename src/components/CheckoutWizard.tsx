@@ -194,6 +194,20 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     if (!name || !email || !phone) return toast.error("Completa nombre, email y teléfono");
     if (delivery === "domicilio" && !address) return toast.error("Indica la dirección de entrega");
     if (effectiveItems.length === 0) return toast.error("No hay productos para pagar");
+    // Meta Pixel — InitiateCheckout
+    import("@/lib/metaPixel").then(({ metaTrack, metaEventId }) => {
+      metaTrack(
+        "InitiateCheckout",
+        {
+          content_ids: effectiveItems.map((i) => i.product.id),
+          contents: effectiveItems.map((i) => ({ id: i.product.id, quantity: i.quantity, item_price: i.product.price })),
+          num_items: effectiveItems.reduce((s, i) => s + i.quantity, 0),
+          value: Number(totalPrice.toFixed(2)),
+          currency: "EUR",
+        },
+        metaEventId("ic", Date.now()),
+      );
+    });
     setStep("payment");
   };
 
