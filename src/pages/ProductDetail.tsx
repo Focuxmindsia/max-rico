@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { products, getAllergensForCategory } from "@/data/products";
 import { getProductExtras } from "@/data/productExtras";
 import { useCart } from "@/contexts/CartContext";
@@ -9,6 +9,7 @@ import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake, 
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import ImageLightbox from "@/components/catalog/ImageLightbox";
+import { metaTrack, metaEventId } from "@/lib/metaPixel";
 
 
 export default function ProductDetail() {
