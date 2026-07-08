@@ -8,6 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 import { buildOrderWhatsAppMessage, formatCurrency, formatDateTime, getOrderItemDetails, type OrderItemLike } from "@/lib/orderUtils";
+import { metaTrack } from "@/lib/metaPixel";
 
 const WHATSAPP_NUMBER = "34695798632";
 
@@ -44,9 +45,23 @@ export default function CheckoutReturn() {
 
   const sameEmailAsUser = Boolean(user?.email && order?.customer_email && user.email.toLowerCase() === order.customer_email.toLowerCase());
 
-  // Vaciar carrito una vez confirmado el pago
+  // Vaciar carrito una vez confirmado el pago + Meta Pixel Purchase (dedupe con CAPI por event_id)
   useEffect(() => {
-    if (order && order.status === "paid") clearCart();
+    if (order && order.status === "paid") {
+      clearCart();
+      const ref = order.stripe_session_id || order.id;
+      metaTrack(
+        "Purchase",
+        {
+          value: Number(((order.amount_total_cents ?? 0) / 100).toFixed(2)),
+          currency: (order.currency || "eur").toUpperCase(),
+          content_ids: (order.items || []).map((it) => getOrderItemDetails(it).name),
+          content_type: "product",
+          num_items: (order.items || []).reduce((s, it) => s + (getOrderItemDetails(it).quantity || 1), 0),
+        },
+        `purchase-${ref}`,
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order?.id, order?.status]);
 
