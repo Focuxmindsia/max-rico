@@ -97,6 +97,30 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
     };
     await sendEmail("order-receipt", customerEmail, `order-receipt-${session.id}`, commonData);
     await sendEmail("order-admin-alert", "clientes@maxrico.es", `order-admin-${session.id}`, commonData);
+
+    // Meta Conversions API — Purchase (dedupe con Pixel del navegador via event_id)
+    await sendMetaEvent({
+      eventName: "Purchase",
+      eventId: `purchase-${session.id}`,
+      eventSourceUrl: m.metaUrl || `https://maxrico.es/checkout/return?session_id=${session.id}`,
+      user: {
+        email: customerEmail,
+        phone: m.customerPhone || null,
+        firstName: customerName ? String(customerName).split(" ")[0] : null,
+        fbp: m.metaFbp || null,
+        fbc: m.metaFbc || null,
+        clientIpAddress: m.metaIp || null,
+        clientUserAgent: m.metaUa || null,
+      },
+      customData: {
+        value: ((session.amount_total ?? 0) / 100),
+        currency: (session.currency ?? "eur").toUpperCase(),
+        content_ids: items.map((it: any) => it.productId || it.id || it.name).filter(Boolean),
+        content_type: "product",
+        num_items: items.reduce((s: number, it: any) => s + (it.quantity || it.qty || 1), 0),
+        order_id: session.id,
+      },
+    });
   }
 }
 
