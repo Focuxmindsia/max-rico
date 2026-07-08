@@ -26,6 +26,12 @@ interface Body {
   returnUrl: string;
   environment: StripeEnv;
   userId?: string;
+  meta?: {
+    fbp?: string;
+    fbc?: string;
+    userAgent?: string;
+    eventSourceUrl?: string;
+  };
 }
 
 const SOCIO_PRICE_ID = "socio_anual_59";
@@ -92,6 +98,15 @@ Deno.serve(async (req) => {
       environment: body.environment,
     };
     if (body.userId) baseMetadata.userId = body.userId;
+    // Meta CAPI: guardamos fbp/fbc/userAgent/URL para deduplicar con el Pixel del navegador
+    if (body.meta?.fbp) baseMetadata.metaFbp = body.meta.fbp.slice(0, 100);
+    if (body.meta?.fbc) baseMetadata.metaFbc = body.meta.fbc.slice(0, 200);
+    if (body.meta?.userAgent) baseMetadata.metaUa = body.meta.userAgent.slice(0, 400);
+    if (body.meta?.eventSourceUrl) baseMetadata.metaUrl = body.meta.eventSourceUrl.slice(0, 400);
+    // IP del cliente para CAPI
+    const ipHeader = req.headers.get("x-forwarded-for") || req.headers.get("cf-connecting-ip") || "";
+    const clientIp = ipHeader.split(",")[0].trim();
+    if (clientIp) baseMetadata.metaIp = clientIp.slice(0, 64);
 
     Object.entries(baseMetadata).forEach(([key, value]) =>
       params.append(`metadata[${key}]`, value),
