@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { Product } from "@/data/products";
 import { toast } from "@/hooks/use-toast";
+import { metaTrack, metaEventId } from "@/lib/metaPixel";
 
 interface CartItem {
   product: Product;
@@ -42,6 +43,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { product, quantity }];
     });
+    // Meta Pixel — AddToCart
+    metaTrack(
+      "AddToCart",
+      {
+        content_ids: [product.id],
+        content_name: product.name,
+        content_type: "product",
+        content_category: product.category,
+        contents: [{ id: product.id, quantity, item_price: product.price }],
+        value: Number((product.price * quantity).toFixed(2)),
+        currency: "EUR",
+      },
+      metaEventId("atc", `${product.id}-${Date.now()}`),
+    );
   }, []);
 
 

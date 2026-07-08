@@ -194,6 +194,20 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     if (!name || !email || !phone) return toast.error("Completa nombre, email y teléfono");
     if (delivery === "domicilio" && !address) return toast.error("Indica la dirección de entrega");
     if (effectiveItems.length === 0) return toast.error("No hay productos para pagar");
+    // Meta Pixel — InitiateCheckout
+    import("@/lib/metaPixel").then(({ metaTrack, metaEventId }) => {
+      metaTrack(
+        "InitiateCheckout",
+        {
+          content_ids: effectiveItems.map((i) => i.product.id),
+          contents: effectiveItems.map((i) => ({ id: i.product.id, quantity: i.quantity, item_price: i.product.price })),
+          num_items: effectiveItems.reduce((s, i) => s + i.quantity, 0),
+          value: Number(totalPrice.toFixed(2)),
+          currency: "EUR",
+        },
+        metaEventId("ic", Date.now()),
+      );
+    });
     setStep("payment");
   };
 
@@ -212,6 +226,16 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
       };
     });
 
+    // Captura cookies de Meta Pixel para Conversions API (dedupe entre Pixel y CAPI)
+    const readCookie = (name: string): string | undefined => {
+      const m = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]+)`));
+      return m ? decodeURIComponent(m[1]) : undefined;
+    };
+    const fbp = readCookie("_fbp");
+    const fbc = readCookie("_fbc");
+    const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : undefined;
+    const eventSourceUrl = typeof window !== "undefined" ? window.location.href : undefined;
+
     const { data, error } = await supabase.functions.invoke("create-checkout", {
       body: {
         items,
@@ -226,6 +250,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
         userId: user?.id,
         returnUrl: `${window.location.origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
         environment: getStripeEnvironment(),
+        meta: { fbp, fbc, userAgent, eventSourceUrl },
       },
     });
     if (error || !data?.clientSecret) throw new Error(error?.message || "No se pudo iniciar el pago");

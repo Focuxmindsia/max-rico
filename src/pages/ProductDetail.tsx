@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { products, getAllergensForCategory } from "@/data/products";
 import { getProductExtras } from "@/data/productExtras";
 import { useCart } from "@/contexts/CartContext";
@@ -9,6 +9,7 @@ import { ShoppingCart, Minus, Plus, ArrowLeft, Thermometer, ChefHat, Snowflake, 
 import ProductCard from "@/components/catalog/ProductCard";
 import Layout from "@/components/layout/Layout";
 import ImageLightbox from "@/components/catalog/ImageLightbox";
+import { metaTrack, metaEventId } from "@/lib/metaPixel";
 
 
 export default function ProductDetail() {
@@ -29,6 +30,23 @@ export default function ProductDetail() {
       </Layout>
     );
   }
+
+  // Meta Pixel — ViewContent
+  useEffect(() => {
+    if (!product) return;
+    metaTrack(
+      "ViewContent",
+      {
+        content_ids: [product.id],
+        content_name: product.name,
+        content_type: "product",
+        content_category: product.category,
+        value: product.price,
+        currency: "EUR",
+      },
+      metaEventId("vc", product.id),
+    );
+  }, [product?.id]);
 
   const EXTRA_RECOMMENDATIONS: Record<string, string[]> = {
     "7": ["10", "21"],
