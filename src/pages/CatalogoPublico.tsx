@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, CreditCard } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, ShoppingCart } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
 import { getPriceId, isProductFrito } from "@/data/priceIds";
 import { useSeo } from "@/hooks/useSeo";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "@/hooks/use-toast";
 
 const WHATSAPP_NUMBER = "34695798632";
 
@@ -42,11 +44,21 @@ export default function CatalogoPublico() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const { addToCart } = useCart();
 
   const openCheckout = (p: Product) => {
     setCheckoutProduct(p);
     setCheckoutOpen(true);
   };
+
+  const handleAddToCart = (p: Product) => {
+    addToCart(p);
+    toast({
+      title: "Añadido al carrito",
+      description: `${p.name} se ha añadido a tu carrito.`,
+    });
+  };
+
 
   const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3, heroEmpanadas5, heroEmpamadas];
 
@@ -328,11 +340,11 @@ export default function CatalogoPublico() {
                       <div className="space-y-2">
                         {getPriceId(product.id) && (
                           <button
-                            onClick={() => openCheckout(product)}
+                            onClick={() => handleAddToCart(product)}
                             className="flex items-center justify-center gap-2 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2.5 rounded-lg text-sm font-black transition-colors shadow-sm"
                           >
-                            <CreditCard className="h-4 w-4" />
-                            Comprar con tarjeta
+                            <ShoppingCart className="h-4 w-4" />
+                            Añadir al carrito
                           </button>
                         )}
                         {isProductFrito(product.id) && (

@@ -34,6 +34,9 @@ import productPastelGloria from "@/assets/pastel-gloria.webp";
 import productChicharronHojaldre from "@/assets/chicharron-hojaldre.webp";
 import combo15Chorizo from "@/assets/combo-15-chorizo.png.asset.json";
 import chorizoXLExtra from "@/assets/chorizo-xl-extra.png.asset.json";
+import tarrinaAjiTradicional from "@/assets/tarrina-aji-tradicional.jpg";
+import tarrinaSalsaAjo from "@/assets/tarrina-salsa-ajo.jpg";
+import tarrinaSalsaPicante from "@/assets/tarrina-salsa-picante.jpg";
 
 export interface Product {
   id: string;
@@ -513,6 +516,49 @@ export const products: Product[] = [
     image: chorizoXLExtra.url,
     packSize: "1 chorizo XL",
     requiresCombo: true,
+  },
+  // === TARRINAS DE SALSA (fritos listos) ===
+  {
+    id: "40",
+    name: "Tarrina Ají Tradicional",
+    slug: "tarrina-aji-tradicional",
+    category: "Combos",
+    description: "🌶️ LISTO PARA CONSUMIR · Tarrina de ají tradicional colombiano, verde y fresco, con cilantro, cebolla y un toque picante equilibrado. Perfecto para acompañar tus empanadas fritas.",
+    ingredients: "Cilantro, cebolla larga, ají verde, ajo, aceite, vinagre, sal, agua.",
+    preparation: "Listo para servir. Conservar refrigerado tras abrir.",
+    conservation: "Refrigerado 2-3 días una vez abierto.",
+    price: 0.70,
+    memberPrice: 0.70,
+    image: tarrinaAjiTradicional,
+    packSize: "1 tarrina",
+  },
+  {
+    id: "41",
+    name: "Tarrina Salsa de Ajo",
+    slug: "tarrina-salsa-ajo",
+    category: "Combos",
+    description: "🧄 LISTO PARA CONSUMIR · Tarrina de salsa de ajo cremosa de la casa. Ideal para empanadas, chorizos y arepas.",
+    ingredients: "Aceite vegetal, ajo, huevo pasteurizado, limón, sal, vinagre.",
+    preparation: "Listo para servir. Conservar refrigerado tras abrir.",
+    conservation: "Refrigerado 2-3 días una vez abierto.",
+    price: 0.70,
+    memberPrice: 0.70,
+    image: tarrinaSalsaAjo,
+    packSize: "1 tarrina",
+  },
+  {
+    id: "42",
+    name: "Tarrina Salsa Picante de la Casa",
+    slug: "tarrina-salsa-picante-casa",
+    category: "Combos",
+    description: "🔥 LISTO PARA CONSUMIR · Tarrina de salsa picante roja artesanal de la casa. Sabor intenso, ideal para los amantes del picante.",
+    ingredients: "Ají rojo, tomate, cebolla, ajo, vinagre, aceite, sal, especias.",
+    preparation: "Listo para servir. Conservar refrigerado tras abrir.",
+    conservation: "Refrigerado 2-3 días una vez abierto.",
+    price: 0.70,
+    memberPrice: 0.70,
+    image: tarrinaSalsaPicante,
+    packSize: "1 tarrina",
   },
   // === HOJALDRES ===
   {
