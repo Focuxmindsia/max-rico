@@ -431,7 +431,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
             <div className="flex gap-2 pt-2">
               <Button variant="outline" onClick={() => setStep("schedule")} className="flex-1">Atrás</Button>
               <Button onClick={handleStartPayment} className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
-                Pagar {totalPrice.toFixed(2)}€
+                Pagar {grandTotal.toFixed(2)}€
               </Button>
             </div>
           </div>
