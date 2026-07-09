@@ -44,7 +44,7 @@ export default function CatalogoPublico() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, totalItems } = useCart();
 
   const openCheckout = (p: Product) => {
     setCheckoutProduct(p);
