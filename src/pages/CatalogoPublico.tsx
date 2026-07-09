@@ -90,8 +90,8 @@ export default function CatalogoPublico() {
     <div className="min-h-screen bg-background" translate="no">
       {/* Header simple */}
       <header className="sticky top-0 z-50 bg-foreground text-background">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-3">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity" aria-label="Ir a la página principal de MaxRico">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-black text-lg">MR</span>
             </div>
@@ -101,18 +101,34 @@ export default function CatalogoPublico() {
                 Catálogo Digital
               </span>
             </div>
+          </Link>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              to="/carrito"
+              className="relative flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-black px-3 sm:px-4 py-2 rounded-full text-sm font-black transition-colors shadow-sm"
+              aria-label={`Mi carrito (${totalItems} productos)`}
+            >
+              <ShoppingCart className="h-4 w-4" />
+              <span className="hidden sm:inline">Mi carrito</span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground text-[10px] font-black rounded-full min-w-[20px] h-5 px-1 flex items-center justify-center border-2 border-foreground">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white px-3 sm:px-4 py-2 rounded-full text-sm font-bold transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span className="hidden sm:inline">Contáctanos</span>
+            </a>
           </div>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white px-4 py-2 rounded-full text-sm font-bold transition-colors"
-          >
-            <MessageCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">Contáctanos</span>
-          </a>
         </div>
       </header>
+
 
       {/* Hero */}
       <section className="bg-primary py-6 md:py-10">
