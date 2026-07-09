@@ -44,11 +44,21 @@ export default function CatalogoPublico() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const { addToCart } = useCart();
 
   const openCheckout = (p: Product) => {
     setCheckoutProduct(p);
     setCheckoutOpen(true);
   };
+
+  const handleAddToCart = (p: Product) => {
+    addToCart(p);
+    toast({
+      title: "Añadido al carrito",
+      description: `${p.name} se ha añadido a tu carrito.`,
+    });
+  };
+
 
   const heroImages = [heroEmpanadas, heroEmpanadas2, heroEmpanadas3, heroEmpanadas5, heroEmpamadas];
 
