@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { getStripe, getStripeEnvironment } from "@/lib/stripe";
 import { supabase } from "@/integrations/supabase/client";
-import { isProductFrito, getPriceId } from "@/data/priceIds";
+import { isProductFrito, getPriceId, computeShippingFeeEUR, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR } from "@/data/priceIds";
 import { Product } from "@/data/products";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/contexts/AuthContext";
