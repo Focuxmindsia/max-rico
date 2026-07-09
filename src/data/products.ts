@@ -558,7 +558,7 @@ export const products: Product[] = [
     conservation: "Refrigerado 2-3 días una vez abierto.",
     price: 0.99,
     memberPrice: 0.99,
-    image: tarrinaAjiTradicional,
+    image: tarrinaAjiTradicionalAsset.url,
     packSize: "1 tarrina",
   },
   {
