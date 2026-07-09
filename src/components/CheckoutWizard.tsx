@@ -328,7 +328,13 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
                 <RadioGroupItem value="domicilio" id="r-domicilio" className="mt-1" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 font-bold"><Truck className="h-4 w-4" /> Domicilio en Zaragoza</div>
-                  <p className="text-sm text-muted-foreground mt-1">Te lo llevamos a casa. Coordinamos la hora por WhatsApp.</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Te lo llevamos a casa. Coordinamos la hora por WhatsApp.
+                    <br />
+                    <span className="text-xs">
+                      Envío <strong>{SHIPPING_FEE_EUR.toFixed(2).replace(".", ",")}€</strong> · <strong>gratis</strong> desde {FREE_SHIPPING_THRESHOLD_EUR}€. Los combos fritos ya llevan el envío incluido.
+                    </span>
+                  </p>
                 </div>
               </label>
             </RadioGroup>
