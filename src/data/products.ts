@@ -34,7 +34,7 @@ import productPastelGloria from "@/assets/pastel-gloria.webp";
 import productChicharronHojaldre from "@/assets/chicharron-hojaldre.webp";
 import combo15Chorizo from "@/assets/combo-15-chorizo.png.asset.json";
 import chorizoXLExtra from "@/assets/chorizo-xl-extra.png.asset.json";
-import tarrinaAjiTradicional from "@/assets/tarrina-aji-tradicional.jpg";
+import tarrinaAjiTradicionalAsset from "@/assets/tarrina-aji-tradicional.png.asset.json";
 import tarrinaAjiPicanteTomateAsset from "@/assets/tarrina-aji-picante-tomate.png.asset.json";
 import tarrinaSalsaPerejilAsset from "@/assets/tarrina-salsa-perejil.png.asset.json";
 import tarrinaSalsaPicanteCasaAsset from "@/assets/tarrina-salsa-picante-casa.png.asset.json";
