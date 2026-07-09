@@ -37,6 +37,12 @@ interface Body {
 const SOCIO_PRICE_ID = "socio_anual_59";
 const SOCIO_AMOUNT_CENTS = 5900;
 
+// Recargo de envío: 3,50€ a domicilio si el subtotal de productos NO-fritos < 29€.
+// Los combos fritos ya llevan el domicilio incluido en el precio.
+const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31", "40", "41", "42", "43"]);
+const SHIPPING_FEE_CENTS = 350;
+const FREE_SHIPPING_THRESHOLD_CENTS = 2900;
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "POST") {
