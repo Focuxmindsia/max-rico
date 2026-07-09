@@ -340,11 +340,11 @@ export default function CatalogoPublico() {
                       <div className="space-y-2">
                         {getPriceId(product.id) && (
                           <button
-                            onClick={() => openCheckout(product)}
+                            onClick={() => handleAddToCart(product)}
                             className="flex items-center justify-center gap-2 w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2.5 rounded-lg text-sm font-black transition-colors shadow-sm"
                           >
-                            <CreditCard className="h-4 w-4" />
-                            Comprar con tarjeta
+                            <ShoppingCart className="h-4 w-4" />
+                            Añadir al carrito
                           </button>
                         )}
                         {isProductFrito(product.id) && (
