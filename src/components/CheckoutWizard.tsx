@@ -374,20 +374,38 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
 
         {step === "form" && (
           <div className="space-y-3">
-            {effectiveItems.length > 1 && (
-              <div className="p-3 bg-secondary rounded-lg text-sm">
-                <p className="font-bold mb-1">Resumen ({effectiveItems.reduce((s,i)=>s+i.quantity,0)} productos)</p>
-                {effectiveItems.map(({ product: p, quantity }) => (
-                  <div key={p.id} className="flex justify-between text-xs">
-                    <span>{quantity} × {p.name}</span>
-                    <span className="font-semibold">{(p.price * quantity).toFixed(2)}€</span>
+            <div className="p-3 bg-secondary rounded-lg text-sm">
+              {effectiveItems.length > 1 && (
+                <>
+                  <p className="font-bold mb-1">Resumen ({effectiveItems.reduce((s,i)=>s+i.quantity,0)} productos)</p>
+                  {effectiveItems.map(({ product: p, quantity }) => (
+                    <div key={p.id} className="flex justify-between text-xs">
+                      <span>{quantity} × {p.name}</span>
+                      <span className="font-semibold">{(p.price * quantity).toFixed(2)}€</span>
+                    </div>
+                  ))}
+                  <div className="flex justify-between text-xs mt-2 pt-2 border-t">
+                    <span>Subtotal</span><span className="font-semibold">{totalPrice.toFixed(2)}€</span>
                   </div>
-                ))}
-                <div className="flex justify-between font-black mt-2 pt-2 border-t">
-                  <span>Total</span><span>{totalPrice.toFixed(2)}€</span>
+                </>
+              )}
+              {delivery === "domicilio" && (
+                <div className={`flex justify-between text-xs ${effectiveItems.length > 1 ? "" : "pt-1"}`}>
+                  <span>Envío a domicilio</span>
+                  <span className="font-semibold">
+                    {shippingFee > 0 ? `${shippingFee.toFixed(2).replace(".", ",")}€` : "Gratis"}
+                  </span>
                 </div>
+              )}
+              {delivery === "domicilio" && shippingFee > 0 && (
+                <p className="text-[11px] text-muted-foreground mt-1">
+                  Añade {(FREE_SHIPPING_THRESHOLD_EUR - nonFritoSubtotal).toFixed(2).replace(".", ",")}€ más en productos (excepto combos fritos) para envío gratis.
+                </p>
+              )}
+              <div className="flex justify-between font-black mt-2 pt-2 border-t">
+                <span>Total</span><span>{grandTotal.toFixed(2)}€</span>
               </div>
-            )}
+            </div>
             <div>
               <Label htmlFor="name">Nombre completo *</Label>
               <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
