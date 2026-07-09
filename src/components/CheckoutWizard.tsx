@@ -67,6 +67,26 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     [effectiveItems],
   );
 
+  const shippingFee = useMemo(
+    () =>
+      computeShippingFeeEUR(
+        effectiveItems.map((i) => ({ productId: i.product.id, price: i.product.price, quantity: i.quantity })),
+        delivery,
+      ),
+    [effectiveItems, delivery],
+  );
+
+  const nonFritoSubtotal = useMemo(
+    () =>
+      effectiveItems.reduce(
+        (s, i) => (isProductFrito(i.product.id) ? s : s + i.product.price * i.quantity),
+        0,
+      ),
+    [effectiveItems],
+  );
+
+  const grandTotal = totalPrice + shippingFee;
+
   const isInZaragoza = postalCode.startsWith(ZARAGOZA_POSTAL_PREFIX);
 
   // Pre-rellena con datos del usuario si está logueado
