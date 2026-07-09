@@ -37,6 +37,12 @@ interface Body {
 const SOCIO_PRICE_ID = "socio_anual_59";
 const SOCIO_AMOUNT_CENTS = 5900;
 
+// Recargo de envío: 3,50€ a domicilio si el subtotal de productos NO-fritos < 29€.
+// Los combos fritos ya llevan el domicilio incluido en el precio.
+const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31", "40", "41", "42", "43"]);
+const SHIPPING_FEE_CENTS = 350;
+const FREE_SHIPPING_THRESHOLD_CENTS = 2900;
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "POST") {
@@ -85,6 +91,28 @@ Deno.serve(async (req) => {
         params.append(`${base}[quantity]`, String(qty));
       }
     });
+
+    // Añade recargo de envío (3,50€) si es domicilio y el subtotal de productos NO-fritos < 29€.
+    // No es suscripción para evitar mezclar modos.
+    if (!isSubscription && body.deliveryMethod === "domicilio") {
+      const nonFritoSubtotalCents = body.items.reduce((sum, i) => {
+        if (i.priceId === SOCIO_PRICE_ID) return sum;
+        const pid = String(i.productId ?? "");
+        if (FRITOS_PRODUCT_IDS.has(pid)) return sum;
+        const qty = Math.max(1, Math.min(50, i.quantity || 1));
+        const price = typeof i.price === "number" ? i.price : 0;
+        return sum + Math.round(price * 100) * qty;
+      }, 0);
+
+      if (nonFritoSubtotalCents > 0 && nonFritoSubtotalCents < FREE_SHIPPING_THRESHOLD_CENTS) {
+        const idx = body.items.length;
+        const base = `line_items[${idx}]`;
+        params.append(`${base}[price_data][currency]`, "eur");
+        params.append(`${base}[price_data][unit_amount]`, String(SHIPPING_FEE_CENTS));
+        params.append(`${base}[price_data][product_data][name]`, "Envío a domicilio (Zaragoza)");
+        params.append(`${base}[quantity]`, "1");
+      }
+    }
 
     const baseMetadata: Record<string, string> = {
       deliveryMethod: body.deliveryMethod,

@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { getStripe, getStripeEnvironment } from "@/lib/stripe";
 import { supabase } from "@/integrations/supabase/client";
-import { isProductFrito, getPriceId } from "@/data/priceIds";
+import { isProductFrito, getPriceId, computeShippingFeeEUR, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR } from "@/data/priceIds";
 import { Product } from "@/data/products";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/contexts/AuthContext";
@@ -66,6 +66,26 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
     () => effectiveItems.some((i) => isProductFrito(i.product.id)),
     [effectiveItems],
   );
+
+  const shippingFee = useMemo(
+    () =>
+      computeShippingFeeEUR(
+        effectiveItems.map((i) => ({ productId: i.product.id, price: i.product.price, quantity: i.quantity })),
+        delivery,
+      ),
+    [effectiveItems, delivery],
+  );
+
+  const nonFritoSubtotal = useMemo(
+    () =>
+      effectiveItems.reduce(
+        (s, i) => (isProductFrito(i.product.id) ? s : s + i.product.price * i.quantity),
+        0,
+      ),
+    [effectiveItems],
+  );
+
+  const grandTotal = totalPrice + shippingFee;
 
   const isInZaragoza = postalCode.startsWith(ZARAGOZA_POSTAL_PREFIX);
 
@@ -308,7 +328,13 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
                 <RadioGroupItem value="domicilio" id="r-domicilio" className="mt-1" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 font-bold"><Truck className="h-4 w-4" /> Domicilio en Zaragoza</div>
-                  <p className="text-sm text-muted-foreground mt-1">Te lo llevamos a casa. Coordinamos la hora por WhatsApp.</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Te lo llevamos a casa. Coordinamos la hora por WhatsApp.
+                    <br />
+                    <span className="text-xs">
+                      Envío <strong>{SHIPPING_FEE_EUR.toFixed(2).replace(".", ",")}€</strong> · <strong>gratis</strong> desde {FREE_SHIPPING_THRESHOLD_EUR}€. Los combos fritos ya llevan el envío incluido.
+                    </span>
+                  </p>
                 </div>
               </label>
             </RadioGroup>
@@ -348,20 +374,38 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
 
         {step === "form" && (
           <div className="space-y-3">
-            {effectiveItems.length > 1 && (
-              <div className="p-3 bg-secondary rounded-lg text-sm">
-                <p className="font-bold mb-1">Resumen ({effectiveItems.reduce((s,i)=>s+i.quantity,0)} productos)</p>
-                {effectiveItems.map(({ product: p, quantity }) => (
-                  <div key={p.id} className="flex justify-between text-xs">
-                    <span>{quantity} × {p.name}</span>
-                    <span className="font-semibold">{(p.price * quantity).toFixed(2)}€</span>
+            <div className="p-3 bg-secondary rounded-lg text-sm">
+              {effectiveItems.length > 1 && (
+                <>
+                  <p className="font-bold mb-1">Resumen ({effectiveItems.reduce((s,i)=>s+i.quantity,0)} productos)</p>
+                  {effectiveItems.map(({ product: p, quantity }) => (
+                    <div key={p.id} className="flex justify-between text-xs">
+                      <span>{quantity} × {p.name}</span>
+                      <span className="font-semibold">{(p.price * quantity).toFixed(2)}€</span>
+                    </div>
+                  ))}
+                  <div className="flex justify-between text-xs mt-2 pt-2 border-t">
+                    <span>Subtotal</span><span className="font-semibold">{totalPrice.toFixed(2)}€</span>
                   </div>
-                ))}
-                <div className="flex justify-between font-black mt-2 pt-2 border-t">
-                  <span>Total</span><span>{totalPrice.toFixed(2)}€</span>
+                </>
+              )}
+              {delivery === "domicilio" && (
+                <div className={`flex justify-between text-xs ${effectiveItems.length > 1 ? "" : "pt-1"}`}>
+                  <span>Envío a domicilio</span>
+                  <span className="font-semibold">
+                    {shippingFee > 0 ? `${shippingFee.toFixed(2).replace(".", ",")}€` : "Gratis"}
+                  </span>
                 </div>
+              )}
+              {delivery === "domicilio" && shippingFee > 0 && (
+                <p className="text-[11px] text-muted-foreground mt-1">
+                  Añade {(FREE_SHIPPING_THRESHOLD_EUR - nonFritoSubtotal).toFixed(2).replace(".", ",")}€ más en productos (excepto combos fritos) para envío gratis.
+                </p>
+              )}
+              <div className="flex justify-between font-black mt-2 pt-2 border-t">
+                <span>Total</span><span>{grandTotal.toFixed(2)}€</span>
               </div>
-            )}
+            </div>
             <div>
               <Label htmlFor="name">Nombre completo *</Label>
               <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -387,7 +431,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
             <div className="flex gap-2 pt-2">
               <Button variant="outline" onClick={() => setStep("schedule")} className="flex-1">Atrás</Button>
               <Button onClick={handleStartPayment} className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
-                Pagar {totalPrice.toFixed(2)}€
+                Pagar {grandTotal.toFixed(2)}€
               </Button>
             </div>
           </div>

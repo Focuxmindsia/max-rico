@@ -39,6 +39,26 @@ export const SOCIO_PRICE_ID = "socio_anual_59";
 // (need scheduling, only Zaragoza, restaurant hours)
 export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31", "40", "41", "42", "43"]);
 
+// Envío a domicilio: 3,50€ si el subtotal de productos NO-fritos es < 29€.
+// Los combos fritos ya llevan el domicilio incluido en el precio, por eso no
+// cuentan para el mínimo ni generan recargo.
+export const SHIPPING_FEE_EUR = 3.5;
+export const FREE_SHIPPING_THRESHOLD_EUR = 29;
+
+export function computeShippingFeeEUR(
+  items: { productId: string; price: number; quantity: number }[],
+  deliveryMethod: "recogida" | "domicilio",
+): number {
+  if (deliveryMethod !== "domicilio") return 0;
+  const nonFritoSubtotal = items.reduce((sum, i) => {
+    if (FRITOS_PRODUCT_IDS.has(i.productId)) return sum;
+    return sum + i.price * i.quantity;
+  }, 0);
+  if (nonFritoSubtotal <= 0) return 0; // solo fritos => envío ya incluido
+  if (nonFritoSubtotal >= FREE_SHIPPING_THRESHOLD_EUR) return 0;
+  return SHIPPING_FEE_EUR;
+}
+
 // Extras that MUST be bought together with a combo (cannot be sold alone).
 export const REQUIRES_COMBO_PRODUCT_IDS = new Set(["31"]);
 

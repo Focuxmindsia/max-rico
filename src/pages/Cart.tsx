@@ -6,10 +6,18 @@ import { Minus, Plus, Trash2, ShoppingCart, ArrowRight, AlertTriangle } from "lu
 import Layout from "@/components/layout/Layout";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
 import { toast } from "sonner";
+import { isProductFrito, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR } from "@/data/priceIds";
 
 export default function Cart() {
   const { items, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  const nonFritoSubtotal = useMemo(
+    () => items.reduce((s, i) => (isProductFrito(i.product.id) ? s : s + i.product.price * i.quantity), 0),
+    [items],
+  );
+  const willChargeShipping = nonFritoSubtotal > 0 && nonFritoSubtotal < FREE_SHIPPING_THRESHOLD_EUR;
+  const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD_EUR - nonFritoSubtotal);
 
   const hasExtraOnly = useMemo(() => {
     const hasExtra = items.some((i) => i.product.requiresCombo);
@@ -86,15 +94,31 @@ export default function Cart() {
                 <span className="font-semibold">{totalPrice.toFixed(2)}€</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Envío</span>
-                <span className="text-primary font-semibold">Gratis para socios</span>
+                <span className="text-muted-foreground">Envío a domicilio</span>
+                <span className="font-semibold">
+                  {willChargeShipping
+                    ? `${SHIPPING_FEE_EUR.toFixed(2).replace(".", ",")}€`
+                    : nonFritoSubtotal === 0
+                    ? "Incluido"
+                    : "Gratis"}
+                </span>
               </div>
+              {willChargeShipping && (
+                <p className="text-xs text-muted-foreground">
+                  Añade <strong>{amountToFreeShipping.toFixed(2).replace(".", ",")}€</strong> más y el envío es <strong>gratis</strong> (mínimo {FREE_SHIPPING_THRESHOLD_EUR}€). Los combos fritos ya llevan envío incluido.
+                </p>
+              )}
             </div>
             <div className="border-t border-border pt-4 mb-6">
               <div className="flex justify-between">
-                <span className="font-black text-lg">Total</span>
-                <span className="font-black text-lg">{totalPrice.toFixed(2)}€</span>
+                <span className="font-black text-lg">Total estimado</span>
+                <span className="font-black text-lg">
+                  {(totalPrice + (willChargeShipping ? SHIPPING_FEE_EUR : 0)).toFixed(2)}€
+                </span>
               </div>
+              <p className="text-[11px] text-muted-foreground mt-1">
+                El envío solo se aplica si eliges "Domicilio" en el checkout.
+              </p>
             </div>
             {hasExtraOnly && (
               <div className="flex items-start gap-2 p-3 mb-3 bg-red-50 border border-red-200 rounded-lg">
