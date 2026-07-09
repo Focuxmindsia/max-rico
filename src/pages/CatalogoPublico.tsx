@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, CreditCard } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, ShoppingCart } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
 import { getPriceId, isProductFrito } from "@/data/priceIds";
 import { useSeo } from "@/hooks/useSeo";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "@/hooks/use-toast";
 
 const WHATSAPP_NUMBER = "34695798632";
 
