@@ -233,7 +233,7 @@ export default function CatalogoPublico() {
               className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="hidden md:flex flex-wrap gap-2">
             {categories.map((cat) => {
               const isCombo = cat === "Combos";
               const label = isCombo ? "🔥 Combos de cajas fritas" : cat;
