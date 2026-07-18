@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, ShoppingCart } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, ShoppingCart, Menu, X, Snowflake, Home } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
@@ -44,7 +44,16 @@ export default function CatalogoPublico() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { addToCart, totalItems } = useCart();
+
+  const goToSection = (section: "combos" | "congelados" | "negocios") => {
+    if (section === "combos") setSelectedCategory("Combos");
+    else if (section === "congelados") setSelectedCategory("Todos los Productos Congelados");
+    else setSelectedCategory("Al por Mayor");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const openCheckout = (p: Product) => {
     setCheckoutProduct(p);
