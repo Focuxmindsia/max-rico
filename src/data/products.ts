@@ -38,6 +38,7 @@ import tarrinaAjiTradicionalAsset from "@/assets/tarrina-aji-tradicional.png.ass
 import tarrinaAjiPicanteTomateAsset from "@/assets/tarrina-aji-picante-tomate.png.asset.json";
 import tarrinaSalsaPerejilAsset from "@/assets/tarrina-salsa-perejil.png.asset.json";
 import tarrinaSalsaPicanteCasaAsset from "@/assets/tarrina-salsa-picante-casa.png.asset.json";
+import combo7Asset from "@/assets/combo-7-20-empanadas-2-chorizo.png.asset.json";
 
 export interface Product {
   id: string;
@@ -501,6 +502,22 @@ export const products: Product[] = [
     badge: "top",
     rating: 5.0,
     packSize: "15 empanadas + 1 chorizo XL + 3 salsas",
+  },
+  {
+    id: "32",
+    name: "Combo #7: +20 empanadas grandes, 2 chorizo XL y salsas",
+    slug: "combo-7-20-empanadas-2-chorizos",
+    category: "Combos",
+    description: "🔥 LISTAS PARA CONSUMIR · Combo Siete: más 20 empanadas grandes fritas, 2 chorizos XL santarrosanos a la parrilla y 3 salsas artesanales de la casa. Perfecto para compartir en familia o con amigos. Incluye domicilio en Zaragoza capital.",
+    ingredients: "Empanadas: masa 100% maíz molido, carne de Vacuno 🥩 / pollo 🐓, patata, sofrito. Chorizos XL: carne de cerdo, especias, ajo, comino. Salsas: ají verde, salsa rosada y pico de gallo caseros.",
+    preparation: "¡Ya vienen listas! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
+    conservation: "Consumir en el día. Se pueden recalentar.",
+    price: 47.99,
+    memberPrice: 43.99,
+    image: combo7Asset.url,
+    badge: "top",
+    rating: 5.0,
+    packSize: "20 empanadas + 2 chorizos XL + 3 salsas",
   },
   // === EXTRA FRITO LISTO (requiere combo) ===
   {
