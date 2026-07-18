@@ -27,6 +27,7 @@ export const PRICE_ID_BY_PRODUCT_ID: Record<string, string> = {
   "29": "prod_29_price",
   "30": "prod_30_price",
   "31": "prod_31_price",
+  "32": "prod_32_price",
   "40": "prod_40_price",
   "41": "prod_41_price",
   "42": "prod_42_price",
@@ -37,7 +38,7 @@ export const SOCIO_PRICE_ID = "socio_anual_59";
 
 // Product IDs that are "Productos Fritos Listos para Consumir"
 // (need scheduling, only Zaragoza, restaurant hours)
-export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31", "40", "41", "42", "43"]);
+export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31", "32", "40", "41", "42", "43"]);
 
 // Envío a domicilio: 3,50€ si el subtotal de productos NO-fritos es < 29€.
 // Los combos fritos ya llevan el domicilio incluido en el precio, por eso no

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, ShoppingCart } from "lucide-react";
+import { Search, MessageCircle, Star, ChevronRight, ChevronLeft, Instagram, PartyPopper, Store, Flame, ShoppingCart, Menu, X, Snowflake, Home } from "lucide-react";
 import heroEmpanadas from "@/assets/hero-empanadas.jpeg";
 import heroEmpanadas2 from "@/assets/hero-empanadas-2.jpg";
 import heroEmpanadas3 from "@/assets/hero-empanadas-3.jpg";
@@ -44,7 +44,16 @@ export default function CatalogoPublico() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { addToCart, totalItems } = useCart();
+
+  const goToSection = (section: "combos" | "congelados" | "negocios") => {
+    if (section === "combos") setSelectedCategory("Combos");
+    else if (section === "congelados") setSelectedCategory("Todos los Productos Congelados");
+    else setSelectedCategory("Al por Mayor");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const openCheckout = (p: Product) => {
     setCheckoutProduct(p);
@@ -125,8 +134,51 @@ export default function CatalogoPublico() {
               <MessageCircle className="h-4 w-4" />
               <span className="hidden sm:inline">Contáctanos</span>
             </a>
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Abrir menú"
+              aria-expanded={menuOpen}
+              className="flex items-center justify-center bg-background/10 hover:bg-background/20 text-background w-10 h-10 rounded-full transition-colors"
+            >
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+        {menuOpen && (
+          <div className="border-t border-background/10 bg-foreground">
+            <div className="container mx-auto px-4 py-2 flex flex-col">
+              <button
+                onClick={() => goToSection("combos")}
+                className="flex items-center gap-3 py-3 px-2 text-background hover:bg-background/10 rounded-lg transition-colors text-left"
+              >
+                <Flame className="h-5 w-5 text-primary" />
+                <span className="font-bold">🔥 Combos fritos / Empanadas fritas</span>
+              </button>
+              <button
+                onClick={() => goToSection("congelados")}
+                className="flex items-center gap-3 py-3 px-2 text-background hover:bg-background/10 rounded-lg transition-colors text-left"
+              >
+                <Snowflake className="h-5 w-5 text-sky-300" />
+                <span className="font-bold">🧊 Productos congelados</span>
+              </button>
+              <button
+                onClick={() => goToSection("negocios")}
+                className="flex items-center gap-3 py-3 px-2 text-background hover:bg-background/10 rounded-lg transition-colors text-left"
+              >
+                <Store className="h-5 w-5 text-destructive" />
+                <span className="font-bold">Para Negocios ó Eventos</span>
+              </button>
+              <Link
+                to="/"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 py-3 px-2 text-background hover:bg-background/10 rounded-lg transition-colors"
+              >
+                <Home className="h-5 w-5" />
+                <span className="font-bold">Página de inicio</span>
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
 
