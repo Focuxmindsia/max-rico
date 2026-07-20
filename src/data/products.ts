@@ -339,6 +339,7 @@ export const products: Product[] = [
     packSize: "1 unidad",
     weight: "500 g",
     format: "15 cm",
+    soldOut: true,
   },
   // === PANDEBONO ===
   {
