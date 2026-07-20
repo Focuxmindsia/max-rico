@@ -211,6 +211,8 @@ export const products: Product[] = [
     packSize: "5 unidades",
     weight: "700 g",
     format: "5 unidades",
+    soldOut: true,
+
   },
   {
     id: "15",
@@ -464,7 +466,7 @@ export const products: Product[] = [
     name: "Combo #5 XXL: 10 empanadas grandes, +17 empanadas pequeñas, +2 arepas con queso, salami y 3 salsas de la casa",
     slug: "combo-xxl-mixto-salami-arepas",
     category: "Combos",
-    description: "🔥 LISTO PARA CONSUMIR · Combo #5 XXL, el más completo para compartir. Incluye: 10 empanadas grandes recién fritas, 17 empanadas pequeñas cocteleras, 2 arepas rellenas de queso mozzarella, salami latino frito y 3 salsas artesanales de la casa. Incluye domicilio en Zaragoza capital.",
+    description: "🚚 Listo para consumir: te llega ya frito y caliente, con domicilio incluido en Zaragoza capital. Solo abre la caja y disfruta del toque crujiente. El Combo #5 Incluye: 10 empanadas grandes, salami latino, 2 arepas rellenas de queso mozzarella y ají y salsas de la casa.",
     ingredients: "Contenido de la caja: • 10 empanadas grandes (maíz 100%, carne de Vacuno 🥩 / pollo 🐓, patata, sofrito) • 17 empanadas pequeñas cocteleras • 2 arepas rellenas de queso mozzarella • 1 porción de salami latino frito • 3 salsas de la casa (ají tradicional, salsa de la casa y salsa de perejil).",
     preparation: "¡Ya viene todo frito y listo! Solo calentar si lo deseas: microondas 1 min o horno 5 min a 180°C.",
     conservation: "Consumir en el día. Se pueden recalentar.",
@@ -475,7 +477,7 @@ export const products: Product[] = [
     rating: 5.0,
     packSize: "10 grandes + 17 pequeñas + 2 arepas + salami + 3 salsas",
     imagePosition: "center 75%",
-    soldOut: true,
+
   },
   {
     id: "29",
