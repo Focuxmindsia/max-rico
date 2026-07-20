@@ -284,6 +284,7 @@ export const products: Product[] = [
     packSize: "5 unidades",
     weight: "800–1000 g",
     format: "22 cm (5 und)",
+    soldOut: true,
   },
   // === EMBUTIDOS ===
   {
