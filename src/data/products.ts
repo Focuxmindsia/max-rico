@@ -321,6 +321,7 @@ export const products: Product[] = [
     packSize: "10 unidades",
     weight: "400 g",
     format: "11 cm (10 und)",
+    soldOut: true,
   },
   {
     id: "14",
