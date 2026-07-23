@@ -6,18 +6,26 @@ import { Minus, Plus, Trash2, ShoppingCart, ArrowRight, AlertTriangle } from "lu
 import Layout from "@/components/layout/Layout";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
 import { toast } from "sonner";
-import { isProductFrito, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR } from "@/data/priceIds";
+import { SHIPPING_INCLUDED_PRODUCT_IDS, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR, computeShippingFeeEUR } from "@/data/priceIds";
 
 export default function Cart() {
   const { items, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
-  const nonFritoSubtotal = useMemo(
-    () => items.reduce((s, i) => (isProductFrito(i.product.id) ? s : s + i.product.price * i.quantity), 0),
+  const billableSubtotal = useMemo(
+    () => items.reduce((s, i) => (SHIPPING_INCLUDED_PRODUCT_IDS.has(i.product.id) ? s : s + i.product.price * i.quantity), 0),
     [items],
   );
-  const willChargeShipping = nonFritoSubtotal > 0 && nonFritoSubtotal < FREE_SHIPPING_THRESHOLD_EUR;
-  const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD_EUR - nonFritoSubtotal);
+  const hasShippingIncludedCombo = useMemo(
+    () => items.some((i) => SHIPPING_INCLUDED_PRODUCT_IDS.has(i.product.id)),
+    [items],
+  );
+  const domicilioFee = useMemo(
+    () => computeShippingFeeEUR(items.map((i) => ({ productId: i.product.id, price: i.product.price, quantity: i.quantity })), "domicilio"),
+    [items],
+  );
+  const willChargeShipping = domicilioFee > 0;
+  const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD_EUR - billableSubtotal);
 
   const hasExtraOnly = useMemo(() => {
     const hasExtra = items.some((i) => i.product.requiresCombo);
