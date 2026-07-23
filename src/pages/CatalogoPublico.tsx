@@ -9,7 +9,7 @@ import heroEmpamadas from "@/assets/empamadas.png";
 import { products, categories, type Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 import { CheckoutWizard } from "@/components/CheckoutWizard";
-import { getPriceId, isProductFrito } from "@/data/priceIds";
+import { getPriceId, isProductFrito, SHIPPING_INCLUDED_PRODUCT_IDS } from "@/data/priceIds";
 import { useSeo } from "@/hooks/useSeo";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
@@ -363,7 +363,7 @@ export default function CatalogoPublico() {
                       {badgeInfo.label}
                     </Badge>
                   )}
-                  {product.category === "Combos" && !isSoldOut && (
+                  {product.category === "Combos" && SHIPPING_INCLUDED_PRODUCT_IDS.has(product.id) && !isSoldOut && (
                     <div className="absolute bottom-0 left-0 right-0 bg-blue-600 text-white text-center py-1.5 font-bold text-sm tracking-wide">
                       🚚 DOMICILIO GRATIS
                     </div>

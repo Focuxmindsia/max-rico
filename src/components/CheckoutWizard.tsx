@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { getStripe, getStripeEnvironment } from "@/lib/stripe";
 import { supabase } from "@/integrations/supabase/client";
-import { isProductFrito, getPriceId, computeShippingFeeEUR, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR } from "@/data/priceIds";
+import { isProductFrito, getPriceId, computeShippingFeeEUR, FREE_SHIPPING_THRESHOLD_EUR, SHIPPING_FEE_EUR, SHIPPING_INCLUDED_PRODUCT_IDS } from "@/data/priceIds";
 import { Product } from "@/data/products";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useAuth } from "@/contexts/AuthContext";
@@ -79,7 +79,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   const nonFritoSubtotal = useMemo(
     () =>
       effectiveItems.reduce(
-        (s, i) => (isProductFrito(i.product.id) ? s : s + i.product.price * i.quantity),
+        (s, i) => (SHIPPING_INCLUDED_PRODUCT_IDS.has(i.product.id) ? s : s + i.product.price * i.quantity),
         0,
       ),
     [effectiveItems],
