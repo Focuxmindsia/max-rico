@@ -4,6 +4,8 @@ import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
 import productEmpanadas from "@/assets/product-empanadas-v2.jpg";
 import comboXXLMixto from "/combo-xxl-mixto.png";
+import cajaEmpanadasMaxRico15 from "@/assets/empanadas-maxrico-caja-15.png.asset.json";
+import empanadasCongeladasTerneraPollo from "@/assets/empanadas-congeladas-ternera-pollo.png.asset.json";
 
 export interface BlogPost {
   slug: string;
@@ -278,7 +280,7 @@ export const posts: BlogPost[] = [
     title: "Empanadas Colombianas en Zaragoza: La Guía Completa 2026 (MaxRico)",
     excerpt:
       "Guía definitiva 2026 para comprar empanadas colombianas en Zaragoza: dónde pedirlas, diferencias con la empanada española, venta al por mayor para bares y restaurantes, envío nacional de productos latinos y cómo prepararlas en casa.",
-    cover: productEmpanadasGrandesPollo,
+    cover: cajaEmpanadasMaxRico15.url,
     date: "2026-07-23",
     readingTime: "9 min",
     author: "Equipo MaxRico",
@@ -287,6 +289,11 @@ export const posts: BlogPost[] = [
       "empanadas colombianas Zaragoza, comprar empanadas colombianas, empanadas congeladas Zaragoza, comida colombiana Zaragoza, empanadas al por mayor Zaragoza, proveedor de empanadas, distribuidor de productos latinos, envío nacional de productos latinos, empanadas para restaurantes, empanadas para bares y cafeterías, tienda latina Zaragoza",
     bodyHtml: `
       <p class="text-lg leading-relaxed mb-6">Esta es la <strong>guía completa 2026</strong> para entender, comprar y disfrutar las <strong>empanadas colombianas en Zaragoza</strong>. Está pensada tanto para personas que quieren pedirlas a casa como para bares, restaurantes y cafeterías que buscan un <strong>proveedor de empanadas</strong> estable en Aragón y en el resto de España. Todo lo que necesitas saber, respondido de forma directa.</p>
+
+      <figure class="my-8 not-prose">
+        <img src="${cajaEmpanadasMaxRico15.url}" alt="Caja de 15 empanadas colombianas MaxRico con salsas de la casa" loading="lazy" class="w-full rounded-2xl shadow-lg" />
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Caja de 15 empanadas colombianas <span translate="no" class="notranslate">MaxRico</span> con salsas artesanales de la casa.</figcaption>
+      </figure>
 
       <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Dónde comprar empanadas colombianas en Zaragoza?</h2>
       <p class="mb-3"><strong>Respuesta directa:</strong> en <span translate="no" class="notranslate">MaxRico</span>. Servimos <strong>empanadas colombianas en Zaragoza</strong> con envío a domicilio en la capital y envío ultracongelado a toda España.</p>
@@ -307,6 +314,11 @@ export const posts: BlogPost[] = [
         <li><strong>Combos fritos listos:</strong> te llegan recién hechas y calientes, solo dentro de Zaragoza capital.</li>
         <li><strong>Extras que se pueden añadir a cualquiera de los dos:</strong> tarrinas de ají tradicional, ají picante, salsa de perejil y picante de la casa. Estas tarrinas se pueden pedir junto con combos fritos o junto con empanadas congeladas, no se venden sueltas.</li>
       </ul>
+
+      <figure class="my-8 not-prose">
+        <img src="${empanadasCongeladasTerneraPollo.url}" alt="Empanadas ultracongeladas MaxRico de pollo y ternera x10 unidades" loading="lazy" class="w-full rounded-2xl shadow-lg" />
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Empanadas ultracongeladas de pollo y ternera (x10 uds) — envío nacional desde Zaragoza.</figcaption>
+      </figure>
 
       <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Cómo se preparan las empanadas congeladas en casa?</h2>
       <p class="mb-3"><strong>Respuesta directa:</strong> en air fryer, horno o sartén honda, siempre <strong>sin descongelar</strong>. Tienes la guía detallada aquí: <a class="text-primary underline" href="/blog/como-preparar-empanadas-air-fryer">Cómo preparar empanadas en air fryer, horno o sartén</a>.</p>
