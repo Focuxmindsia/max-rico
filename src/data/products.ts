@@ -593,6 +593,7 @@ export const products: Product[] = [
     image: tarrinaAjiTradicionalAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   {
     id: "43",
@@ -608,6 +609,7 @@ export const products: Product[] = [
     image: tarrinaSalsaPicanteCasaAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   // === HOJALDRES ===
   {
