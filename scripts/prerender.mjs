@@ -57,9 +57,11 @@ function extractEntries(src) {
   const out = [];
   for (let k = 0; k < slugLines.length; k++) {
     const { line: i, slug } = slugLines[k];
-    const prev = k > 0 ? slugLines[k - 1].line : -1;
     const next = k < slugLines.length - 1 ? slugLines[k + 1].line : lines.length;
-    // Window: from just after prev slug (or start) to just before next slug
+    // Window: from just after this slug line up to just before next slug.
+    // (title/name/description always appear as sibling keys in the same object,
+    // and object fields may appear before OR after `slug`; check both halves.)
+    const prev = k > 0 ? slugLines[k - 1].line : -1;
     const lo = prev + 1;
     const hi = next;
     let title = "";
