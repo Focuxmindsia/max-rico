@@ -236,7 +236,9 @@ function rewriteHead(html, route) {
   }
 
   // marker for hydration detection (head-only prerender)
-  out = out.replace(/<html\b/i, '<html data-prerendered="head"');
+  if (!/data-prerendered=/.test(out)) {
+    out = out.replace(/<html\b/i, '<html data-prerendered="head"');
+  }
 
   return out;
 }
