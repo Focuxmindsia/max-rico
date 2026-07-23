@@ -16,6 +16,7 @@ import { useState } from "react";
 
 const navLinks = [
   { to: "/catalogo", label: "Catálogo" },
+  { to: "/al-por-mayor", label: "Para Negocios" },
   { to: "/socios", label: "Club de Socios" },
   { to: "/sobre-nosotros", label: "Sobre Nosotros" },
   { to: "/blog", label: "Blog" },
