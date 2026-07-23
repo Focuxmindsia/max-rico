@@ -290,6 +290,11 @@ export const posts: BlogPost[] = [
     bodyHtml: `
       <p class="text-lg leading-relaxed mb-6">Esta es la <strong>guía completa 2026</strong> para entender, comprar y disfrutar las <strong>empanadas colombianas en Zaragoza</strong>. Está pensada tanto para personas que quieren pedirlas a casa como para bares, restaurantes y cafeterías que buscan un <strong>proveedor de empanadas</strong> estable en Aragón y en el resto de España. Todo lo que necesitas saber, respondido de forma directa.</p>
 
+      <figure class="my-8 not-prose">
+        <img src="${cajaEmpanadasMaxRico15.url}" alt="Caja de 15 empanadas colombianas MaxRico con salsas de la casa" loading="lazy" class="w-full rounded-2xl shadow-lg" />
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Caja de 15 empanadas colombianas <span translate="no" class="notranslate">MaxRico</span> con salsas artesanales de la casa.</figcaption>
+      </figure>
+
       <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Dónde comprar empanadas colombianas en Zaragoza?</h2>
       <p class="mb-3"><strong>Respuesta directa:</strong> en <span translate="no" class="notranslate">MaxRico</span>. Servimos <strong>empanadas colombianas en Zaragoza</strong> con envío a domicilio en la capital y envío ultracongelado a toda España.</p>
       <p class="mb-4">Puedes <a class="text-primary underline" href="/catalogo">comprar empanadas colombianas</a> desde nuestro catálogo online, con pago seguro con tarjeta o pedido por WhatsApp al <a class="text-primary underline" href="https://wa.me/34695798632">+34 695 798 632</a>. En Zaragoza capital repartimos combos fritos calientes listos para consumir; para el resto de España enviamos producto ultracongelado por mensajería refrigerada.</p>
