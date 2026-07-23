@@ -28,9 +28,16 @@ export default function Cart() {
   const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD_EUR - billableSubtotal);
 
   const hasExtraOnly = useMemo(() => {
-    const hasExtra = items.some((i) => i.product.requiresCombo);
     const hasCombo = items.some((i) => i.product.category === "Combos" && !i.product.requiresCombo);
-    return hasExtra && !hasCombo;
+    const hasEmpanadasCongeladas = items.some((i) => i.product.category === "Empanadas");
+    return items.some((i) => {
+      if (!i.product.requiresCombo) return false;
+      const allowed = i.product.comboWith ?? ["combo"];
+      const ok =
+        (allowed.includes("combo") && hasCombo) ||
+        (allowed.includes("empanadas-congeladas") && hasEmpanadasCongeladas);
+      return !ok;
+    });
   }, [items]);
 
   const handleCheckout = () => {

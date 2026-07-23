@@ -369,8 +369,10 @@ export default function CatalogoPublico() {
                     </div>
                   )}
                   {product.category === "Combos" && product.requiresCombo && !isSoldOut && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-amber-500 text-black text-center py-1.5 font-bold text-xs tracking-wide">
-                      ➕ Extra (requiere combo)
+                    <div className="absolute bottom-0 left-0 right-0 bg-amber-500 text-black text-center py-1.5 font-bold text-[11px] tracking-wide leading-tight px-1">
+                      {(product.comboWith ?? ["combo"]).includes("empanadas-congeladas")
+                        ? "➕ Extra — añádelo a un combo frito o a tus empanadas congeladas"
+                        : "➕ Extra (requiere combo)"}
                     </div>
                   )}
                   {product.category !== "Combos" && !isSoldOut && (
