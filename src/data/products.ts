@@ -588,6 +588,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaAjiTradicionalAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   {
     id: "43",
