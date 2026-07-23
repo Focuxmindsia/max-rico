@@ -5,6 +5,7 @@ type SeoOptions = {
   description: string;
   canonical: string;
   keywords?: string;
+  ogImage?: string;
   jsonLd?: Record<string, unknown>;
 };
 
