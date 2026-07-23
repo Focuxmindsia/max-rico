@@ -45,17 +45,26 @@ const blogSrc = fs.readFileSync(path.join(root, "src/data/blog.ts"), "utf8");
  */
 function extractEntries(src) {
   const lines = src.split("\n");
-  const out = [];
   const slugRe = /^\s*slug:\s*"([^"]+)"/;
   const titleRe = /^\s*(?:name|title):\s*"((?:\\"|[^"])+)"/;
   const descRe = /^\s*(?:description|excerpt):\s*"((?:\\"|[^"])+)"/;
+  // First pass: find all slug line-indices
+  const slugLines = [];
   for (let i = 0; i < lines.length; i++) {
-    const sm = lines[i].match(slugRe);
-    if (!sm) continue;
-    const slug = sm[1];
+    const m = lines[i].match(slugRe);
+    if (m) slugLines.push({ line: i, slug: m[1] });
+  }
+  const out = [];
+  for (let k = 0; k < slugLines.length; k++) {
+    const { line: i, slug } = slugLines[k];
+    const prev = k > 0 ? slugLines[k - 1].line : -1;
+    const next = k < slugLines.length - 1 ? slugLines[k + 1].line : lines.length;
+    // Window: from just after prev slug (or start) to just before next slug
+    const lo = prev + 1;
+    const hi = next;
     let title = "";
     let description = "";
-    for (let j = Math.max(0, i - 15); j < Math.min(lines.length, i + 15); j++) {
+    for (let j = lo; j < hi; j++) {
       if (!title) {
         const tm = lines[j].match(titleRe);
         if (tm) title = tm[1];
@@ -74,6 +83,7 @@ function extractEntries(src) {
   }
   return out;
 }
+
 
 
 const products = extractEntries(productsSrc);
