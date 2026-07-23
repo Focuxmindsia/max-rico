@@ -40,9 +40,13 @@ export const SOCIO_PRICE_ID = "socio_anual_59";
 // (need scheduling, only Zaragoza, restaurant hours)
 export const FRITOS_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "31", "32", "40", "41", "42", "43"]);
 
-// Envío a domicilio: 3,50€ si el subtotal de productos NO-fritos es < 29€.
-// Los combos fritos ya llevan el domicilio incluido en el precio, por eso no
-// cuentan para el mínimo ni generan recargo.
+// Solo los combos grandes llevan el domicilio incluido en el precio.
+// Las tarrinas de salsa (40-43) y el chorizo extra (31) son complementos
+// de bajo importe y NO incluyen envío, así que sí cuentan para el mínimo.
+export const SHIPPING_INCLUDED_PRODUCT_IDS = new Set(["20", "21", "22", "23", "24", "29", "30", "32"]);
+
+// Envío a domicilio: 3,50€ si el subtotal de productos que NO llevan envío
+// incluido es < 29€.
 export const SHIPPING_FEE_EUR = 3.5;
 export const FREE_SHIPPING_THRESHOLD_EUR = 29;
 
@@ -51,12 +55,14 @@ export function computeShippingFeeEUR(
   deliveryMethod: "recogida" | "domicilio",
 ): number {
   if (deliveryMethod !== "domicilio") return 0;
-  const nonFritoSubtotal = items.reduce((sum, i) => {
-    if (FRITOS_PRODUCT_IDS.has(i.productId)) return sum;
+  const hasShippingIncludedCombo = items.some((i) => SHIPPING_INCLUDED_PRODUCT_IDS.has(i.productId));
+  const billableSubtotal = items.reduce((sum, i) => {
+    if (SHIPPING_INCLUDED_PRODUCT_IDS.has(i.productId)) return sum;
     return sum + i.price * i.quantity;
   }, 0);
-  if (nonFritoSubtotal <= 0) return 0; // solo fritos => envío ya incluido
-  if (nonFritoSubtotal >= FREE_SHIPPING_THRESHOLD_EUR) return 0;
+  if (billableSubtotal <= 0) return 0; // solo combos con envío incluido
+  if (hasShippingIncludedCombo) return 0; // el combo ya cubre el envío
+  if (billableSubtotal >= FREE_SHIPPING_THRESHOLD_EUR) return 0;
   return SHIPPING_FEE_EUR;
 }
 
