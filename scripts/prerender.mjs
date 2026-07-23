@@ -65,15 +65,20 @@ function extractEntries(src) {
     const lo = prev + 1;
     const hi = next;
     let title = "";
+    let titleDist = Infinity;
     let description = "";
+    let descDist = Infinity;
     for (let j = lo; j < hi; j++) {
-      if (!title) {
-        const tm = lines[j].match(titleRe);
-        if (tm) title = tm[1];
+      const d = Math.abs(j - i);
+      const tm = lines[j].match(titleRe);
+      if (tm && d < titleDist) {
+        title = tm[1];
+        titleDist = d;
       }
-      if (!description) {
-        const dm = lines[j].match(descRe);
-        if (dm) description = dm[1];
+      const dm = lines[j].match(descRe);
+      if (dm && d < descDist) {
+        description = dm[1];
+        descDist = d;
       }
     }
     if (!title) continue;
