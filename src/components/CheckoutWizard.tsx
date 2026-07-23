@@ -175,9 +175,17 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   };
 
   const handleLocationNext = () => {
-    const hasExtra = effectiveItems.some((i) => i.product.requiresCombo);
     const hasCombo = effectiveItems.some((i) => i.product.category === "Combos" && !i.product.requiresCombo);
-    if (hasExtra && !hasCombo) {
+    const hasEmpanadasCongeladas = effectiveItems.some((i) => i.product.category === "Empanadas");
+    const invalidExtra = effectiveItems.some((i) => {
+      if (!i.product.requiresCombo) return false;
+      const allowed = i.product.comboWith ?? ["combo"];
+      const ok =
+        (allowed.includes("combo") && hasCombo) ||
+        (allowed.includes("empanadas-congeladas") && hasEmpanadasCongeladas);
+      return !ok;
+    });
+    if (invalidExtra) {
       return toast.error("Este producto es un extra y solo se puede comprar junto con un combo. Añade un combo frito a tu carrito.");
     }
     if (postalCode.length < 5) return toast.error("Introduce un código postal válido");

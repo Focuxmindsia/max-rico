@@ -63,6 +63,7 @@ export interface Product {
   soldOut?: boolean;
   imagePosition?: string;
   requiresCombo?: boolean;
+  comboWith?: ("combo" | "empanadas-congeladas")[];
 }
 
 export const categories = [
@@ -543,6 +544,7 @@ export const products: Product[] = [
     image: chorizoXLExtra.url,
     packSize: "1 chorizo XL",
     requiresCombo: true,
+    comboWith: ["combo"],
   },
   // === TARRINAS DE SALSA (fritos listos) ===
   {
@@ -559,6 +561,7 @@ export const products: Product[] = [
     image: tarrinaAjiPicanteTomateAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   {
     id: "41",
@@ -574,6 +577,7 @@ export const products: Product[] = [
     image: tarrinaSalsaPerejilAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   {
     id: "42",
@@ -589,6 +593,7 @@ export const products: Product[] = [
     image: tarrinaAjiTradicionalAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   {
     id: "43",
@@ -604,6 +609,7 @@ export const products: Product[] = [
     image: tarrinaSalsaPicanteCasaAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   // === HOJALDRES ===
   {
