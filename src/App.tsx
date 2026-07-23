@@ -11,6 +11,9 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Socios from "./pages/Socios";
 import AboutUs from "./pages/AboutUs";
+import AlPorMayor from "./pages/AlPorMayor";
+import Empleo from "./pages/Empleo";
+import Cuenta from "./pages/Cuenta";
 import CheckoutReturn from "./pages/CheckoutReturn";
 import Auth from "./pages/Auth";
 import Unsubscribe from "./pages/Unsubscribe";
@@ -45,6 +48,9 @@ const App = () => (
               <Route path="/carrito" element={<Cart />} />
               <Route path="/socios" element={<Socios />} />
               <Route path="/sobre-nosotros" element={<AboutUs />} />
+              <Route path="/al-por-mayor" element={<AlPorMayor />} />
+              <Route path="/empleo" element={<Empleo />} />
+              <Route path="/cuenta" element={<Cuenta />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/checkout/return" element={<CheckoutReturn />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />

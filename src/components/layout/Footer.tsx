@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 
-const footerSections = [
+const WHATSAPP_CONTACT =
+  "https://wa.me/34695798632?text=" + encodeURIComponent("Hola MaxRico, tengo una consulta.");
+
+type FooterLink = { to: string; label: string; external?: boolean };
+
+const footerSections: { title: string; links: FooterLink[] }[] = [
   {
     title: "Comprar",
     links: [
       { to: "/catalogo", label: "Catálogo" },
       { to: "/socios", label: "Hazte socio" },
+      { to: "/al-por-mayor", label: "Para Negocios y Eventos" },
       { to: "/catalogo?cat=Empanadas", label: "Empanadas" },
-      { to: "/catalogo?cat=Tequeños", label: "Tequeños" },
     ],
   },
   {
@@ -23,8 +28,8 @@ const footerSections = [
     links: [
       { to: "/cuenta", label: "Mi cuenta" },
       { to: "/carrito", label: "Carrito" },
-      { to: "#", label: "Contacto" },
-      { to: "#", label: "FAQ" },
+      { to: WHATSAPP_CONTACT, label: "Contacto (WhatsApp)", external: true },
+      { to: "/al-por-mayor#faq", label: "FAQ" },
     ],
   },
   {
@@ -77,12 +82,23 @@ export default function Footer() {
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      to={link.to}
-                      className="text-sm text-background/60 hover:text-background transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.external ? (
+                      <a
+                        href={link.to}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-background/60 hover:text-background transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        className="text-sm text-background/60 hover:text-background transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

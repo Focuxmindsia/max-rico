@@ -7,17 +7,19 @@ MaxRico es una marca colombiana especializada en empanadas artesanales de maíz 
 ## Páginas principales
 - [Inicio](https://maxrico.es/): presentación de la marca, productos destacados y acceso al catálogo
 - [Catálogo público](https://maxrico.es/catalogo): todos los productos con precios, imágenes y compra online
-- [Para Negocios y Eventos](https://maxrico.es/al-por-mayor): venta al por mayor, catering y colaboraciones B2B
+- [Para Negocios y Eventos](https://maxrico.es/al-por-mayor): venta al por mayor, catering y colaboraciones B2B (HORECA)
 - [Club de Socios](https://maxrico.es/socios): membresía anual con descuentos exclusivos
+- [Sobre nosotros](https://maxrico.es/sobre-nosotros): historia, valores y equipo de MaxRico
 - [Blog](https://maxrico.es/blog): artículos sobre gastronomía colombiana en España
 
 ## Blog
-- [Empanadas colombianas en Zaragoza](https://maxrico.es/blog/empanadas-colombianas-zaragoza): dónde comprar auténticas empanadas colombianas en Zaragoza
-- [Empanadas congeladas a domicilio en España](https://maxrico.es/blog/empanadas-congeladas-domicilio-espana): envíos de empanadas ultracongeladas a toda España
-- [PandeBono colombiano auténtico](https://maxrico.es/blog/pandebono-colombiano-autentico): historia y receta del PandeBono tradicional
-- [Catering colombiano para eventos](https://maxrico.es/blog/catering-colombiano-eventos): servicio de catering latino para eventos y empresas
-- [Chorizo santarrosano](https://maxrico.es/blog/chorizo-santarrosano): el chorizo colombiano artesanal de Santa Rosa de Cabal
-- [Arepas colombianas rellenas](https://maxrico.es/blog/arepas-colombianas-rellenas): variedades y recetas de arepas colombianas
+- [Empanadas colombianas en España](https://maxrico.es/blog/empanadas-colombianas-en-espana): 100% maíz molido, sin gluten y a domicilio
+- [Empanadas colombianas en Zaragoza](https://maxrico.es/blog/empanadas-colombianas-zaragoza): dónde comprarlas y pedirlas a domicilio
+- [Empanadas congeladas a domicilio en España](https://maxrico.es/blog/empanadas-congeladas-domicilio-espana): envíos ultracongelados a toda España
+- [Empanadas sin gluten de maíz](https://maxrico.es/blog/empanadas-sin-gluten-maiz): por qué la masa de maíz molido es apta para celíacos
+- [Comida colombiana en España](https://maxrico.es/blog/comida-colombiana-en-espana): dónde encontrar sabores auténticos
+- [Cómo preparar empanadas en air fryer](https://maxrico.es/blog/como-preparar-empanadas-air-fryer): guía rápida para un resultado crujiente
+- [Empanadas para eventos y catering](https://maxrico.es/blog/empanadas-para-eventos-catering): servicio para empresas y celebraciones
 
 ## Contacto
 - WhatsApp pedidos: +34 695 798 632
