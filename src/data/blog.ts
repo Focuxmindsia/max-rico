@@ -230,6 +230,49 @@ export const posts: BlogPost[] = [
       <p class="text-sm text-muted-foreground">Solicita presupuesto por WhatsApp: <a class="text-primary underline" href="https://wa.me/34695798632">+34 695 798 632</a>.</p>
     `,
   },
+  {
+    slug: "maxrico-empanadas-colombianas-zaragoza-instagram",
+    title: "MaxRico: Empanadas Colombianas en Zaragoza — síguenos en Instagram y pide online",
+    excerpt:
+      "Somos MaxRico, tu tienda de comestibles colombianos en Zaragoza. Venta a particulares y negocios, envíos ultracongelados a toda España y una comunidad viva en Instagram: @maxrico_empanadas.",
+    cover: productEmpanadasGrandesPollo,
+    date: "2026-07-20",
+    readingTime: "4 min",
+    author: "Equipo MaxRico",
+    tags: ["MaxRico", "Instagram", "Zaragoza", "Colombia", "Al por mayor"],
+    keywords:
+      "MaxRico, MaxRico Instagram, empanadas colombianas en Zaragoza, comida colombiana Zaragoza, empanadas al por mayor Zaragoza, tienda colombiana Zaragoza, productos colombianos Zaragoza, empanadas colombianas Instagram, delivery empanadas Zaragoza",
+    bodyHtml: `
+      <p class="text-lg leading-relaxed mb-6">En <span translate="no" class="notranslate">MaxRico</span> llevamos el sabor de Colombia a Zaragoza: <strong>empanadas colombianas en Zaragoza</strong> recién hechas, PandeBonos, arepas, chorizos santarrosanos y una tienda completa de comestibles colombianos para llevar la despensa latina hasta tu casa o tu negocio.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Quiénes somos</h2>
+      <p class="mb-4">Somos una marca familiar dedicada a la <strong>comida colombiana en Zaragoza</strong> y alrededores. Vendemos a particulares con entrega a domicilio en la capital aragonesa y enviamos productos <strong>ultracongelados a toda España</strong>. También trabajamos con bares, restaurantes, cafeterías, hoteles y empresas de catering que buscan proveedor estable de <strong>empanadas al por mayor en Zaragoza</strong> y congelados latinos.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Nuestra comunidad en Instagram</h2>
+      <p class="mb-4">La forma más rápida de ver novedades, combos del día, promociones y detrás de cámaras es seguirnos en <strong>MaxRico Instagram</strong>. Nos encontrarás como <a class="text-primary underline" href="https://www.instagram.com/maxrico_empanadas?igsh=OGR2cWdqbTdlOGE3" target="_blank" rel="noopener">@maxrico_empanadas</a> — perfil oficial <em>"MaxRico | Empanadas Colombianas en Zaragoza"</em>. Ahí publicamos horarios, disponibilidad de combos fritos y respondemos dudas de pedidos.</p>
+
+      <div class="not-prose my-8 p-5 rounded-2xl bg-secondary text-center">
+        <p class="font-bold mb-3">📸 Síguenos en Instagram</p>
+        <a href="https://www.instagram.com/maxrico_empanadas?igsh=OGR2cWdqbTdlOGE3" target="_blank" rel="noopener" class="inline-block bg-foreground text-background font-bold px-5 py-3 rounded-md">@maxrico_empanadas →</a>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Qué vas a encontrar en el catálogo</h2>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>Empanadas colombianas 100% de maíz molido, sin gluten (pollo y ternera).</li>
+        <li>Combos fritos listos para consumir con entrega a domicilio en Zaragoza.</li>
+        <li>PandeBonos, arepas rellenas, tequeños y chorizos santarrosanos.</li>
+        <li>Salsas artesanales de la casa: ají tradicional, ají picante, perejil y picante casero.</li>
+        <li>Ultracongelados para toda España y formatos <strong>al por mayor</strong> para negocios.</li>
+      </ul>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Pide online o pregunta por WhatsApp</h2>
+      <p class="mb-4">Puedes hacer tu pedido directamente en el <a class="text-primary underline" href="/catalogo">catálogo online</a> con pago seguro, o escribirnos por WhatsApp al <a class="text-primary underline" href="https://wa.me/34695798632">+34 695 798 632</a>. Si representas a un negocio, en la sección <a class="text-primary underline" href="/al-por-mayor">Para Negocios y Eventos</a> te preparamos un presupuesto a medida.</p>
+
+      ${ctaHtml}
+
+      <p class="text-center text-sm text-muted-foreground">¿Prefieres ver antes lo que hacemos? Pásate por nuestro Instagram <a class="text-primary underline" href="https://www.instagram.com/maxrico_empanadas?igsh=OGR2cWdqbTdlOGE3" target="_blank" rel="noopener">@maxrico_empanadas</a> y para pedidos de empresa entra en <a class="text-primary underline" href="/al-por-mayor">/al-por-mayor</a>.</p>
+    `,
+  },
 ];
 
 export const blogImages = {
