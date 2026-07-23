@@ -196,16 +196,18 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   const handleSubmitWaitlist = async () => {
     if (!email || !email.includes("@")) return toast.error("Introduce un email válido");
     setLoading(true);
-    const { error } = await supabase.from("waitlist_resto_espana").insert({
-      email,
-      name: name || null,
-      phone: phone || null,
-      city: city || null,
-      postal_code: postalCode || null,
-      products_interested: effectiveItems.map((i) => ({ id: i.product.id, name: i.product.name })),
+    const { data, error } = await supabase.functions.invoke("join-waitlist", {
+      body: {
+        email,
+        name: name || null,
+        phone: phone || null,
+        city: city || null,
+        postal_code: postalCode || null,
+        products_interested: effectiveItems.map((i) => ({ id: i.product.id, name: i.product.name })),
+      },
     });
     setLoading(false);
-    if (error) return toast.error("No se pudo registrar. Inténtalo de nuevo.");
+    if (error || (data as { error?: string })?.error) return toast.error("No se pudo registrar. Inténtalo de nuevo.");
     setWaitlistSent(true);
     toast.success("¡Te avisaremos cuando lleguemos a tu zona!");
   };
