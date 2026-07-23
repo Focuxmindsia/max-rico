@@ -38,25 +38,43 @@ const blogSrc = fs.readFileSync(path.join(root, "src/data/blog.ts"), "utf8");
  * Parses `name: "..."` / `slug: "..."` pairs from a data file. The order of
  * fields in each object entry doesn't matter — we scan objects individually.
  */
+/**
+ * Line-based extraction: for every `slug: "..."`, find the nearest `name:` or
+ * `title:` and (optionally) `description:` / `excerpt:` within a 30-line
+ * window around it. Robust against template literals and nested braces.
+ */
 function extractEntries(src) {
+  const lines = src.split("\n");
   const out = [];
-  // Split by objects starting with `{` and containing `slug:`
-  const objectRegex = /\{[^{}]*?slug:\s*"([^"]+)"[^{}]*?\}/gs;
-  let m;
-  while ((m = objectRegex.exec(src)) !== null) {
-    const block = m[0];
-    const slug = m[1];
-    const nameMatch = block.match(/(?:name|title):\s*"((?:\\"|[^"])+)"/);
-    const descMatch = block.match(/(?:description|excerpt):\s*"((?:\\"|[^"])+)"/);
-    if (!nameMatch) continue;
+  const slugRe = /^\s*slug:\s*"([^"]+)"/;
+  const titleRe = /^\s*(?:name|title):\s*"((?:\\"|[^"])+)"/;
+  const descRe = /^\s*(?:description|excerpt):\s*"((?:\\"|[^"])+)"/;
+  for (let i = 0; i < lines.length; i++) {
+    const sm = lines[i].match(slugRe);
+    if (!sm) continue;
+    const slug = sm[1];
+    let title = "";
+    let description = "";
+    for (let j = Math.max(0, i - 15); j < Math.min(lines.length, i + 15); j++) {
+      if (!title) {
+        const tm = lines[j].match(titleRe);
+        if (tm) title = tm[1];
+      }
+      if (!description) {
+        const dm = lines[j].match(descRe);
+        if (dm) description = dm[1];
+      }
+    }
+    if (!title) continue;
     out.push({
       slug,
-      title: nameMatch[1].replace(/\s+/g, " ").trim(),
-      description: descMatch ? descMatch[1].replace(/\s+/g, " ").trim() : "",
+      title: title.replace(/\s+/g, " ").trim(),
+      description: description.replace(/\s+/g, " ").trim(),
     });
   }
   return out;
 }
+
 
 const products = extractEntries(productsSrc);
 const posts = extractEntries(blogSrc);
