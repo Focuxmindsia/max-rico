@@ -132,7 +132,7 @@ export default function Cart() {
               <div className="flex items-start gap-2 p-3 mb-3 bg-red-50 border border-red-200 rounded-lg">
                 <AlertTriangle className="h-4 w-4 text-red-700 flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-red-900">
-                  El <strong>Extra Chorizo XL</strong> solo se puede comprar junto con uno de nuestros <strong>combos fritos</strong>. Añade un combo para continuar.
+                  Los <strong>extras</strong> (tarrinas de salsa y Chorizo XL extra) solo se pueden comprar junto con uno de nuestros <strong>combos fritos</strong>. Añade un combo para continuar.
                 </p>
               </div>
             )}
