@@ -273,6 +273,145 @@ export const posts: BlogPost[] = [
       <p class="text-center text-sm text-muted-foreground">¿Prefieres ver antes lo que hacemos? Pásate por nuestro Instagram <a class="text-primary underline" href="https://www.instagram.com/maxrico_empanadas?igsh=OGR2cWdqbTdlOGE3" target="_blank" rel="noopener">@maxrico_empanadas</a> y para pedidos de empresa entra en <a class="text-primary underline" href="/al-por-mayor">/al-por-mayor</a>.</p>
     `,
   },
+  {
+    slug: "empanadas-colombianas-zaragoza-guia-completa",
+    title: "Empanadas Colombianas en Zaragoza: La Guía Completa 2026 (MaxRico)",
+    excerpt:
+      "Guía definitiva 2026 para comprar empanadas colombianas en Zaragoza: dónde pedirlas, diferencias con la empanada española, venta al por mayor para bares y restaurantes, envío nacional de productos latinos y cómo prepararlas en casa.",
+    cover: productEmpanadasGrandesPollo,
+    date: "2026-07-23",
+    readingTime: "9 min",
+    author: "Equipo MaxRico",
+    tags: ["Guía", "Zaragoza", "Empanadas", "Colombia", "Al por mayor", "SEO"],
+    keywords:
+      "empanadas colombianas Zaragoza, comprar empanadas colombianas, empanadas congeladas Zaragoza, comida colombiana Zaragoza, empanadas al por mayor Zaragoza, proveedor de empanadas, distribuidor de productos latinos, envío nacional de productos latinos, empanadas para restaurantes, empanadas para bares y cafeterías, tienda latina Zaragoza",
+    bodyHtml: `
+      <p class="text-lg leading-relaxed mb-6">Esta es la <strong>guía completa 2026</strong> para entender, comprar y disfrutar las <strong>empanadas colombianas en Zaragoza</strong>. Está pensada tanto para personas que quieren pedirlas a casa como para bares, restaurantes y cafeterías que buscan un <strong>proveedor de empanadas</strong> estable en Aragón y en el resto de España. Todo lo que necesitas saber, respondido de forma directa.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Dónde comprar empanadas colombianas en Zaragoza?</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> en <span translate="no" class="notranslate">MaxRico</span>. Servimos <strong>empanadas colombianas en Zaragoza</strong> con envío a domicilio en la capital y envío ultracongelado a toda España.</p>
+      <p class="mb-4">Puedes <a class="text-primary underline" href="/catalogo">comprar empanadas colombianas</a> desde nuestro catálogo online, con pago seguro con tarjeta o pedido por WhatsApp al <a class="text-primary underline" href="https://wa.me/34695798632">+34 695 798 632</a>. En Zaragoza capital repartimos combos fritos calientes listos para consumir; para el resto de España enviamos producto ultracongelado por mensajería refrigerada.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Qué diferencia a las empanadas colombianas de las españolas?</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> la masa. La empanada colombiana se hace con <strong>maíz amarillo molido</strong>, es naturalmente sin gluten, se fríe y queda crujiente. La española se hace con harina de trigo y suele ir al horno.</p>
+      <p class="mb-4">También cambia el formato y el relleno: la colombiana es individual, con relleno jugoso de carne o pollo y se acompaña con ají. La española es más grande, para compartir, y suele llevar atún, bonito o carne guisada. Si buscas <strong>comida colombiana en Zaragoza</strong> auténtica, la referencia es esta masa de maíz sin trigo.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Se pueden comprar al por mayor para bares, restaurantes y cafeterías?</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> sí. En MaxRico trabajamos con negocios HORECA como <strong>proveedor de empanadas</strong> y <strong>distribuidor de productos latinos</strong> en Zaragoza y toda España.</p>
+      <p class="mb-4">Ofrecemos precios de <strong>empanadas al por mayor en Zaragoza</strong> y envío nacional para <strong>empanadas para restaurantes</strong>, <strong>empanadas para bares y cafeterías</strong>, hoteles, food trucks y empresas de catering. Formatos ultracongelados listos para freír, packaging profesional y logística refrigerada. Toda la info y solicitud de presupuesto en <a class="text-primary underline" href="/al-por-mayor">/al-por-mayor</a>.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Las empanadas vienen congeladas o listas para comer?</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> las dos opciones. Tenemos <strong>empanadas congeladas en Zaragoza</strong> para preparar en casa y <strong>combos fritos ya calientes</strong> listos para consumir con reparto a domicilio en la capital.</p>
+      <ul class="space-y-2 mb-4 list-disc pl-6">
+        <li><strong>Congeladas (envío nacional):</strong> las recibes ultracongeladas y las preparas cuando quieras. Ideales para tener siempre a mano o para negocios.</li>
+        <li><strong>Combos fritos listos:</strong> te llegan recién hechas y calientes, solo dentro de Zaragoza capital.</li>
+        <li><strong>Extras que se pueden añadir a cualquiera de los dos:</strong> tarrinas de ají tradicional, ají picante, salsa de perejil y picante de la casa. Estas tarrinas se pueden pedir junto con combos fritos o junto con empanadas congeladas, no se venden sueltas.</li>
+      </ul>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Cómo se preparan las empanadas congeladas en casa?</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> en air fryer, horno o sartén honda, siempre <strong>sin descongelar</strong>. Tienes la guía detallada aquí: <a class="text-primary underline" href="/blog/como-preparar-empanadas-air-fryer">Cómo preparar empanadas en air fryer, horno o sartén</a>.</p>
+      <ul class="space-y-2 mb-4 list-disc pl-6">
+        <li><strong>Air fryer:</strong> 180 °C, 12 minutos, dando la vuelta a mitad. Sin aceite añadido.</li>
+        <li><strong>Horno:</strong> 200 °C, 15 minutos sobre papel de horno, pinceladas con un poco de aceite.</li>
+        <li><strong>Sartén honda / freidora:</strong> aceite a 180 °C, 4–5 minutos hasta que floten y estén doradas.</li>
+      </ul>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Zonas de reparto y envío nacional</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> reparto a domicilio en Zaragoza capital y <strong>envío nacional de productos latinos</strong> ultracongelados a toda España.</p>
+      <p class="mb-4">Dentro de Zaragoza cubrimos barrios como Centro, Delicias, Actur, La Almozara, Torrero, Las Fuentes, Universidad, Casablanca, Valdespartera y Miralbueno, entre otros. Para el resto de España enviamos por mensajería refrigerada en formato ultracongelado, manteniendo la calidad del producto desde nuestra <strong>tienda latina en Zaragoza</strong> hasta tu puerta. Si quieres una visión más amplia del contexto en el país, echa un vistazo a <a class="text-primary underline" href="/blog/empanadas-colombianas-en-espana">Empanadas colombianas en España</a>.</p>
+
+      ${ctaHtml}
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Síguenos y pide</h2>
+      <p class="mb-3"><strong>Respuesta directa:</strong> síguenos en Instagram <a class="text-primary underline" href="https://www.instagram.com/maxrico_empanadas?igsh=OGR2cWdqbTdlOGE3" target="_blank" rel="noopener">@maxrico_empanadas</a> y en <a class="text-primary underline" href="https://www.facebook.com/maxricoempanadas" target="_blank" rel="noopener">Facebook</a>. Para pedir, ve al <a class="text-primary underline" href="/catalogo">catálogo</a>; para negocios, a <a class="text-primary underline" href="/al-por-mayor">/al-por-mayor</a>.</p>
+      <p class="mb-6">Publicamos disponibilidad de combos del día, novedades y promociones especialmente en Instagram. Para pedidos directos siempre puedes escribirnos por WhatsApp al <a class="text-primary underline" href="https://wa.me/34695798632">+34 695 798 632</a>.</p>
+
+      <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">Preguntas frecuentes</h2>
+      <div class="space-y-5 mb-4">
+        <div>
+          <p class="font-bold mb-1">¿Las empanadas de MaxRico llevan gluten?</p>
+          <p>No. Nuestra masa es 100% maíz amarillo molido, sin harinas de trigo, apta para dieta sin gluten.</p>
+        </div>
+        <div>
+          <p class="font-bold mb-1">¿Hacéis envío a toda España?</p>
+          <p>Sí. Enviamos productos ultracongelados por mensajería refrigerada a toda la península. Los combos fritos calientes solo se sirven en Zaragoza capital.</p>
+        </div>
+        <div>
+          <p class="font-bold mb-1">¿Puedo comprar solo las tarrinas de ají?</p>
+          <p>No. Las tarrinas y el chorizo extra son complementos y solo se pueden añadir junto con un combo frito o con empanadas congeladas del catálogo.</p>
+        </div>
+        <div>
+          <p class="font-bold mb-1">¿Trabajáis con bares y restaurantes?</p>
+          <p>Sí. Somos proveedor y distribuidor de productos latinos para HORECA en Zaragoza y toda España. Solicita presupuesto en <a class="text-primary underline" href="/al-por-mayor">/al-por-mayor</a>.</p>
+        </div>
+        <div>
+          <p class="font-bold mb-1">¿Cuál es la mejor forma de prepararlas en casa?</p>
+          <p>El air fryer a 180 °C durante 12 minutos, sin descongelar y sin aceite añadido. Quedan crujientes por fuera y jugosas por dentro.</p>
+        </div>
+        <div>
+          <p class="font-bold mb-1">¿Cómo hago mi pedido?</p>
+          <p>Desde el <a class="text-primary underline" href="/catalogo">catálogo online</a> con pago seguro, o por WhatsApp al <a class="text-primary underline" href="https://wa.me/34695798632">+34 695 798 632</a>.</p>
+        </div>
+      </div>
+
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Dónde comprar empanadas colombianas en Zaragoza?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En MaxRico. Servimos empanadas colombianas en Zaragoza con envío a domicilio en la capital y envío ultracongelado a toda España. Puedes pedir desde https://maxrico.es/catalogo o por WhatsApp al +34 695 798 632."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Las empanadas de MaxRico llevan gluten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Nuestra masa es 100% maíz amarillo molido, sin harinas de trigo, apta para dieta sin gluten."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hacéis envío a toda España?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Enviamos productos ultracongelados por mensajería refrigerada a toda la península. Los combos fritos calientes solo se sirven en Zaragoza capital."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo comprar solo las tarrinas de ají o el chorizo extra?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Las tarrinas de ají y el chorizo extra son complementos y solo se pueden añadir junto con un combo frito o con empanadas congeladas del catálogo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Trabajáis con bares, restaurantes y cafeterías?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Somos proveedor de empanadas y distribuidor de productos latinos para HORECA en Zaragoza y toda España. Solicita presupuesto en https://maxrico.es/al-por-mayor."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuál es la mejor forma de preparar las empanadas congeladas en casa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En air fryer a 180 °C durante 12 minutos, sin descongelar y sin aceite añadido. Quedan crujientes por fuera y jugosas por dentro."
+            }
+          }
+        ]
+      }
+      </script>
+    `,
+  },
 ];
 
 export const blogImages = {
