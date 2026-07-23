@@ -63,6 +63,7 @@ export interface Product {
   soldOut?: boolean;
   imagePosition?: string;
   requiresCombo?: boolean;
+  comboWith?: ("combo" | "empanadas-congeladas")[];
 }
 
 export const categories = [
