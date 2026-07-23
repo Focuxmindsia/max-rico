@@ -1,0 +1,29 @@
+# MaxRico
+
+> Gastronomía artesanal colombiana en Zaragoza, España. Empanadas 100% de maíz molido, sin gluten, PandeBonos, arepas, chorizos santarrosanos y combos fritos listos para consumir con domicilio en Zaragoza y envío de productos ultracongelados a toda España.
+
+MaxRico es una marca colombiana especializada en empanadas artesanales de maíz molido (sin gluten), PandeBonos, arepas rellenas y combos fritos listos para consumir. Ofrecemos servicio a domicilio en Zaragoza capital, envíos de productos ultracongelados a toda España y catering para negocios y eventos. Contamos con un club de socios anual (59€) con precios exclusivos.
+
+## Páginas principales
+- [Inicio](https://maxrico.es/): presentación de la marca, productos destacados y acceso al catálogo
+- [Catálogo público](https://maxrico.es/catalogo): todos los productos con precios, imágenes y compra online
+- [Para Negocios y Eventos](https://maxrico.es/al-por-mayor): venta al por mayor, catering y colaboraciones B2B
+- [Club de Socios](https://maxrico.es/socios): membresía anual con descuentos exclusivos
+- [Blog](https://maxrico.es/blog): artículos sobre gastronomía colombiana en España
+
+## Blog
+- [Empanadas colombianas en Zaragoza](https://maxrico.es/blog/empanadas-colombianas-zaragoza): dónde comprar auténticas empanadas colombianas en Zaragoza
+- [Empanadas congeladas a domicilio en España](https://maxrico.es/blog/empanadas-congeladas-domicilio-espana): envíos de empanadas ultracongeladas a toda España
+- [PandeBono colombiano auténtico](https://maxrico.es/blog/pandebono-colombiano-autentico): historia y receta del PandeBono tradicional
+- [Catering colombiano para eventos](https://maxrico.es/blog/catering-colombiano-eventos): servicio de catering latino para eventos y empresas
+- [Chorizo santarrosano](https://maxrico.es/blog/chorizo-santarrosano): el chorizo colombiano artesanal de Santa Rosa de Cabal
+- [Arepas colombianas rellenas](https://maxrico.es/blog/arepas-colombianas-rellenas): variedades y recetas de arepas colombianas
+
+## Contacto
+- WhatsApp pedidos: +34 695 798 632
+- Zona de reparto a domicilio: Zaragoza capital
+- Envíos ultracongelados: toda España
+
+## Optional
+- [Carrito de compra](https://maxrico.es/carrito)
+- [Sitemap XML](https://maxrico.es/sitemap.xml)
