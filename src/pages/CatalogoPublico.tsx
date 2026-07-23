@@ -363,7 +363,7 @@ export default function CatalogoPublico() {
                       {badgeInfo.label}
                     </Badge>
                   )}
-                  {product.category === "Combos" && !isSoldOut && (
+                  {product.category === "Combos" && SHIPPING_INCLUDED_PRODUCT_IDS.has(product.id) && !isSoldOut && (
                     <div className="absolute bottom-0 left-0 right-0 bg-blue-600 text-white text-center py-1.5 font-bold text-sm tracking-wide">
                       🚚 DOMICILIO GRATIS
                     </div>
