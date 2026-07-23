@@ -280,7 +280,7 @@ export const posts: BlogPost[] = [
     title: "Empanadas Colombianas en Zaragoza: La Guía Completa 2026 (MaxRico)",
     excerpt:
       "Guía definitiva 2026 para comprar empanadas colombianas en Zaragoza: dónde pedirlas, diferencias con la empanada española, venta al por mayor para bares y restaurantes, envío nacional de productos latinos y cómo prepararlas en casa.",
-    cover: productEmpanadasGrandesPollo,
+    cover: cajaEmpanadasMaxRico15.url,
     date: "2026-07-23",
     readingTime: "9 min",
     author: "Equipo MaxRico",
