@@ -544,6 +544,7 @@ export const products: Product[] = [
     image: chorizoXLExtra.url,
     packSize: "1 chorizo XL",
     requiresCombo: true,
+    comboWith: ["combo"],
   },
   // === TARRINAS DE SALSA (fritos listos) ===
   {
