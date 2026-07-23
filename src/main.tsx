@@ -13,15 +13,19 @@ const tree = (
   </ErrorBoundary>
 );
 
-// If the HTML was prerendered with actual body markup (future full-DOM
-// prerender), hydrate. Head-only prerender (current mode) leaves #root empty,
-// so we fall back to createRoot. This keeps main.tsx forward-compatible.
 const prerenderMode = document.documentElement.getAttribute("data-prerendered");
 const hasPrerenderedBody =
   prerenderMode === "full" && container.childNodes.length > 0;
 
 if (hasPrerenderedBody) {
-  hydrateRoot(container, tree);
+  // Silence recoverable hydration mismatches (Radix generated IDs, dates,
+  // etc.). React will re-render the affected subtree on the client — this
+  // keeps prerender/hydration robust to minor server/client divergence.
+  hydrateRoot(container, tree, {
+    onRecoverableError: (error) => {
+      if (import.meta.env.DEV) console.warn("[hydrate recoverable]", error);
+    },
+  });
 } else {
   createRoot(container).render(tree);
 }
