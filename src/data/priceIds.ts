@@ -67,7 +67,7 @@ export function computeShippingFeeEUR(
 }
 
 // Extras that MUST be bought together with a combo (cannot be sold alone).
-export const REQUIRES_COMBO_PRODUCT_IDS = new Set(["31"]);
+export const REQUIRES_COMBO_PRODUCT_IDS = new Set(["31", "40", "41", "42", "43"]);
 
 export function isExtraRequiresCombo(productId: string): boolean {
   return REQUIRES_COMBO_PRODUCT_IDS.has(productId);
