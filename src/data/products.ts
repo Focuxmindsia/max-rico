@@ -558,6 +558,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaAjiPicanteTomateAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   {
     id: "41",
@@ -572,6 +573,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaSalsaPerejilAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   {
     id: "42",
@@ -586,6 +588,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaAjiTradicionalAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   {
     id: "43",
@@ -600,6 +603,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaSalsaPicanteCasaAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   // === HOJALDRES ===
   {

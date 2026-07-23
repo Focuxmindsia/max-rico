@@ -118,6 +118,11 @@ export default function ProductDetail() {
           <div>
             <p className="text-sm text-muted-foreground mb-1">{product.category} · {product.packSize}</p>
             <h1 className="text-2xl md:text-3xl font-black mb-4 whitespace-pre-line">{product.name}</h1>
+            {product.requiresCombo && (
+              <div className="mb-3 rounded-lg bg-amber-50 border border-amber-300 px-3 py-2 text-xs font-semibold text-amber-900">
+                ➕ Este producto es un <strong>complemento</strong> y solo se puede comprar junto con uno de nuestros combos fritos. No se vende de forma independiente ni tiene envío propio.
+              </div>
+            )}
             <p className="text-muted-foreground mb-4 whitespace-pre-line">{extras.longDescription}</p>
 
             {/* Highlights */}

@@ -363,9 +363,14 @@ export default function CatalogoPublico() {
                       {badgeInfo.label}
                     </Badge>
                   )}
-                  {product.category === "Combos" && SHIPPING_INCLUDED_PRODUCT_IDS.has(product.id) && !isSoldOut && (
+                  {product.category === "Combos" && !product.requiresCombo && SHIPPING_INCLUDED_PRODUCT_IDS.has(product.id) && !isSoldOut && (
                     <div className="absolute bottom-0 left-0 right-0 bg-blue-600 text-white text-center py-1.5 font-bold text-sm tracking-wide">
                       🚚 DOMICILIO GRATIS
+                    </div>
+                  )}
+                  {product.category === "Combos" && product.requiresCombo && !isSoldOut && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-amber-500 text-black text-center py-1.5 font-bold text-xs tracking-wide">
+                      ➕ Extra (requiere combo)
                     </div>
                   )}
                   {product.category !== "Combos" && !isSoldOut && (
