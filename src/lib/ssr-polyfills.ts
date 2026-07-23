@@ -65,16 +65,30 @@ if (typeof g.window === "undefined") {
 }
 
 if (typeof g.document === "undefined") {
+  const noop = () => {};
+  const elementStub = {
+    setAttribute: noop,
+    getAttribute: () => null,
+    appendChild: noop,
+    removeChild: noop,
+    addEventListener: noop,
+    removeEventListener: noop,
+    style: {},
+  };
   g.document = {
-    documentElement: { lang: "es" },
-    createElement: () => ({ setAttribute: () => {}, appendChild: () => {} }),
-    head: { appendChild: () => {}, querySelector: () => null },
-    body: { appendChild: () => {} },
-    addEventListener: () => {},
-    removeEventListener: () => {},
+    documentElement: { lang: "es", setAttribute: noop, getAttribute: () => null },
+    createElement: () => ({ ...elementStub }),
+    head: { appendChild: noop, querySelector: () => null, querySelectorAll: () => [] },
+    body: { appendChild: noop, querySelector: () => null, querySelectorAll: () => [] },
+    addEventListener: noop,
+    removeEventListener: noop,
     querySelector: () => null,
+    querySelectorAll: () => [],
+    getElementsByTagName: () => [],
+    getElementById: () => null,
   } as unknown;
 }
+
 
 if (typeof g.navigator === "undefined") {
   g.navigator = { userAgent: "node-ssr" } as unknown;
