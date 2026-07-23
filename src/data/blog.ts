@@ -4,6 +4,8 @@ import productEmpanadasCocteleras17 from "/combo-17-fritas-new.jpg";
 import productEmpanadasCocteleras51 from "/combo-51-fritas-new.png";
 import productEmpanadas from "@/assets/product-empanadas-v2.jpg";
 import comboXXLMixto from "/combo-xxl-mixto.png";
+import cajaEmpanadasMaxRico15 from "@/assets/empanadas-maxrico-caja-15.png.asset.json";
+import empanadasCongeladasTerneraPollo from "@/assets/empanadas-congeladas-ternera-pollo.png.asset.json";
 
 export interface BlogPost {
   slug: string;
