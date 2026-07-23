@@ -79,7 +79,7 @@ export function CheckoutWizard({ product, priceId, cartItems, open, onOpenChange
   const nonFritoSubtotal = useMemo(
     () =>
       effectiveItems.reduce(
-        (s, i) => (isProductFrito(i.product.id) ? s : s + i.product.price * i.quantity),
+        (s, i) => (SHIPPING_INCLUDED_PRODUCT_IDS.has(i.product.id) ? s : s + i.product.price * i.quantity),
         0,
       ),
     [effectiveItems],
