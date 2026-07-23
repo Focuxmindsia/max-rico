@@ -29,13 +29,13 @@ export default function Cart() {
 
   const hasExtraOnly = useMemo(() => {
     const hasExtra = items.some((i) => i.product.requiresCombo);
-    const hasCombo = items.some((i) => i.product.category === "Combos");
+    const hasCombo = items.some((i) => i.product.category === "Combos" && !i.product.requiresCombo);
     return hasExtra && !hasCombo;
   }, [items]);
 
   const handleCheckout = () => {
     if (hasExtraOnly) {
-      toast.error("El Extra Chorizo XL solo se puede comprar junto con un combo. Añade un combo frito a tu carrito.");
+      toast.error("Este producto es un extra y solo se puede comprar junto con un combo. Añade un combo frito a tu carrito.");
       return;
     }
     setCheckoutOpen(true);
