@@ -106,7 +106,7 @@ export default function Cart() {
                 <span className="font-semibold">
                   {willChargeShipping
                     ? `${SHIPPING_FEE_EUR.toFixed(2).replace(".", ",")}€`
-                    : nonFritoSubtotal === 0
+                    : hasShippingIncludedCombo && billableSubtotal === 0
                     ? "Incluido"
                     : "Gratis"}
                 </span>
