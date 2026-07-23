@@ -315,6 +315,11 @@ export const posts: BlogPost[] = [
         <li><strong>Extras que se pueden añadir a cualquiera de los dos:</strong> tarrinas de ají tradicional, ají picante, salsa de perejil y picante de la casa. Estas tarrinas se pueden pedir junto con combos fritos o junto con empanadas congeladas, no se venden sueltas.</li>
       </ul>
 
+      <figure class="my-8 not-prose">
+        <img src="${empanadasCongeladasTerneraPollo.url}" alt="Empanadas ultracongeladas MaxRico de pollo y ternera x10 unidades" loading="lazy" class="w-full rounded-2xl shadow-lg" />
+        <figcaption class="text-center text-sm text-muted-foreground mt-2">Empanadas ultracongeladas de pollo y ternera (x10 uds) — envío nacional desde Zaragoza.</figcaption>
+      </figure>
+
       <h2 class="text-2xl md:text-3xl font-black mt-10 mb-4">¿Cómo se preparan las empanadas congeladas en casa?</h2>
       <p class="mb-3"><strong>Respuesta directa:</strong> en air fryer, horno o sartén honda, siempre <strong>sin descongelar</strong>. Tienes la guía detallada aquí: <a class="text-primary underline" href="/blog/como-preparar-empanadas-air-fryer">Cómo preparar empanadas en air fryer, horno o sartén</a>.</p>
       <ul class="space-y-2 mb-4 list-disc pl-6">
