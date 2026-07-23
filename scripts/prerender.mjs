@@ -242,7 +242,7 @@ function rewriteHead(html, route) {
     out = out.replace(/<\/head>/i, `    ${canonicalTag}\n  </head>`);
   }
 
-  // marker for hydration detection (head-only prerender)
+  // marker for hydration detection (updated later if body is spliced in)
   if (!/data-prerendered=/.test(out)) {
     out = out.replace(/<html\b/i, '<html data-prerendered="head"');
   }
@@ -250,10 +250,57 @@ function rewriteHead(html, route) {
   return out;
 }
 
+// ---------- optional SSR body injection ----------
+// Loads the SSR bundle built by `vite build --ssr`. If present, we call
+// `render(url)` for the routes it supports and splice the returned HTML into
+// `<div id="root">…</div>`, flipping the marker to `data-prerendered="full"`.
+// If the SSR bundle is missing or `render()` throws for a route, we fall back
+// to head-only for that route — safe and non-blocking.
+const ssrEntryPath = path.join(root, "dist-ssr", "entry-ssr.js");
+let ssrMod;
+let ssrRoutes = new Set();
+if (fs.existsSync(ssrEntryPath)) {
+  try {
+    ssrMod = await import(pathToFileUrl(ssrEntryPath));
+    if (Array.isArray(ssrMod.SSR_ROUTES)) {
+      ssrRoutes = new Set(ssrMod.SSR_ROUTES);
+      console.log(`[prerender] SSR bundle loaded — full-body routes: ${[...ssrRoutes].join(", ")}`);
+    }
+  } catch (err) {
+    console.warn("[prerender] SSR bundle failed to load, falling back to head-only:", err?.message ?? err);
+  }
+} else {
+  console.log("[prerender] no SSR bundle at dist-ssr/entry-ssr.js — head-only mode");
+}
+
+function pathToFileUrl(p) {
+  return "file://" + p.replace(/\\/g, "/");
+}
+
+function injectSsrBody(html, bodyHtml) {
+  const marker = /<div id="root"><\/div>/;
+  if (!marker.test(html)) return html; // shell mismatch, skip
+  const withBody = html.replace(marker, `<div id="root">${bodyHtml}</div>`);
+  return withBody.replace(
+    /<html data-prerendered="head"/,
+    '<html data-prerendered="full"',
+  );
+}
+
 // ---------- write files ----------
 let written = 0;
+let ssrRendered = 0;
 for (const route of allRoutes) {
-  const html = rewriteHead(shellHtml, route);
+  let html = rewriteHead(shellHtml, route);
+  if (ssrMod && ssrRoutes.has(route.path)) {
+    try {
+      const body = ssrMod.render(route.path);
+      html = injectSsrBody(html, body);
+      ssrRendered++;
+    } catch (err) {
+      console.warn(`[prerender] SSR render failed for ${route.path}, keeping head-only:`, err?.message ?? err);
+    }
+  }
   const outPath =
     route.path === "/"
       ? path.join(distDir, "index.html")
@@ -263,4 +310,7 @@ for (const route of allRoutes) {
   written++;
 }
 
-console.log(`[prerender] wrote ${written} HTML files under dist/`);
+console.log(`[prerender] wrote ${written} HTML files (${ssrRendered} with full SSR body, ${written - ssrRendered} head-only)`);
+// Force exit — SSR bundle may leave async timers open (Stripe, Supabase).
+setTimeout(() => process.exit(0), 50).unref?.();
+
