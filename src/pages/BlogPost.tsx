@@ -17,6 +17,7 @@ export default function BlogPost() {
     description: post.excerpt,
     canonical: `https://maxrico.es/blog/${post.slug}`,
     keywords: post.keywords,
+    ogImage: post.cover,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Article",
