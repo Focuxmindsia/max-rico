@@ -75,6 +75,10 @@ export default function BlogPost() {
 
       {/* Contenido */}
       <article className="container mx-auto px-4 py-16 max-w-3xl prose-custom">
+        {post.bodyHtml ? (
+          <div dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
+        ) : (<>
+
         <p className="text-lg leading-relaxed text-foreground/90 mb-8">
           En <strong translate="no" className="notranslate">MaxRico</strong> llevamos a tu mesa el sabor real de Colombia: empanadas
           artesanales hechas con <strong>100% maíz molido</strong>, sin harinas de trigo, sin gluten,
