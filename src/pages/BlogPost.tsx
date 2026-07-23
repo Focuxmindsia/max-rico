@@ -265,7 +265,9 @@ export default function BlogPost() {
           empanadas de maíz, empanadas de pollo, empanadas de ternera, comida colombiana en España,
           arepas, tequeños, pandebono.
         </p>
+        </>)}
       </article>
+
     </Layout>
   );
 }
