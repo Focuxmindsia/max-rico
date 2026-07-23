@@ -573,6 +573,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaSalsaPerejilAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   {
     id: "42",
