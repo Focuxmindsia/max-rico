@@ -31,7 +31,7 @@ function setCanonical(href: string) {
 
 const JSONLD_ID = "seo-jsonld-route";
 
-export function useSeo({ title, description, canonical, keywords, jsonLd }: SeoOptions) {
+export function useSeo({ title, description, canonical, keywords, ogImage, jsonLd }: SeoOptions) {
   useEffect(() => {
     document.title = title;
     setMeta("description", description);
@@ -43,6 +43,14 @@ export function useSeo({ title, description, canonical, keywords, jsonLd }: SeoO
     setMeta("og:url", canonical, "property");
     setMeta("twitter:title", title);
     setMeta("twitter:description", description);
+
+    if (ogImage) {
+      const absolute = ogImage.startsWith("http") ? ogImage : `https://maxrico.es${ogImage}`;
+      setMeta("og:image", absolute, "property");
+      setMeta("og:image:secure_url", absolute, "property");
+      setMeta("twitter:image", absolute);
+      setMeta("twitter:card", "summary_large_image");
+    }
 
     let script = document.getElementById(JSONLD_ID) as HTMLScriptElement | null;
     if (jsonLd) {
@@ -56,5 +64,5 @@ export function useSeo({ title, description, canonical, keywords, jsonLd }: SeoO
     } else if (script) {
       script.remove();
     }
-  }, [title, description, canonical, keywords, jsonLd]);
+  }, [title, description, canonical, keywords, ogImage, jsonLd]);
 }
