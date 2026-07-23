@@ -577,6 +577,7 @@ export const products: Product[] = [
     image: tarrinaSalsaPerejilAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   {
     id: "42",
