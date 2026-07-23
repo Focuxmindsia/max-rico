@@ -9,12 +9,21 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem(STORAGE_KEY);
-    if (!consent) setVisible(true);
+    try {
+      const consent = localStorage.getItem(STORAGE_KEY);
+      if (!consent) setVisible(true);
+    } catch {
+      // localStorage may throw in private mode / in-app browsers — fail silently
+      setVisible(true);
+    }
   }, []);
 
   const setConsent = (value: "all" | "essential") => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ value, date: new Date().toISOString() }));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ value, date: new Date().toISOString() }));
+    } catch {
+      // ignore storage errors so the UI still dismisses
+    }
     setVisible(false);
   };
 
