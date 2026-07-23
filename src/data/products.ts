@@ -603,6 +603,7 @@ export const products: Product[] = [
     memberPrice: 0.99,
     image: tarrinaSalsaPicanteCasaAsset.url,
     packSize: "1 tarrina",
+    requiresCombo: true,
   },
   // === HOJALDRES ===
   {
