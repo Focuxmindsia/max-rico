@@ -94,19 +94,23 @@ Deno.serve(async (req) => {
       }
     });
 
-    // Añade recargo de envío (3,50€) si es domicilio y el subtotal de productos NO-fritos < 29€.
-    // No es suscripción para evitar mezclar modos.
+    // Añade recargo de envío (3,50€) si es domicilio y no hay ningún combo con
+    // envío incluido, y el subtotal de productos facturables < 29€.
     if (!isSubscription && body.deliveryMethod === "domicilio") {
-      const nonFritoSubtotalCents = body.items.reduce((sum, i) => {
+      const hasShippingIncludedCombo = body.items.some((i) => {
+        if (i.priceId === SOCIO_PRICE_ID) return false;
+        return SHIPPING_INCLUDED_PRODUCT_IDS.has(String(i.productId ?? ""));
+      });
+      const billableSubtotalCents = body.items.reduce((sum, i) => {
         if (i.priceId === SOCIO_PRICE_ID) return sum;
         const pid = String(i.productId ?? "");
-        if (FRITOS_PRODUCT_IDS.has(pid)) return sum;
+        if (SHIPPING_INCLUDED_PRODUCT_IDS.has(pid)) return sum;
         const qty = Math.max(1, Math.min(50, i.quantity || 1));
         const price = typeof i.price === "number" ? i.price : 0;
         return sum + Math.round(price * 100) * qty;
       }, 0);
 
-      if (nonFritoSubtotalCents > 0 && nonFritoSubtotalCents < FREE_SHIPPING_THRESHOLD_CENTS) {
+      if (!hasShippingIncludedCombo && billableSubtotalCents > 0 && billableSubtotalCents < FREE_SHIPPING_THRESHOLD_CENTS) {
         const idx = body.items.length;
         const base = `line_items[${idx}]`;
         params.append(`${base}[price_data][currency]`, "eur");
