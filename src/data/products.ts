@@ -561,6 +561,7 @@ export const products: Product[] = [
     image: tarrinaAjiPicanteTomateAsset.url,
     packSize: "1 tarrina",
     requiresCombo: true,
+    comboWith: ["combo", "empanadas-congeladas"],
   },
   {
     id: "41",
