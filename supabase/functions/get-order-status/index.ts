@@ -156,7 +156,7 @@ Deno.serve(async (req) => {
 
       // Webhook may not have fired (test mode / missing endpoint). Send emails here.
       // Idempotency keys ensure no duplicates if the webhook eventually arrives.
-      if (createdOrder?.customer_email && createdOrder.status === "paid") {
+      if (createdOrder?.customer_email && session.payment_status === "paid") {
         await sendOrderEmails(session, createdOrder);
       }
 
