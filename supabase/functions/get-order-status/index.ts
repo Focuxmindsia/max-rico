@@ -99,7 +99,7 @@ function formatSessionAsOrder(session: any, env: StripeEnv) {
     items,
     amount_total_cents: session.amount_total ?? 0,
     currency: session.currency ?? "eur",
-    status: session.payment_status === "paid" ? "paid" : "pending",
+    status: session.payment_status === "paid" ? "pending" : "pending",
     notes: m.notes || null,
     environment: env,
   };
