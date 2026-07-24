@@ -99,7 +99,7 @@ function formatSessionAsOrder(session: any, env: StripeEnv) {
     items,
     amount_total_cents: session.amount_total ?? 0,
     currency: session.currency ?? "eur",
-    status: session.payment_status === "paid" ? "paid" : "pending",
+    status: session.payment_status === "paid" ? "pending" : "pending",
     notes: m.notes || null,
     environment: env,
   };
@@ -156,7 +156,7 @@ Deno.serve(async (req) => {
 
       // Webhook may not have fired (test mode / missing endpoint). Send emails here.
       // Idempotency keys ensure no duplicates if the webhook eventually arrives.
-      if (createdOrder?.customer_email && createdOrder.status === "paid") {
+      if (createdOrder?.customer_email && session.payment_status === "paid") {
         await sendOrderEmails(session, createdOrder);
       }
 
@@ -167,7 +167,7 @@ Deno.serve(async (req) => {
     }
 
     // Existing order: if paid but we've never sent a receipt to this email, send now (webhook fallback).
-    if (data.status === "paid" && data.customer_email) {
+    if (data.customer_email && data.status !== "cancelled") {
       const { count } = await supabase
         .from("email_send_log")
         .select("id", { count: "exact", head: true })

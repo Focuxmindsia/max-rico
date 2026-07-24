@@ -336,8 +336,16 @@ export default function AdminOrders() {
               const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildOrderWhatsAppMessage(order))}`;
 
               return (
-                <Card key={order.id} className="overflow-hidden">
-                  <CardHeader className="p-5 bg-muted/40">
+                <Card
+                  key={order.id}
+                  className={`overflow-hidden transition-colors ${
+                    order.status === "pending"
+                      ? "border-l-4 border-l-pink-500 bg-pink-50/60 ring-1 ring-pink-200"
+                      : ""
+                  }`}
+                >
+                  <CardHeader className={`p-5 ${order.status === "pending" ? "bg-pink-100/70" : "bg-muted/40"}`}>
+
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-3">
                       <div>
                         <CardTitle className="text-xl flex flex-wrap items-center gap-2">
