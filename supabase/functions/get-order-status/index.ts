@@ -167,7 +167,7 @@ Deno.serve(async (req) => {
     }
 
     // Existing order: if paid but we've never sent a receipt to this email, send now (webhook fallback).
-    if (data.status === "paid" && data.customer_email) {
+    if (data.customer_email && data.status !== "cancelled") {
       const { count } = await supabase
         .from("email_send_log")
         .select("id", { count: "exact", head: true })
